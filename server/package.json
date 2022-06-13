@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/podmar/belayme/issues"
   },
-  "homepage": "https://github.com/podmar/belayme#readme"
+  "homepage": "https://github.com/podmar/belayme#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
