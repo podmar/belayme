@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "backend to the single page application for climbers looking for belay partners",
   "main": "server.js",
-  "start": "nodemon server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/podmar/belayme#readme",
   "dependencies": {
+    "concurrently": "^7.2.1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "mongoose": "^6.3.6"
