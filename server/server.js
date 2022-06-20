@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import users from "./routes/users.js"
+import users from "./routes/usersRoute.js"
 import * as dotenv from "dotenv";
 import mongoose from "mongoose"; 
 
