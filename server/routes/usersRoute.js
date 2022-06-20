@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers } from "../controller/usersController.js";
+import { getAllUsers, getUsersByCurrentLocation } from "../controller/usersController.js";
 import userModel from "../model/userModel.js";
 
 const router = express.Router();
@@ -9,5 +9,7 @@ router.get('/test', (req, res) => {
 });
 
 router.get("/all", getAllUsers);
+
+router.get("/:current_location", getUsersByCurrentLocation)
 
 export default router
