@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../model/userModel.js";
+import userModel from "../model/userModel.js";
 
 const router = express.Router();
 
@@ -8,10 +8,11 @@ router.get('/test', (req, res) => {
 });
 
 router.get("/all", (req, res) => {
-    User.find({}, function(err, users) {
+    userModel.find({}, function(err, users) {
         if (err) {
             res.send(`There was a problem: ${err}`);
         } else {
+            res.status(200)
             res.send(users);
         }
     })
