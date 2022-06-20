@@ -11,6 +11,8 @@ router.get("/all", (req, res) => {
     User.find({}, function(err, users) {
         if (err) {
             res.send(`There was a problem: ${err}`);
+        } else {
+            res.send(users);
         }
     })
 });
