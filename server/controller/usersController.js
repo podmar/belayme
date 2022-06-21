@@ -35,4 +35,19 @@ const getUsersByCurrentLocation = async (req, res) => {
     }
 }
 
-export { getAllUsers, getUsersByCurrentLocation }; 
+const getUserByID = async (req, res) => {
+    try {
+        const userByID = await userModel
+        .find({_id: req.params._id})
+        .exec()
+        res
+        .status(200)
+        .json({results: userByID.length, userByID})
+    } catch (err) {
+        res
+        .status(400)
+        .json({err: err, message: "There is a problem with the server"})
+    }
+};
+
+export { getAllUsers, getUsersByCurrentLocation, getUserByID }; 
