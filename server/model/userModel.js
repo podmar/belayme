@@ -12,9 +12,7 @@ const userSchema = new Schema({
        home_crag: String
    },
    current: {
-       status: {
-           travelling: Boolean
-       }, 
+       travelling: Boolean, 
        current_location: String
    }
 }); 
