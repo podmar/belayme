@@ -25,13 +25,15 @@ const getUsersByCurrentLocation = async (req, res) => {
     try {
         console.log("hey")
         const usersByLocation = await userModel
+        .find({ "current.current_location": req.params.current_location})
+
         // .find({ current: {current_location: req.params.current_location}})
         // .find({ current: {$elemMatch: {current_location: req.params.current_location}}})
 
         // .find({ current: {$elemMatch: {status: { $elemMatch: {current_location: req.params.current_location}}}}})
         // .find({ current.status.current_location: req.params.current_location}}})
 
-        .find({ nickname: req.params.current_location})
+        // .find({ nickname: req.params.current_location})
         .exec()
         console.log("userByLocation", usersByLocation)
         res
