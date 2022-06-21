@@ -5,13 +5,14 @@ const getAllUsers = async (req, res) => {
         const allUsers = await userModel.find({})
         if (allUsers.length === 0) {
             res
-            .status(202)
+            .status(200)
             .json({message: "There are no users in the database."});
+        } else {
+            res
+            .status(200)
+            .json({results: allUsers.length, allUsers});
+            console.log(allUsers);
         }
-        res
-        .status(200)
-        .json({results: allUsers.length, allUsers});
-        console.log(allUsers);
     } catch (err) {
         res
         .status(400)
@@ -26,7 +27,7 @@ const getUsersByCurrentLocation = async (req, res) => {
         .exec()
         if (usersByLocation.length === 0) {
             res
-            .status(204)
+            .status(200)
             .json({message: "No data matches requested endpoint."})
         } else {
             console.log("userByLocation", usersByLocation)
@@ -48,7 +49,7 @@ const getUserByID = async (req, res) => {
         .exec()
         if (userByID.length === 0) {
             res
-            .status(204)
+            .status(200)
             .json({message: "No data matches requested endpoint."})
         } else {
             res
