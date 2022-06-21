@@ -21,24 +21,45 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUsersByCurrentLocation = async (req, res) => {
-    try {
-        const usersByLocation = await userModel
-        .find({ "current.current_location": req.params.current_location})
-        .exec()
-        if (usersByLocation.length === 0) {
+    const {location} = req.query;
+    if (location) {
+        try {
+            const usersByLocation = await userModel
+            .find({ "current.current_location": {$gte: location}})
+            .exec()
+            if (usersByLocation.length === 0) {
+                res
+                .status(200)
+                .json({message: "No data matches requested endpoint."})
+            } else {
+                console.log("userByLocation", usersByLocation)
+                res
+                .status(200)
+                .json({ results: usersByLocation.length, usersByLocation })
+            }
+        } catch (err) {
             res
-            .status(200)
-            .json({message: "No data matches requested endpoint."})
-        } else {
-            console.log("userByLocation", usersByLocation)
-            res
-            .status(200)
-            .json({ results: usersByLocation.length, usersByLocation })
+            .status(400)
+            .json({err: err, message: "There is a problem with the server"})
         }
-    } catch (err) {
-        res
-        .status(400)
-        .json({err: err, message: "There is a problem with the server"})
+    } else {
+        try {
+            const allUsers = await userModel.find({})
+            if (allUsers.length === 0) {
+                res
+                .status(200)
+                .json({message: "There are no users in the database."});
+            } else {
+                res
+                .status(200)
+                .json({results: allUsers.length, allUsers});
+                console.log(allUsers);
+            }
+        } catch (err) {
+            res
+            .status(400)
+            .json({error: err, message: "There is a problem with the server"});
+        };
     }
 }
 

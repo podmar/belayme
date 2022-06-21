@@ -10,7 +10,7 @@ router.get('/test', (req, res) => {
 
 router.get("/all", getAllUsers);
 
-router.get("/:current_location", getUsersByCurrentLocation);
+router.get("/", getUsersByCurrentLocation);
 
 router.get("/:_id", getUserByID);
 
