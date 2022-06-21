@@ -24,10 +24,16 @@ const getUsersByCurrentLocation = async (req, res) => {
         const usersByLocation = await userModel
         .find({ "current.current_location": req.params.current_location})
         .exec()
-        console.log("userByLocation", usersByLocation)
-        res
-        .status(200)
-        .json({ results: usersByLocation.length, usersByLocation })
+        if (usersByLocation.length === 0) {
+            res
+            .status(204)
+            .json({message: "No data matches requested endpoint."})
+        } else {
+            console.log("userByLocation", usersByLocation)
+            res
+            .status(200)
+            .json({ results: usersByLocation.length, usersByLocation })
+        }
     } catch (err) {
         res
         .status(400)
@@ -40,9 +46,15 @@ const getUserByID = async (req, res) => {
         const userByID = await userModel
         .find({_id: req.params._id})
         .exec()
-        res
-        .status(200)
-        .json({results: userByID.length, userByID})
+        if (userByID.length === 0) {
+            res
+            .status(204)
+            .json({message: "No data matches requested endpoint."})
+        } else {
+            res
+            .status(200)
+            .json({results: userByID.length, userByID})
+        }
     } catch (err) {
         res
         .status(400)
