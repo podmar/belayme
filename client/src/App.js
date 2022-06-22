@@ -4,6 +4,7 @@ import "@fontsource/roboto"
 import {Button, Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import Typography from '@mui/material/Typography';
+import Home from './views/Home';
 
 function App() {
   const theme = createTheme ({
@@ -35,14 +36,7 @@ function App() {
           <header>
             
           </header>
-          <Typography variant='h1'>
-            belayme
-          </Typography>
-          <Button 
-            variant="contained"
-            color="secondary">
-            Find a belayer
-          </Button>
+          <Home />
         </div>
       </Container>
     </ThemeProvider>
