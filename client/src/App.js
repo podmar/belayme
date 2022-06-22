@@ -2,16 +2,10 @@ import React from 'react'
 import './App.css';
 import "@fontsource/roboto"
 import {Button, Container} from "@mui/material"
-// import { Theme } from './components/Theme';
 import { ThemeProvider, createTheme } from "@mui/material/styles"
+import Typography from '@mui/material/Typography';
 
 function App() {
-  // const belaymeTheme = createTheme({
-  //   status: {
-  //     background: "linear-gradient(45deg, #F4D03F, #45B39D"
-  //   }
-  // })
-
   const theme = createTheme ({
     palette: {
       type: 'light',
@@ -25,8 +19,8 @@ function App() {
         main: '#c94b60',
       },
       background: {
-        default: '#eeeeee',
-        paper: '#e0e4e6',
+        default: '#e0e0e0',
+        paper: '#f5f5f5',
       },
     },
     shape: {
@@ -41,6 +35,9 @@ function App() {
           <header>
             
           </header>
+          <Typography variant='h1'>
+            belayme
+          </Typography>
           <Button 
             variant="contained"
             color="secondary">
