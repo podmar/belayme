@@ -1,7 +1,6 @@
 import React from 'react'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 
-
 function BelaymeTheme() {
     const theme = createTheme ({
         palette: {
@@ -24,7 +23,7 @@ function BelaymeTheme() {
           borderRadius: 20,
         },
       });
-      
+
   return (
     <div>BelaymeTheme</div>
   )
