@@ -1,10 +1,18 @@
 import React from 'react'
 import './App.css';
+import { Routes, Route} from 'react-router-dom';
 import "@fontsource/roboto"
-import {Button, Container} from "@mui/material"
+import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import Typography from '@mui/material/Typography';
 import Home from './views/Home';
+import Login from './views/Login';
+import Register from './views/Register';
+import MyProfile from './views/MyProfile';
+import ListView from './views/ListView';
+import DetailPartnerView from './views/DetailPartnerView';
+import ErrorPage from './views/ErrorPage';
+import BelayRequest from './views/BelayRequest';
+import Inbox from './views/Inbox';
 
 function App() {
   const theme = createTheme ({
@@ -36,7 +44,17 @@ function App() {
           <header>
             
           </header>
-          <Home />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="list" element={<ListView />} />
+              <Route path="detail/:userid" element={<DetailPartnerView />} />
+              <Route path="belayrequest" element={<BelayRequest />} />
+              <Route path="inbox" element={<Inbox />} />
+              <Route path="myprofile" element={<MyProfile />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
         </div>
       </Container>
     </ThemeProvider>
