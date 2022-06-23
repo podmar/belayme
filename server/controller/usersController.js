@@ -1,5 +1,8 @@
 import userModel from "../model/userModel.js"
 
+// GET METHODS
+//#region 
+
 const getAllUsers = async (req, res) => {
     try {
         const allUsers = await userModel.find({})
@@ -83,5 +86,26 @@ const getUserByID = async (req, res) => {
         .json({err: err, message: "There is a problem with the server"})
     }
 };
+//#endregion
 
+//POST METHODS
+//#region 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#endregion
 export { getAllUsers, getUsersByCurrentLocation, getUserByID }; 
