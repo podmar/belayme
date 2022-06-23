@@ -14,4 +14,6 @@ router.get("/", getUsersByCurrentLocation);
 
 router.get("/:_id", getUserByID);
 
+router.post("/register", register);
+
 export default router
