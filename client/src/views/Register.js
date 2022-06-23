@@ -8,7 +8,7 @@ function Register() {
   return (
     <>
       <Typography variant='h2'>
-        Register
+      Register
       </Typography>
       <Typography variant="subtitle1">
         to find a belayer
@@ -93,12 +93,12 @@ function Register() {
       >
         <div>
         <p>
-            Already have an account? 
+        Already have an account? 
         </p>
         </div>
         <div>
         <Button>
-          Go to login page
+        Go to login page
         </Button>
         </div>
       </Box>

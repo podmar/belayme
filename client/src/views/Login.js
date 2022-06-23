@@ -69,7 +69,7 @@ function Login() {
         }}
       >
         <div>
-          <p>No account yet? </p>
+          <p>No account yet?</p>
         </div>
         <div>
           <Button>
