@@ -91,7 +91,40 @@ const getUserByID = async (req, res) => {
 //POST METHODS
 //#region 
 
+const register = async (req, res) => {
+    console.log(req)
+    try {
+        const checkIfUserExists = await userModel.findOne({"contact.email": req.body.email});
+        if (checkIfUserExists) {
 
+        } else {
+            try {
+                //TODO hash the password with bcrypt
+
+                const newUser = new userModel({
+                    nickname: req.body.nickname,
+                    // password: bcryptPassword,
+                    contact: {
+                        email: req.body.email,
+                    }
+                })
+
+                res
+                .status(201)
+                .json({message: "New user has been created"})
+            } catch (error) {
+                res
+                //TODO check what status is correct here
+                .status(400)
+                .json({message: "server error, registration failed", error: error})
+            }
+        };
+    } catch (error) {
+        res
+        .status(400)
+        .json({message: "server error, registration failed", error: error})
+    }
+}
 
 
 
