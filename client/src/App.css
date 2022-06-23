@@ -1,14 +1,28 @@
 .App {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 h1 {
-  padding: 1rem;
+  padding-top: 1rem;
 }
 
 h2 {
-  padding: 2rem;
+  padding-top: 2rem;
+  /* padding-bottom: 1rem; */
+}
+
+h6 {
+  padding-bottom: 2rem;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+button {
+  margin: 2rem;
+  padding: 2rem
 }
 
 @media (prefers-reduced-motion: no-preference) {
