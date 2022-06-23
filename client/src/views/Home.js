@@ -4,7 +4,7 @@ import React from 'react'
 function Home() {
   return (
     <div>
-        <Typography variant='h1'>
+        <Typography variant='h2'>
             belayme
         </Typography>
         <Button 
