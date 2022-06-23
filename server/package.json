@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/podmar/belayme#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cloudinary": "^1.30.0",
     "concurrently": "^7.2.1",
     "cors": "^2.8.5",
