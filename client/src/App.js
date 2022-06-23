@@ -16,7 +16,7 @@ import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
 
 function App() {
-  const {user, SetUser} = useState(null);
+  const {user, SetUser} = useState({});
 
 
   //#region MUI THEME
