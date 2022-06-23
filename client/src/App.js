@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import "@fontsource/roboto"
+import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import Home from './views/Home';
@@ -15,7 +16,7 @@ import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
 
 function App() {
-  const theme = createTheme ({
+  const themeLight = createTheme ({
     palette: {
       type: 'light',
       primary: {
@@ -38,7 +39,8 @@ function App() {
   });
 
   return (
-    <ThemeProvider theme= {theme}>
+    <ThemeProvider theme= {themeLight}>
+      <CssBaseline />
       <Container maxWidth="md">
         <div className="App">
           <header>
