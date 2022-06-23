@@ -25,23 +25,34 @@ function Register() {
         <div>
           <TextField
             required
+            size='small'
             id="nickname-input"
             label="Nickname"
             defaultValue="lucy"
           />
+        </div>
+        <div>
           <TextField
+            // error
+            // helperText="Invalid email address."
             required
+            size='small'
             id="email-input"
             label="E-mail"
             type="email"
             defaultValue="lucy@email.com"
           />
+        </div>
+        <div>
           <TextField
+            // fullWidth
+            size='small'
             id="password-input"
             label="Password"
             type="password"
             autoComplete="current-password"
           />
+          </div>
           {/* <TextField
             id="outlined-read-only-input"
             label="Read Only"
@@ -65,14 +76,30 @@ function Register() {
             defaultValue="Default Value"
             helperText="Some important text"
           /> */}
-        </div>
         <div>
           <Button
             type='submit'
             endIcon={<SendIcon />}
+            variant='contained'
           >
             Register
           </Button>
+        </div>
+      </Box>
+      <Box
+        sx={{
+          flexDirection: 'column',
+        }}
+      >
+        <div>
+        <Typography variant='p'>
+            Already have an account? 
+        </Typography>
+        </div>
+        <div>
+        <Button>
+          Go to login page
+        </Button>
         </div>
       </Box>
     </>

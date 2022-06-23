@@ -36,6 +36,7 @@ function App() {
     shape: {
       borderRadius: 20,
     },
+    spacing: 10,
   });
 
   return (
