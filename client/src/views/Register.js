@@ -92,9 +92,9 @@ function Register() {
         }}
       >
         <div>
-        <Typography variant='p'>
+        <p>
             Already have an account? 
-        </Typography>
+        </p>
         </div>
         <div>
         <Button>
