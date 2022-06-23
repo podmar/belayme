@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import "@fontsource/roboto"
@@ -16,6 +16,10 @@ import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
 
 function App() {
+  const {user, SetUser} = useState(null);
+
+
+  //#region MUI THEME
   const themeLight = createTheme ({
     palette: {
       type: 'light',
@@ -38,7 +42,7 @@ function App() {
     },
     spacing: 10,
   });
-
+  //#endregion
   return (
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
