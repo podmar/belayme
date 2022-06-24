@@ -1,4 +1,5 @@
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 
 function List() {
@@ -30,12 +31,28 @@ function List() {
         <Typography variant='h2'>
             Climbers nearby
         </Typography>
-        {belayerCount ? 
-            <p>{`Found ${belayerCount} people nearby you.`}</p> :
-            <p>Looking for people nearby...</p>
-        }
-        
-
+            {belayerCount ? 
+                <p>{`Found ${belayerCount} people nearby you.`}</p> :
+                <p>Looking for people nearby...</p>
+            }
+            {/* TODO create a card for each belayer */}
+            {belayers && belayers.map(belayer => {
+                return (
+                    <Box py={1}
+                    key={belayer._id}
+                    >
+                        <Paper
+                        elevation={3}
+                        spacing={2}
+                        >
+                            <Typography variant='subtitle'>
+                                {belayer.nickname}
+                            </Typography>
+                            <p>Home crag: {belayer.contact.home_crag}</p>
+                        </Paper>
+                    </Box>
+                )
+            })}
     </div>
   )
 }
