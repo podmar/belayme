@@ -24,7 +24,6 @@ function NavBottomWithLinks() {
           component={NavLink} 
           to="/"
           label="Home" 
-          activeClassName="current"
           icon={<HomeIcon />} 
         />
         <BottomNavigationAction 
