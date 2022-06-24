@@ -3,7 +3,7 @@ import List from '../components/List'
 
 function ListView() {
   return (
-    <div>ListView
+    <div>
       <List/>
 
     </div>
