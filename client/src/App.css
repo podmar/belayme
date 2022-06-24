@@ -20,10 +20,15 @@ p {
   margin-bottom: 0;
 }
 
-button {
-  margin: 2rem;
-  padding: 2rem
+/* For the NavBar, not currently in use */
+/* li {
+  list-style: none;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
