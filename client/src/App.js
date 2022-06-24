@@ -15,6 +15,7 @@ import ErrorPage from './views/ErrorPage';
 import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
 import NavBottomWithLinks from './components/NavBottomWithLinks';
+import { ClimbersContextProvider } from './context/ClimbersContext';
 
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
@@ -58,9 +59,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<Login />} />
-              <Route path="list" element={<ListView />} />
-              <Route path="detail/:userid" element={<DetailPartnerView />} />
-              <Route path="belayrequest" element={<BelayRequest />} />
+              <ClimbersContextProvider>
+                <Route path="list" element={<ListView />} />
+                <Route path="belayrequest" element={<BelayRequest />} />
+                <Route path="detail/:userid" element={<DetailPartnerView />} />
+              </ClimbersContextProvider>
               <Route path="inbox" element={<Inbox />} />
               <Route path="profile" element={<MyProfile />} />
               <Route path="*" element={<ErrorPage />} />
