@@ -27,6 +27,7 @@ function Register() {
             required
             size='small'
             id="nickname-input"
+            name="nickname"
             label="Nickname"
             defaultValue="lucy"
           />
@@ -38,7 +39,8 @@ function Register() {
             required
             size='small'
             id="email-input"
-            label="E-mail"
+            name="email"
+            label="Email"
             type="email"
             defaultValue="lucy@email.com"
           />
@@ -48,6 +50,7 @@ function Register() {
             // fullWidth
             size='small'
             id="password-input"
+            name="password"
             label="Password"
             type="password"
             autoComplete="current-password"
