@@ -1,8 +1,12 @@
 import React from 'react'
+import List from '../components/List'
 
 function ListView() {
   return (
-    <div>ListView</div>
+    <div>ListView
+      <List/>
+
+    </div>
   )
 }
 
