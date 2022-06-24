@@ -43,7 +43,6 @@ function List() {
                     >
                         <Paper
                         elevation={3}
-                        spacing={2}
                         >
                             <Typography variant='subtitle'>
                                 {belayer.nickname}
