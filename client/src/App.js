@@ -5,7 +5,6 @@ import "@fontsource/roboto"
 import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import NavBar from './components/NavBar';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
@@ -15,8 +14,10 @@ import DetailPartnerView from './views/DetailPartnerView';
 import ErrorPage from './views/ErrorPage';
 import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
+import NavBottomWithLinks from './components/NavBottomWithLinks';
 
 function App() {
+  //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
   const {user, SetUser} = useState({});
 
   //TODO move the mui theme to a separate component
@@ -51,7 +52,7 @@ function App() {
         <div className="App">
           <header>
             {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
-            <NavBar/>
+            <NavBottomWithLinks/>
           </header>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -61,7 +62,7 @@ function App() {
               <Route path="detail/:userid" element={<DetailPartnerView />} />
               <Route path="belayrequest" element={<BelayRequest />} />
               <Route path="inbox" element={<Inbox />} />
-              <Route path="myprofile" element={<MyProfile />} />
+              <Route path="profile" element={<MyProfile />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
         </div>
