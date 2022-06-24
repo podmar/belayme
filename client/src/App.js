@@ -50,6 +50,7 @@ function App() {
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
       <Container maxWidth="md">
+      <ClimbersContextProvider>
         <div className="App">
           <header>
             {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
@@ -59,16 +60,16 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<Login />} />
-              <ClimbersContextProvider>
-                <Route path="list" element={<ListView />} />
-                <Route path="belayrequest" element={<BelayRequest />} />
-                <Route path="detail/:userid" element={<DetailPartnerView />} />
-              </ClimbersContextProvider>
+              <Route path="list" element={<ListView />} />
+              <Route path="belayrequest" element={<BelayRequest />} />
+              <Route path="detail/:userid" element={<DetailPartnerView />} />
               <Route path="inbox" element={<Inbox />} />
               <Route path="profile" element={<MyProfile />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
         </div>
+      </ClimbersContextProvider>
+
       </Container>
     </ThemeProvider>
   );
