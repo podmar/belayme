@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import "@fontsource/roboto"
@@ -19,7 +19,6 @@ import { ClimbersContextProvider } from './context/ClimbersContext';
 
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
-  const {user, SetUser} = useState({});
 
   //TODO move the mui theme to a separate component
   //#region MUI THEME
