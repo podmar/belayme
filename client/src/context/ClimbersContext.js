@@ -1,10 +1,7 @@
-import React, { createContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { createContext, useEffect, useState } from 'react'
 
 export const ClimbersContext = createContext();
-
 export const ClimbersContextProvider = (props) => {
-  
   const [climbers, setClimbers] = useState(null);
   const [climberCount, setClimberCount] = useState([0]);
     
@@ -29,7 +26,7 @@ export const ClimbersContextProvider = (props) => {
 
   return (
     <ClimbersContext.Provider
-    value = {{climbers, setClimbers}}
+    value = {{climbers, setClimbers, climberCount, setClimberCount}}
     >
       {props.children}
     </ClimbersContext.Provider>
