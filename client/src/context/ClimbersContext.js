@@ -23,6 +23,10 @@ export const ClimbersContextProvider = (props) => {
       }
   };
 
+  useEffect(() => {
+    fetchClimbers()
+  }, [])
+
   return (
     <ClimbersContext.Provider
     value = {{climbers, setClimbers}}
