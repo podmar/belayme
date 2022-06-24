@@ -5,6 +5,7 @@ import "@fontsource/roboto"
 import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
+import NavBar from './components/NavBar';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
@@ -18,7 +19,7 @@ import Inbox from './views/Inbox';
 function App() {
   const {user, SetUser} = useState({});
 
-
+  //TODO move the mui theme to a separate component
   //#region MUI THEME
   const themeLight = createTheme ({
     palette: {
@@ -49,7 +50,8 @@ function App() {
       <Container maxWidth="md">
         <div className="App">
           <header>
-            
+            {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
+            <NavBar/>
           </header>
             <Routes>
               <Route path="/" element={<Home />} />
