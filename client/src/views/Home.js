@@ -1,8 +1,15 @@
 import { Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 // import NavBar from '../components/NavBar'
 
 function Home() {
+  const navigate = useNavigate();
+
+  const goToRegister = () => {
+    navigate("/register")
+  }
+
   return (
     <div>
     {/* <div className='home-background'> */}
@@ -12,7 +19,9 @@ function Home() {
         <Button 
             variant="contained"
             color="secondary"
-            size='large'>
+            size='large'
+            onClick={goToRegister}
+            >
             Find a belayer
         </Button>
         {/* <NavBar/> */}

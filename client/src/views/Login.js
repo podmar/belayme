@@ -73,6 +73,7 @@ function Login() {
         </div>
         <div>
           <Button>
+            {/* TODO Make this button work */}
             Go to registration page
           </Button>
         </div>
