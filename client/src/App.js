@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation} from 'react-router-dom';
 import "@fontsource/roboto"
 import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
@@ -20,6 +20,20 @@ import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
+  const location = useLocation();
+
+  const addBackground = () => {
+    if (location.pathname === "/" || location.pathname === "/register" || location.pathname === "/login" ) {
+      return true;
+    } else {
+      return false;
+    }
+  } 
+
+  useEffect(() => {
+    addBackground()
+  }, [location])
+  
 
   //TODO move the mui theme to a separate component
   //#region MUI THEME
@@ -52,7 +66,8 @@ function App() {
       {/* <Container maxWidth="md"> */}
       {/* <Container maxWidth="md" className='home-background'> */}
       {/* <Container maxWidth="md" className='hilly-image background-settings'> */}
-      <Container className='hilly-image background-settings'>
+      {/* <Container className='hilly-image background-settings'> */}
+      <Container className={addBackground ? "hilly-image background-settings" : ""}>
 
       <AuthContextProvider>
         <ClimbersContextProvider>
@@ -63,7 +78,7 @@ function App() {
             </header>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="register" element={<Register />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="login" element={<Login />} />
                 <Route path="list" element={<ListView />} />
                 <Route path="belayrequest" element={<BelayRequest />} />
