@@ -114,12 +114,13 @@ const register = async (req, res) => {
             console.log(hashedPassword);
 
             const newUser = new userModel({
-                // nickname: req.body.nickname,
-                nickname: req.query.nickname,
+                nickname: req.body.nickname,
+                // nickname: req.query.nickname,
                 password: hashedPassword,
                 contact: {
-                    // email: req.body.email,
-                    email: req.query.email,
+                    email: req.body.email,
+                    // email: req.query.email,
+                    home_crag: req.body.home_crag,
                 }
             })
 
@@ -131,6 +132,7 @@ const register = async (req, res) => {
                     user: {
                         nickname: savedUser.nickname,
                         email: savedUser.contact.email,
+                        home_crag: savedUser.contact.home_crag,
                     }
                 })
             } catch (error) {
