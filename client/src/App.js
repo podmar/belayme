@@ -49,7 +49,11 @@ function App() {
   return (
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
-      <Container maxWidth="md" className='home-background'>
+      {/* <Container maxWidth="md"> */}
+      {/* <Container maxWidth="md" className='home-background'> */}
+      {/* <Container maxWidth="md" className='hilly-image background-settings'> */}
+      <Container className='hilly-image background-settings'>
+
       <AuthContextProvider>
         <ClimbersContextProvider>
           <div className="App">

@@ -4,9 +4,8 @@
 }
 
 .app-title {
-  padding-top: 10rem;
-  padding-bottom: 4rem;
-  color: #e0e0e0;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
 }
 
 h2 {
@@ -22,13 +21,37 @@ p {
   margin-bottom: 0;
 }
 
-.home-background {
-  background-image: url("belayme_background_v2.svg");
+.home-image {
+  background-image: url("belayme_background_v3.svg");
+}
+
+.hilly-image {
+  background-image: url("hilly-background-vertical.svg");
+}
+
+@media only screen and (min-width: 541px) {
+  .hilly-image {
+    background-image: url("hilly-background-horizontal.svg");
+  }
+}
+
+.background-settings {
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   width: 100vw;
   height: 100vh;
-};
+}
+
+/* path {
+  fill-opacity: 1;
+  color: #117a65;
+  stroke-width: 0.252699pt; 
+}
+
+g {
+  display: inline;
+  transform: translate(511.32392,-8.923125);
+} */
 
 /* For the NavBar, not currently in use */
 /* li {
