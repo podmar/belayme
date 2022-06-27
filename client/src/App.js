@@ -16,6 +16,7 @@ import BelayRequest from './views/BelayRequest';
 import Inbox from './views/Inbox';
 import NavBottomWithLinks from './components/NavBottomWithLinks';
 import { ClimbersContextProvider } from './context/ClimbersContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
@@ -49,26 +50,27 @@ function App() {
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
       <Container maxWidth="md" className='home-background'>
-      <ClimbersContextProvider>
-        <div className="App">
-          <header>
-            {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
-            <NavBottomWithLinks/>
-          </header>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="register" element={<Register />} />
-              <Route path="login" element={<Login />} />
-              <Route path="list" element={<ListView />} />
-              <Route path="belayrequest" element={<BelayRequest />} />
-              <Route path="detail/:userid" element={<DetailPartnerView />} />
-              <Route path="inbox" element={<Inbox />} />
-              <Route path="profile" element={<MyProfile />} />
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-        </div>
-      </ClimbersContextProvider>
-
+      <AuthContextProvider>
+        <ClimbersContextProvider>
+          <div className="App">
+            <header>
+              {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
+              <NavBottomWithLinks/>
+            </header>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="register" element={<Register />} />
+                <Route path="login" element={<Login />} />
+                <Route path="list" element={<ListView />} />
+                <Route path="belayrequest" element={<BelayRequest />} />
+                <Route path="detail/:userid" element={<DetailPartnerView />} />
+                <Route path="inbox" element={<Inbox />} />
+                <Route path="profile" element={<MyProfile />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Routes>
+          </div>
+        </ClimbersContextProvider>
+      </AuthContextProvider>
       </Container>
     </ThemeProvider>
   );

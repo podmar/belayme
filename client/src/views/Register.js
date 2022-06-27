@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import {AuthContext} from "../context/AuthContext.js";
 
 function Register() {
+  const { user, setUser, register, handleRegistrationInputChange } = useContext(AuthContext);
+  // const { user, setUser, register, handleNicknameInputChange, handleEmailInputChange, handlePasswordInputChange, handleCragInputChange } = useContext(AuthContext);
+
+
   return (
     <>
       <Typography variant='h2'>
@@ -30,6 +35,8 @@ function Register() {
             name="nickname"
             label="Nickname"
             defaultValue="lucy"
+            // onChange={handleNicknameInputChange}
+            onChange={handleRegistrationInputChange}
           />
         </div>
         <div>
@@ -43,19 +50,37 @@ function Register() {
             label="Email"
             type="email"
             defaultValue="lucy@email.com"
+            // onChange={handleEmailInputChange}
+            onChange={handleRegistrationInputChange}
           />
         </div>
         <div>
-          <TextField
-            // fullWidth
-            size='small'
-            id="password-input"
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          />
-          </div>
+        <TextField
+          size='small'
+          id="home-crag"
+          name="home_crag"
+          label="Your home crag"
+          type="text"
+          // autoComplete="Where do you currently live?"
+          // onChange={handleCragInputChange}
+          onChange={handleRegistrationInputChange}
+        />
+        </div>
+        <div>
+        <TextField
+          // fullWidth
+          size='small'
+          id="password-input"
+          name="password"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          // onChange={handlePasswordInputChange}
+          onChange={handleRegistrationInputChange}
+
+        />
+        </div>
+
           {/* <TextField
             id="outlined-read-only-input"
             label="Read Only"
@@ -84,6 +109,7 @@ function Register() {
             type='submit'
             endIcon={<SendIcon />}
             variant='contained'
+            onClick={register}
           >
             Register
           </Button>

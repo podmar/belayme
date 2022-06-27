@@ -5,8 +5,12 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
    nickname: {
        type: String,
-    //    required: true
+       required: true
    },
+   password: {
+        type: String,
+        required: true
+    },
    contact: {
        email: String,
        home_crag: String

@@ -96,8 +96,8 @@ const getUserByID = async (req, res) => {
 const register = async (req, res) => {
     console.log(req)
     try {
-        // const checkIfUserExists = await userModel.findOne({"contact.email": req.body.email});
-        const checkIfUserExists = await userModel.findOne({"contact.email": req.query.email});
+        const checkIfUserExists = await userModel.findOne({"contact.email": req.body.email});
+        // const checkIfUserExists = await userModel.findOne({"contact.email": req.query.email});
 
         if (checkIfUserExists) {
             res
@@ -108,8 +108,8 @@ const register = async (req, res) => {
         } else {
             // TODO: validate the password using express validator middleware
 
-            // const hashedPassword = await encryptPassword(req.body.password);
-            const hashedPassword = await encryptPassword(req.query.password);
+            const hashedPassword = await encryptPassword(req.body.password);
+            // const hashedPassword = await encryptPassword(req.query.password);
 
             console.log(hashedPassword);
 
