@@ -48,7 +48,7 @@ function App() {
   return (
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
-      <Container maxWidth="md">
+      <Container maxWidth="md" className='home-background'>
       <ClimbersContextProvider>
         <div className="App">
           <header>
