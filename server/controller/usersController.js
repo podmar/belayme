@@ -1,5 +1,5 @@
 import userModel from "../model/userModel.js"
-import encryptPassword from "../utils/encryptPassword.js"
+import encryptPassword from "../utils/bcrypt.js"
 
 // GET METHODS
 //#region
