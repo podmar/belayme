@@ -179,7 +179,11 @@ const login = async (req, res) => {
             }
 
         };
-    };
+    } catch (error) {
+        res
+        .status(400)
+        .json({message: "Server error, login failed: cannot check if user exists.", error: error})
+    }
 };
 
 
