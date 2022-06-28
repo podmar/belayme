@@ -1,5 +1,5 @@
 import userModel from "../model/userModel.js"
-import encryptPassword from "../utils/bcrypt.js"
+import { encryptPassword, verifyPassword } from "../utils/bcrypt.js"
 
 // GET METHODS
 //#region
@@ -144,6 +144,43 @@ const register = async (req, res) => {
     }
 }
 
+const login = async (req, res) => {
+    console.log(req)
+    try {
+        const existingUser = await userModel.findOne({"contact.email": req.body.email});
+
+        if (!existingUser) {
+            res
+            .status(200)
+            .json({
+                message: "User does not exist, register first."
+            })
+        } else {
+            try {
+                const passwordVerified = await verifyPassword(req.body.password, existingUser.password);
+                if (!passwordVerified) {
+                    res
+                    .status(200)
+                    .json({message: "Wrong password, please try again."});
+                } else {
+                    res
+                    status(200)
+                    .json({
+                        message: "login successful",
+                        user: {
+                            nickname: existingUser.nickname, 
+                            email: existingUser.contact.email, 
+                            home_crag: existingUser.contact.home_crag,
+                        }
+                    });
+                }
+            } catch (error) {
+                console.log("Cannot verify password, database or bcrypt error: ", error)
+            }
+
+        };
+    };
+};
 
 
 
