@@ -158,12 +158,18 @@ const login = async (req, res) => {
         } else {
             try {
                 const passwordVerified = await verifyPassword(req.body.password, existingUser.password);
+                console.log("exisiting user password from the database", existingUser.password);
+                console.log("password you entered", req.body.password)
                 if (!passwordVerified) {
                     res
                     .status(200)
-                    .json({message: "Wrong password, please try again."});
+                    .json({
+                        passVerified: passwordVerified,
+                        message: "Wrong password, please try again.", 
+                        passwordSent: req.body.password,
+                        user: existingUser });
                 } else {
-                    res
+                    res.
                     status(200)
                     .json({
                         message: "login successful",

@@ -14,11 +14,10 @@ const encryptPassword = async (password) => {
 
 const verifyPassword = async (password, hashedPassword) => {
     try {
-        const verificationResult = await bcrypt.compare(password, hashedPassword, function(err, result) {
-        });  
+        const verificationResult = await bcrypt.compare(password, hashedPassword)
         return verificationResult;
     } catch (error) {
-        console.log("Error veryfying password, ". error)
+        console.log("Error veryfying password, ", error)
         return false;
     }
 };
