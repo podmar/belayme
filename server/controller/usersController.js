@@ -1,5 +1,6 @@
-import userModel from "../model/userModel.js"
-import { encryptPassword, verifyPassword } from "../utils/bcrypt.js"
+import { issueToken } from "../utils/jwt.js";
+import userModel from "../model/userModel.js";
+import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 
 // GET METHODS
 //#region
@@ -169,15 +170,18 @@ const login = async (req, res) => {
                         passwordSent: req.body.password,
                         user: existingUser });
                 } else {
-                    res.
-                    status(200)
+                    const token = issueToken(existingUser._id); 
+                    res
+                    .status(200)
                     .json({
                         message: "login successful",
                         user: {
                             nickname: existingUser.nickname, 
                             email: existingUser.contact.email, 
                             home_crag: existingUser.contact.home_crag,
-                        }
+                            token: token
+                        },
+                        fullUser: existingUser
                     });
                 }
             } catch (error) {
