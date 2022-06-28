@@ -196,4 +196,4 @@ const login = async (req, res) => {
 
 
 //#endregion
-export { getAllUsers, getUsersByCurrentLocation, getUserByID, register };
+export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login };
