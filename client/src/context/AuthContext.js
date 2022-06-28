@@ -61,6 +61,27 @@ export const AuthContextProvider = (props) => {
         }
     };
 
+        const login = async (event) => {
+        event.preventDefault();
+        // console.log(user);
+        let urlencoded = new URLSearchParams();
+        urlencoded.append("email", user.email);
+        urlencoded.append("password", user.password);
+
+        let requestOptions = {
+            method: "POST",
+            body: urlencoded,
+        };
+
+        try {
+            const response = await fetch("http://localhost:5001/users/login", requestOptions);
+            const result = await response.json();
+            // console.log("result",result);
+            redirectTo("/list");
+        } catch (error) {
+            console.log("cannot register user", error)
+        }
+    };
 
     // const checkIfUserLoggedIn = () => {};
     // useEffect(() => {
@@ -70,7 +91,7 @@ export const AuthContextProvider = (props) => {
     return (
         <AuthContext.Provider
         // value={{ user, setUser, register, login, logout, handleRegistrationInputChange}}
-        value={{ user, setUser, register, handleRegistrationInputChange}}
+        value={{ user, setUser, register, login, handleRegistrationInputChange}}
         // value={{ user, setUser, register, handleNicknameInputChange, handleEmailInputChange, handlePasswordInputChange, handleCragInputChange}}
         >
             {props.children}

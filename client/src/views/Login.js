@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import {AuthContext} from "../context/AuthContext.js";
 
 function Login() {
+  const { user, setUser, login, handleRegistrationInputChange } = useContext(AuthContext);
+
   return (
     <>
       <Typography variant='h2'>
@@ -24,15 +27,6 @@ function Login() {
       >
         <div>
           <TextField
-            required
-            size='small'
-            id="nickname-input"
-            label="Nickname"
-            defaultValue="lucy"
-          />
-        </div>
-        <div>
-          <TextField
             // error
             // helperText="Invalid email address."
             required
@@ -40,7 +34,8 @@ function Login() {
             id="email-input"
             label="E-mail"
             type="email"
-            defaultValue="lucy@email.com"
+            defaultValue="user@email.com"
+            onChange={handleRegistrationInputChange}
           />
         </div>
         <div>
@@ -51,6 +46,8 @@ function Login() {
             label="Password"
             type="password"
             autoComplete="current-password"
+            onChange={handleRegistrationInputChange}
+
           />
         </div>
         <div>
@@ -58,6 +55,7 @@ function Login() {
             type='submit'
             endIcon={<SendIcon />}
             variant='contained'
+            onClick={login}
           >
             Login
           </Button>
