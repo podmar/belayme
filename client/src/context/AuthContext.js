@@ -55,13 +55,13 @@ export const AuthContextProvider = (props) => {
             const response = await fetch("http://localhost:5001/users/register", requestOptions);
             const result = await response.json();
             // console.log("result",result);
-            redirectTo("/list");
+            redirectTo("/login");
         } catch (error) {
             console.log("cannot register user", error)
         }
     };
 
-        const login = async (event) => {
+    const login = async (event) => {
         event.preventDefault();
         // console.log(user);
         let urlencoded = new URLSearchParams();
@@ -76,10 +76,11 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/login", requestOptions);
             const result = await response.json();
-            // console.log("result",result);
+            console.log("result",result);
+            setUser(result.user)
             redirectTo("/list");
         } catch (error) {
-            console.log("cannot register user", error)
+            console.log("cannot login user", error)
         }
     };
 
