@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import saveToken from '../utils/saveToken';
+import { saveToken } from '../utils/tokenHelpers';
 
 export const AuthContext = createContext();
 
@@ -87,6 +87,12 @@ export const AuthContextProvider = (props) => {
         } catch (error) {
             console.log("cannot login user", error)
         }
+    };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        //TODO check if set to false of empty object
+        setUser(false);
     };
 
     // const checkIfUserLoggedIn = () => {};
