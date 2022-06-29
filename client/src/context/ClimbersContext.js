@@ -12,7 +12,6 @@ export const ClimbersContextProvider = (props) => {
       try {
           const response = await fetch(url);
           const climbersData = await response.json();
-          console.log(climbersData);
           setClimbers(climbersData.allUsers);
           setClimberCount(climbersData.results);
       } catch (error) {
