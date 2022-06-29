@@ -34,6 +34,7 @@ function Login() {
             id="email-input"
             label="E-mail"
             type="email"
+            name='email'
             defaultValue="user@email.com"
             onChange={handleRegistrationInputChange}
           />
@@ -45,6 +46,7 @@ function Login() {
             id="password-input"
             label="Password"
             type="password"
+            name='password'
             autoComplete="current-password"
             onChange={handleRegistrationInputChange}
 
