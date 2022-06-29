@@ -23,6 +23,7 @@ function App() {
   const location = useLocation();
 
   const addBackground = () => {
+    console.log(location.pathname);
     if (location.pathname === "/" || location.pathname === "/register" || location.pathname === "/login" ) {
       return true;
     } else {
@@ -63,12 +64,7 @@ function App() {
   return (
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
-      {/* <Container maxWidth="md"> */}
-      {/* <Container maxWidth="md" className='home-background'> */}
-      {/* <Container maxWidth="md" className='hilly-image background-settings'> */}
-      {/* <Container className='hilly-image background-settings'> */}
-      <Container className={addBackground ? "hilly-image background-settings" : ""}>
-
+      <Container maxWidth="md">
       <AuthContextProvider>
         <ClimbersContextProvider>
           <div className="App">

@@ -38,8 +38,9 @@ p {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  width: 100vw;
-  height: 100vh;
+  background-attachment: fixed;
+  /* width: 100vw; */
+  /* height: 100vh; */
 }
 
 /* For the NavBar, not currently in use */
