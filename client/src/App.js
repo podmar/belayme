@@ -55,6 +55,15 @@ function App() {
         paper: '#f5f5f5',
       },
     },
+    components: {
+        MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: 6,
+          },
+        }, 
+      }, 
+    },
     shape: {
       borderRadius: 20,
     },
