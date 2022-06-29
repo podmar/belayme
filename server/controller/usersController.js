@@ -169,8 +169,7 @@ const login = async (req, res) => {
                     .json({
                         passVerified: passwordVerified,
                         message: "Wrong password, please try again.", 
-                        passwordSent: req.body.password,
-                        user: existingUser });
+                    });
                 } else {
                     const token = issueToken(existingUser._id); 
                     res
@@ -181,9 +180,8 @@ const login = async (req, res) => {
                             nickname: existingUser.nickname, 
                             email: existingUser.contact.email, 
                             home_crag: existingUser.contact.home_crag,
-                            token: token
                         },
-                        fullUser: existingUser
+                        token: token,
                     });
                 }
             } catch (error) {
