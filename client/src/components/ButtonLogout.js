@@ -8,8 +8,7 @@ function ButtonLogout() {
 
   return (
     <Button
-    variant="contained"
-    color="secondary"
+    color="primary"
     size='large'
     onClick={logout}
     >
