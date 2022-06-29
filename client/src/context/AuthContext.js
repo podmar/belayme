@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import saveToken from '../utils/saveToken';
 
 export const AuthContext = createContext();
 
@@ -78,6 +79,10 @@ export const AuthContextProvider = (props) => {
             const result = await response.json();
             console.log("result",result);
             setUser(result.user)
+            const { token } = result;
+            if (token) {
+                saveToken(token);
+            };
             redirectTo("/list");
         } catch (error) {
             console.log("cannot login user", error)
