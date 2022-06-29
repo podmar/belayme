@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import { Button} from '@mui/material';
-import
+import { Button } from '@mui/material';
+import { AuthContext } from '../context/AuthContext';
 
 
 function ButtonLogout() {
-const {logout} = useContext(AuthContext);
+    const {logout} = useContext(AuthContext);
 
   return (
     <Button
+    variant="contained"
+    color="secondary"
+    size='large'
     onClick={logout}
     >
     Logout
@@ -15,4 +18,4 @@ const {logout} = useContext(AuthContext);
   )
 }
 
-export default ButtonLogout; 
+export default ButtonLogout
