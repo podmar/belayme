@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import { ButtonLogout } from "../components/ButtonLogout";
+import ButtonLogout from "../components/ButtonLogout";
 // import NavBar from '../components/NavBar'
 
 function Home() {
