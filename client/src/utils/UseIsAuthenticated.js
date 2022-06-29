@@ -1,9 +1,9 @@
 import React from 'react'
 import { getToken } from './tokenHelpers'
 
-function useIsAuthenticated() {
+function UseIsAuthenticated() {
     const isAuthenticated = getToken() ? true : false;
   return isAuthenticated
 }
 
-export default useIsAuthenticated
+export default UseIsAuthenticated
