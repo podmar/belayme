@@ -82,7 +82,9 @@ export const AuthContextProvider = (props) => {
             const { token } = result;
             if (token) {
                 saveToken(token);
-            };
+            } else {
+                console.log("Cannot save the tocken in local storage, token not found in re response.")
+            }
             redirectTo("/list");
         } catch (error) {
             console.log("cannot login user", error)
