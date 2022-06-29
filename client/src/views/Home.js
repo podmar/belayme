@@ -25,8 +25,9 @@ function Home() {
             >
             Find a belayer
         </Button>
-
-        <ButtonLogout/>
+        <div>
+          <ButtonLogout/>
+        </div>
 
         {/* <NavBar/> */}
     </div>
