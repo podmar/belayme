@@ -16,7 +16,7 @@ const getAllUsers = async (req, res) => {
             res
             .status(200)
             .json({results: allUsers.length, allUsers});
-            console.log(allUsers);
+            // console.log(allUsers);
         }
     } catch (err) {
         res
@@ -58,7 +58,7 @@ const getUsersByCurrentLocation = async (req, res) => {
                 res
                 .status(200)
                 .json({results: allUsers.length, allUsers});
-                console.log(allUsers);
+                // console.log(allUsers);
             }
         } catch (err) {
             res
@@ -94,7 +94,7 @@ const getUserByID = async (req, res) => {
 //#region
 
 const register = async (req, res) => {
-    console.log(req)
+    // console.log(req)
     try {
         const checkIfUserExists = await userModel.findOne({"contact.email": req.body.email});
 
@@ -109,7 +109,7 @@ const register = async (req, res) => {
 
             const hashedPassword = await encryptPassword(req.body.password);
 
-            console.log(hashedPassword);
+            // console.log(hashedPassword);
 
             const newUser = new userModel({
                 nickname: req.body.nickname,
@@ -146,7 +146,7 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    console.log(req)
+    // console.log(req)
     try {
         const existingUser = await userModel.findOne({"contact.email": req.body.email});
 
@@ -156,6 +156,8 @@ const login = async (req, res) => {
             .json({
                 message: "User does not exist, register first."
             })
+            console.log(res)
+            
         } else {
             try {
                 const passwordVerified = await verifyPassword(req.body.password, existingUser.password);
