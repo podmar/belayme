@@ -1,12 +1,21 @@
 import React from 'react'
 import List from '../components/List'
+import UseIsAuthenticated from '../utils/UseIsAuthenticated';
 
 function ListView() {
-  return (
-    <div>
-      <List/>
+  const isUserLoggedIn = UseIsAuthenticated();
 
-    </div>
+  return (
+    <>
+      <div>
+      {isUserLoggedIn ? "User is currently logged in" : "No user logged in."}
+      </div>
+
+      <div>
+        <List/>
+
+      </div>
+    </>
   )
 }
 
