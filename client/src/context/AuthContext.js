@@ -95,6 +95,7 @@ export const AuthContextProvider = (props) => {
         localStorage.removeItem("token");
         //TODO check if set to false of empty object
         setUser(false);
+        console.log("user logged out");
     };
 
     // const checkIfUserLoggedIn = () => {};
@@ -105,7 +106,7 @@ export const AuthContextProvider = (props) => {
     return (
         <AuthContext.Provider
         // value={{ user, setUser, register, login, logout, handleRegistrationInputChange}}
-        value={{ user, setUser, register, login, handleRegistrationInputChange}}
+        value={{ user, setUser, register, login, logout, handleRegistrationInputChange}}
         // value={{ user, setUser, register, handleNicknameInputChange, handleEmailInputChange, handlePasswordInputChange, handleCragInputChange}}
         >
             {props.children}
