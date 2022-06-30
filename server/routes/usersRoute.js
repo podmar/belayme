@@ -1,5 +1,6 @@
 import express from "express";
-import { getAllUsers, getUserByID, getUsersByCurrentLocation, login, register } from "../controller/usersController.js";
+import { getAllUsers, getProfile, getUserByID, getUsersByCurrentLocation, login, register } from "../controller/usersController.js";
+import jwtAuth from "../utils/jwtAuth.js";
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.get("/:_id", getUserByID);
 router.post("/register", register);
 
 router.post("/login", login);
+
+router.get("/profile", jwtAuth, getProfile)
 
 export default router

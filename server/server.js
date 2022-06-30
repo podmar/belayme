@@ -3,6 +3,8 @@ import cors from "cors";
 import usersRoute from "./routes/usersRoute.js"
 import * as dotenv from "dotenv";
 import mongoose from "mongoose"; 
+import passport from "passport";
+import passportConfig from "./config/passport.js";
 
 // leading .env file
 dotenv.config();
@@ -22,6 +24,8 @@ app.use(
 );
 app.use(cors(corsOptions));
 app.use('/users', usersRoute);
+app.use(passport.initialize());
+passportConfig()
 
 mongoose
     .connect(process.env.MONGO_URI)
