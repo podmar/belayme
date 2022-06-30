@@ -1,5 +1,5 @@
 import { Button, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import ButtonLogout from "../components/ButtonLogout";
 import UseIsAuthenticated from '../utils/UseIsAuthenticated';
@@ -7,7 +7,10 @@ import UseIsAuthenticated from '../utils/UseIsAuthenticated';
 
 function Home() {
   const navigate = useNavigate();
-  const isUserLoggedIn = UseIsAuthenticated();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState();
+  setIsUserLoggedIn(UseIsAuthenticated());
+
+  
 
   const goToRegister = () => {
     navigate("/register")
