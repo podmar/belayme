@@ -216,9 +216,11 @@ const login = async (req, res) => {
 
 const getProfile = (req, res) => {
     console.log("req.user", req.user);
-    res.status(200).json({
-      email: req.user.email,
-      nickname: req.user.nickname,
+    res
+    .status(200)
+    .json({
+        nickname: req.user.nickname,
+        email: req.user.email,
     });
   };
 

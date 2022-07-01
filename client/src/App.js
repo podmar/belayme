@@ -5,6 +5,7 @@ import "@fontsource/roboto"
 import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { themeLightSettings, themeDarkSettings } from './utils/muiThemesSettings';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
@@ -18,57 +19,28 @@ import NavBottomWithLinks from './components/NavBottomWithLinks';
 import { ClimbersContextProvider } from './context/ClimbersContext';
 import { AuthContextProvider } from './context/AuthContext';
 
+
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
-  const location = useLocation();
+  // const location = useLocation();
 
-  const addBackground = () => {
-    console.log(location.pathname);
-    if (location.pathname === "/" || location.pathname === "/register" || location.pathname === "/login" ) {
-      return true;
-    } else {
-      return false;
-    }
-  } 
+  // const addBackground = () => {
+  //   console.log(location.pathname);
+  //   if (location.pathname === "/" || location.pathname === "/register" || location.pathname === "/login" ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // } 
 
-  useEffect(() => {
-    addBackground()
-  }, [location])
+  // useEffect(() => {
+  //   addBackground()
+  // }, [location])
   
 
   //TODO move the mui theme to a separate component
   //#region MUI THEME
-  const themeLight = createTheme ({
-    palette: {
-      type: 'light',
-      primary: {
-        main: '#117A65',
-      },
-      secondary: {
-        main: '#f1c40f',
-      },
-      error: {
-        main: '#c94b60',
-      },
-      background: {
-        default: '#e0e0e0',
-        paper: '#f5f5f5',
-      },
-    },
-    components: {
-        MuiPaper: {
-        styleOverrides: {
-          root: {
-            borderRadius: 6,
-          },
-        }, 
-      }, 
-    },
-    shape: {
-      borderRadius: 20,
-    },
-    spacing: 10,
-  });
+  const themeLight = createTheme (themeLightSettings);
   //#endregion
   return (
     <ThemeProvider theme= {themeLight}>

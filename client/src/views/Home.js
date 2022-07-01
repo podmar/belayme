@@ -7,8 +7,8 @@ import UseIsAuthenticated from '../utils/UseIsAuthenticated';
 
 function Home() {
   const navigate = useNavigate();
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState();
-  setIsUserLoggedIn(UseIsAuthenticated());
+  // const [isUserLoggedIn, setIsUserLoggedIn] = useState();
+  // setIsUserLoggedIn(UseIsAuthenticated());
 
   
 
@@ -33,9 +33,9 @@ function Home() {
         <div>
           <ButtonLogout/>
         </div>
-        <div>
+        {/* <div>
           {isUserLoggedIn ? "User is currently logged in" : "No user logged in."}
-        </div>
+        </div> */}
 
         {/* <NavBar/> */}
     </div>
