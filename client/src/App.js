@@ -19,6 +19,7 @@ import NavBottomWithLinks from './components/NavBottomWithLinks';
 import { ClimbersContextProvider } from './context/ClimbersContext';
 import { AuthContextProvider } from './context/AuthContext';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -56,11 +57,11 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="login" element={<Login />} />
-                <Route path="list" element={<ListView />} />
-                <Route path="belayrequest" element={<BelayRequest />} />
-                <Route path="detail/:userid" element={<DetailPartnerView />} />
-                <Route path="inbox" element={<Inbox />} />
-                <Route path="profile" element={<MyProfile />} />
+                <Route path="list" element={<ProtectedRoute><ListView /></ProtectedRoute>} />
+                <Route path="belayrequest" element={<ProtectedRoute><BelayRequest /></ProtectedRoute>} />
+                <Route path="detail/:userid" element={<ProtectedRoute><DetailPartnerView /></ProtectedRoute>} />
+                <Route path="inbox" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
+                <Route path="profile" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
           </div>
