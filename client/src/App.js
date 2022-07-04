@@ -18,11 +18,12 @@ import Inbox from './views/Inbox';
 import NavBottomWithLinks from './components/NavBottomWithLinks';
 import { ClimbersContextProvider } from './context/ClimbersContext';
 import { AuthContextProvider } from './context/AuthContext';
+import NavBar from './components/NavBar';
 
 
 function App() {
   //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
-  // const location = useLocation();
+  const location = useLocation();
 
   // const addBackground = () => {
   //   console.log(location.pathname);
@@ -37,11 +38,8 @@ function App() {
   //   addBackground()
   // }, [location])
   
+    const themeLight = createTheme (themeLightSettings);
 
-  //TODO move the mui theme to a separate component
-  //#region MUI THEME
-  const themeLight = createTheme (themeLightSettings);
-  //#endregion
   return (
     <ThemeProvider theme= {themeLight}>
       <CssBaseline />
@@ -50,6 +48,7 @@ function App() {
         <ClimbersContextProvider>
           <div className="App">
             <header>
+              <NavBar/>
               {/* TODO create a state variable for the view where the user is and create conditional statements for different variation of the NavBar */}
               <NavBottomWithLinks/>
             </header>
