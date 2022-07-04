@@ -39,15 +39,15 @@ p {
   /* height: 100vh; */
 }
 
-/* For the NavBar, not currently in use */
-/* li {
+/* For the NavBar */
+li {
   list-style: none;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-} */
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
