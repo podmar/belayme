@@ -34,12 +34,6 @@ function NavBottomWithLinks() {
         />
         <BottomNavigationAction 
           component={Link} 
-          to="/login"
-          label="Login" 
-          icon={<PersonIcon />} 
-        />
-        <BottomNavigationAction 
-          component={Link} 
           to="/inbox"
           label="Inbox" 
           icon={<MailIcon />} 
