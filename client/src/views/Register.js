@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import {AuthContext} from "../context/AuthContext.js";
+import ButtonLogin from '../components/ButtonLogin.js';
 
 function Register() {
   const { user, setUser, register, handleRegistrationInputChange } = useContext(AuthContext);
@@ -126,9 +127,7 @@ function Register() {
         </p>
         </div>
         <div>
-        <Button>
-        Go to login page
-        </Button>
+        <ButtonLogin/>
         </div>
       </Box>
     </>

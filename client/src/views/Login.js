@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import {AuthContext} from "../context/AuthContext.js";
+import ButtonRegister from '../components/ButtonRegister.js';
 
 function Login() {
   const { user, setUser, login, handleRegistrationInputChange } = useContext(AuthContext);
@@ -72,10 +73,7 @@ function Login() {
           <p>No account yet?</p>
         </div>
         <div>
-          <Button>
-            {/* TODO Make this button work */}
-            Go to registration page
-          </Button>
+          <ButtonRegister/>
         </div>
       </Box>
     </>  
