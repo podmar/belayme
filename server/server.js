@@ -25,7 +25,7 @@ app.use(
 app.use(cors(corsOptions));
 app.use('/users', usersRoute);
 app.use(passport.initialize());
-passportConfig()
+passportConfig(passport)
 
 mongoose
     .connect(process.env.MONGO_URI)
