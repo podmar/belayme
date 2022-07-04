@@ -1,9 +1,9 @@
 import React from 'react'
 import List from '../components/List'
-import UseIsAuthenticated from '../utils/UseIsAuthenticated';
+import useIsAuthenticated from '../utils/useIsAuthenticated';
 
 function ListView() {
-  const isUserLoggedIn = UseIsAuthenticated();
+  const isUserLoggedIn = useIsAuthenticated();
 
   return (
     <>
