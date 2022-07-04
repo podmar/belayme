@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
     const [user, setUser] = useState({});
     const [userLoginStatus, setUserLoginStatus] = useState(false);
+    const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
 
     //1 change handler for 4 fields
@@ -107,7 +108,7 @@ export const AuthContextProvider = (props) => {
         );
         const result = await response.json();
         console.log("result", result);
-        setUserProfile({
+        setUser({
             email: result.email,
             userName: result.userName,
             // avatarPicture: result.avatar,
