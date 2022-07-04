@@ -196,24 +196,6 @@ const login = async (req, res) => {
     }
 };
 
-// const getProfile = async (req, res) => {
-//     try {
-//         res
-//         .status(200)
-//         .json({
-//             message: "login successful",
-//             user: {
-//                 nickname: req.user.nickname, 
-//                 email: req.user.email, 
-//                 home_crag: req.user.home_crag,
-//             },
-//             });
-        
-//     } catch (error) {
-//         console.log("Cannot get the user profile, server error:", error);
-//     }
-// };
-
 const getUser = (req, res) => {
     console.log("req.user", req.user);
     res
