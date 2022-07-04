@@ -5,7 +5,7 @@ import "@fontsource/roboto"
 import CssBaseline from "@mui/material/CssBaseline";
 import {Container} from "@mui/material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { themeLightSettings, themeDarkSettings } from './utils/muiThemesSettings';
+import { themeLightSettings } from './utils/muiThemesSettings';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
