@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, getProfile, getUserByID, getUsersByCurrentLocation, login, register } from "../controller/usersController.js";
+import { getAllUsers, getProfile, getUser, getUserByID, getUsersByCurrentLocation, login, register } from "../controller/usersController.js";
 import jwtAuth from "../utils/jwtAuth.js";
 
 const router = express.Router();
@@ -18,6 +18,8 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/profile", jwtAuth, getProfile)
+router.get("/profile", jwtAuth, getProfile);
+
+router.get("/user", jwtAuth, getUser);
 
 export default router

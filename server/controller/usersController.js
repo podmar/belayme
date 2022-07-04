@@ -214,6 +214,16 @@ const login = async (req, res) => {
 //     }
 // };
 
+const getUser = (req, res) => {
+    console.log("req.user", req.user);
+    res
+    .status(200)
+    .json({
+        nickname: req.user.nickname,
+        email: req.user.email,
+    });
+  };
+
 const getProfile = (req, res) => {
     console.log("req.user", req.user);
     res
@@ -235,4 +245,4 @@ const getProfile = (req, res) => {
 
 
 //#endregion
-export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile };
+export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile, getUser };
