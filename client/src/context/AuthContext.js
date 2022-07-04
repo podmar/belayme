@@ -102,7 +102,7 @@ export const AuthContextProvider = (props) => {
         };
         try {
         const response = await fetch(
-            "http://localhost:5000/api/users/profile",
+            "http://localhost:5001/users/loggedin-user",
             requestOptions
         );
         const result = await response.json();
