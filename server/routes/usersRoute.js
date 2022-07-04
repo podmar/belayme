@@ -20,6 +20,8 @@ router.post("/login", login);
 
 router.get("/profile", jwtAuth, getProfile);
 
+// router.patch("/setprofile", jwtAuth, setProfile);
+
 router.get("/loggedin-user", jwtAuth, getUser);
 
 export default router
