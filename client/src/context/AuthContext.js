@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
     const [user, setUser] = useState({});
+    const [userLoginStatus, setUserLoginStatus] = useState(false);
     const redirectTo = useNavigate(); 
 
     //1 change handler for 4 fields
@@ -53,12 +54,13 @@ export const AuthContextProvider = (props) => {
             const response = await fetch("http://localhost:5001/users/login", requestOptions);
             const result = await response.json();
             console.log("result",result);
-            setUser(result.user)
+            setUser(result.user);
+            setUserLoginStatus(true);
             const { token } = result;
             if (token) {
                 saveToken(token);
             } else {
-                console.log("Cannot save the tocken in local storage, token not found in re response.")
+                console.log("Cannot save the token in local storage, token not found in re response.")
             }
             redirectTo("/list");
         } catch (error) {
@@ -69,7 +71,8 @@ export const AuthContextProvider = (props) => {
     const logout = () => {
         localStorage.removeItem("token");
         //TODO check if set to false of empty object
-        setUser(false);
+        setUser({});
+        setUserLoginStatus(false);
         console.log("user logged out");
     };
 
@@ -80,7 +83,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, register, login, logout, handleRegistrationInputChange}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange}}
         >
             {props.children}
         </AuthContext.Provider>
