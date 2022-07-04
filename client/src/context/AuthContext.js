@@ -97,13 +97,13 @@ export const AuthContextProvider = (props) => {
     const getUser = async (token) => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-        var requestOptions = {
+        const requestOptions = {
             method: "GET",
             headers: myHeaders,
         };
         try {
         const response = await fetch(
-            "http://localhost:5001/users/loggedin-user",
+            "http://localhost:5001/users/profile",
             requestOptions
         );
         const result = await response.json();
@@ -114,7 +114,7 @@ export const AuthContextProvider = (props) => {
             // avatarPicture: result.avatar,
         });
         } catch (error) {
-        console.log("error gettin profile", error);
+        console.log("Error fetching profile after refresh, profile endpoint", error);
         setError("login first ");
         }
     }; 

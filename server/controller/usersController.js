@@ -68,26 +68,26 @@ const getUsersByCurrentLocation = async (req, res) => {
     }
 }
 
-const getUserByID = async (req, res) => {
-    try {
-        const userByID = await userModel
-        .find({_id: req.params._id})
-        .exec()
-        if (userByID.length === 0) {
-            res
-            .status(200)
-            .json({message: "No data matches requested endpoint."})
-        } else {
-            res
-            .status(200)
-            .json({results: userByID.length, userByID})
-        }
-    } catch (err) {
-        res
-        .status(400)
-        .json({err: err, message: "There is a problem with the server"})
-    }
-};
+// const getUserByID = async (req, res) => {
+//     try {
+//         const userByID = await userModel
+//         .find({_id: req.params._id})
+//         .exec()
+//         if (userByID.length === 0) {
+//             res
+//             .status(200)
+//             .json({message: "No data matches requested endpoint."})
+//         } else {
+//             res
+//             .status(200)
+//             .json({results: userByID.length, userByID})
+//         }
+//     } catch (err) {
+//         res
+//         .status(400)
+//         .json({err: err, message: "There is a problem with the server"})
+//     }
+// };
 //#endregion
 
 //POST METHODS
@@ -202,7 +202,7 @@ const getUser = (req, res) => {
     .status(200)
     .json({
         nickname: req.user.nickname,
-        email: req.user.email,
+        email: req.user.contact.email,
     });
   };
 
@@ -212,7 +212,7 @@ const getProfile = (req, res) => {
     .status(200)
     .json({
         nickname: req.user.nickname,
-        email: req.user.email,
+        email: req.user.contact.email,
     });
   };
 
@@ -227,4 +227,5 @@ const getProfile = (req, res) => {
 
 
 //#endregion
-export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile, getUser };
+// export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile, getUser };
+export { getAllUsers, getUsersByCurrentLocation, register, login, getProfile, getUser };
