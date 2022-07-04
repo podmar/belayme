@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import { saveToken } from '../utils/tokenHelpers';
+import { getToken, saveToken } from '../utils/tokenHelpers';
 
 export const AuthContext = createContext();
 
@@ -74,12 +74,54 @@ export const AuthContextProvider = (props) => {
         setUser({});
         setUserLoginStatus(false);
         console.log("user logged out");
+    }; 
+
+    // TODO getUser function with token
+    // TODO getProfile on profile page
+
+    const checkIfUserLoggedIn = () => {
+        const token = getToken();
+        if (token) {
+            setUserLoginStatus(true); 
+            if (!user) {
+                getUser(token);
+            }
+        } else {
+            setUserLoginStatus(false);
+            setUser({});
+            console.log("No user logged in.")
+        };
     };
 
-    // const checkIfUserLoggedIn = () => {};
-    // useEffect(() => {
-    //     //TODO create a custom hook to check if user logged in
-    // })
+    const getUser = async (token) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        var requestOptions = {
+            method: "GET",
+            headers: myHeaders,
+        };
+        try {
+        const response = await fetch(
+            "http://localhost:5000/api/users/profile",
+            requestOptions
+        );
+        const result = await response.json();
+        console.log("result", result);
+        setUserProfile({
+            email: result.email,
+            userName: result.userName,
+            // avatarPicture: result.avatar,
+        });
+        } catch (error) {
+        console.log("error gettin profile", error);
+        setError("login first ");
+        }
+    }; 
+
+    useEffect(() => {
+      checkIfUserLoggedIn();
+    }, [userLoginStatus]);
+    
 
     return (
         <AuthContext.Provider
