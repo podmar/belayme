@@ -5,7 +5,7 @@ import { getToken, saveToken } from '../utils/tokenHelpers';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [userLoginStatus, setUserLoginStatus] = useState(false);
     const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
@@ -72,7 +72,7 @@ export const AuthContextProvider = (props) => {
     const logout = () => {
         localStorage.removeItem("token");
         //TODO check if set to false of empty object
-        setUser({});
+        setUser(null);
         setUserLoginStatus(false);
         console.log("user logged out");
     }; 
@@ -89,7 +89,7 @@ export const AuthContextProvider = (props) => {
             }
         } else {
             setUserLoginStatus(false);
-            setUser({});
+            setUser(null);
             console.log("No user logged in.")
         };
     };
@@ -110,7 +110,7 @@ export const AuthContextProvider = (props) => {
         console.log("result", result);
         setUser({
             email: result.email,
-            userName: result.userName,
+            nickname: result.nickname,
             // avatarPicture: result.avatar,
         });
         } catch (error) {
