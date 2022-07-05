@@ -16,7 +16,13 @@ function NavBar() {
 
   return (
     <>
-      <AppBar position="fixed" color="primary">
+      <AppBar 
+        position="fixed" 
+        color="primary"
+        style={{ borderRadius: "0", 
+          // minHeight: "40px" 
+        }}
+        >
         <Toolbar>
           <Grid container justifyContent={"end"}>
             <Grid item >
