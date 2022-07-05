@@ -30,6 +30,7 @@ function List() {
                                 {climber.nickname}
                             </Typography>
                             <p>Home crag: {climber.home_crag}</p>
+                            <p>About: {climber.about}</p>
                         </Paper>
                     </Box>
                 )
