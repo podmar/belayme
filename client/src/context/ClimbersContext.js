@@ -5,7 +5,7 @@ export const ClimbersContextProvider = (props) => {
   const [climbers, setClimbers] = useState(null);
   const [climberCount, setClimberCount] = useState([0]);
     
-  //TODO change this to get user by location based on current location
+  //TODO change this to get climbers by location based on current location / browser location / location search by user
   const url = "http://localhost:5001/climbers/all"
 
   const fetchClimbers = async () => {
