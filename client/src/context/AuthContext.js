@@ -111,6 +111,7 @@ export const AuthContextProvider = (props) => {
         setUser({
             email: result.email,
             nickname: result.nickname,
+            about: result.about,
             // avatarPicture: result.avatar,
         });
         } catch (error) {
