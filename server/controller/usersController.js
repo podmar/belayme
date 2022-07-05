@@ -194,15 +194,15 @@ const login = async (req, res) => {
     }
 };
 
-const getUser = (req, res) => {
-    console.log("req.user", req.user);
-    res
-    .status(200)
-    .json({
-        nickname: req.user.nickname,
-        email: req.user.email,
-    });
-  };
+// const getUser = (req, res) => {
+//     console.log("req.user", req.user);
+//     res
+//     .status(200)
+//     .json({
+//         nickname: req.user.nickname,
+//         email: req.user.email,
+//     });
+//   };
 
 const getProfile = (req, res) => {
     console.log("req.user", req.user);
@@ -211,6 +211,7 @@ const getProfile = (req, res) => {
     .json({
         nickname: req.user.nickname,
         email: req.user.email,
+        about: req.user.about,
     });
   };
 
@@ -226,4 +227,4 @@ const getProfile = (req, res) => {
 
 //#endregion
 // export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile, getUser };
-export { getAllUsers, getUsersByCurrentLocation, register, login, getProfile, getUser };
+export { getAllUsers, getUsersByCurrentLocation, register, login, getProfile };
