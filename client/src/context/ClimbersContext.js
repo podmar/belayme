@@ -6,13 +6,13 @@ export const ClimbersContextProvider = (props) => {
   const [climberCount, setClimberCount] = useState([0]);
     
   //TODO change this to get user by location based on current location
-  const url = "http://localhost:5001/users/all"
+  const url = "http://localhost:5001/climbers/all"
 
   const fetchClimbers = async () => {
       try {
           const response = await fetch(url);
           const climbersData = await response.json();
-          setClimbers(climbersData.allUsers);
+          setClimbers(climbersData.allClimbers);
           setClimberCount(climbersData.results);
       } catch (error) {
           console.log("cannot fetch climbers", error);
