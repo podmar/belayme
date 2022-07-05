@@ -96,7 +96,7 @@ const getUsersByCurrentLocation = async (req, res) => {
 const register = async (req, res) => {
     // console.log(req)
     try {
-        const checkIfUserExists = await userModel.findOne({"contact.email": req.body.email});
+        const checkIfUserExists = await userModel.findOne({"email": req.body.email});
 
         if (checkIfUserExists) {
             res
@@ -114,10 +114,8 @@ const register = async (req, res) => {
             const newUser = new userModel({
                 nickname: req.body.nickname,
                 password: hashedPassword,
-                contact: {
-                    email: req.body.email,
-                    home_crag: req.body.home_crag,
-                }
+                email: req.body.email,
+                home_crag: req.body.home_crag,
             })
 
             try {
@@ -127,8 +125,8 @@ const register = async (req, res) => {
                 .json({message: "New user has been created",
                     user: {
                         nickname: savedUser.nickname,
-                        email: savedUser.contact.email,
-                        home_crag: savedUser.contact.home_crag,
+                        email: savedUser.email,
+                        home_crag: savedUser.home_crag,
                     }
                 })
             } catch (error) {
@@ -148,7 +146,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     // console.log(req)
     try {
-        const existingUser = await userModel.findOne({"contact.email": req.body.email});
+        const existingUser = await userModel.findOne({"email": req.body.email});
 
         if (!existingUser) {
             res
@@ -178,8 +176,8 @@ const login = async (req, res) => {
                         message: "login successful",
                         user: {
                             nickname: existingUser.nickname, 
-                            email: existingUser.contact.email, 
-                            home_crag: existingUser.contact.home_crag,
+                            email: existingUser.email, 
+                            home_crag: existingUser.home_crag,
                         },
                         token: token,
                     });
@@ -202,7 +200,7 @@ const getUser = (req, res) => {
     .status(200)
     .json({
         nickname: req.user.nickname,
-        email: req.user.contact.email,
+        email: req.user.email,
     });
   };
 
@@ -212,7 +210,7 @@ const getProfile = (req, res) => {
     .status(200)
     .json({
         nickname: req.user.nickname,
-        email: req.user.contact.email,
+        email: req.user.email,
     });
   };
 

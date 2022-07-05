@@ -29,7 +29,7 @@ function List() {
                             <Typography variant='subtitle'>
                                 {climber.nickname}
                             </Typography>
-                            <p>Home crag: {climber.contact.home_crag}</p>
+                            <p>Home crag: {climber.home_crag}</p>
                         </Paper>
                     </Box>
                 )
