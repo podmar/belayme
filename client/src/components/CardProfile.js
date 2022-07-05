@@ -33,4 +33,4 @@ function CardProfile({profile}) {
   )
 }
 
-export default CardUser
+export default CardProfile
