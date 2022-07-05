@@ -5,24 +5,28 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { textAlign } from '@mui/system';
+import { Box } from '@mui/material';
 
-function CardUser() {
+function CardClimber({climber}) {
   return (
-    <>
-        <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
+    <Box className='belayme-custom-box-center' py={1}>
+        <Card 
+          sx={{ 
+            maxWidth: 345, 
+            }}>
+        {/* <CardMedia
             component="img"
             alt="user profile pic"
             height="140"
             image="xxx.jpg"
-        />
+        /> */}
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {climber.nickname}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {climber.about ? climber.about : "Send me a belay request to learn more about me."}
             </Typography>
         </CardContent>
         <CardActions>
@@ -30,8 +34,8 @@ function CardUser() {
             <Button size="small">See profile</Button>
         </CardActions>
         </Card>
-    </>
+    </Box>
   )
 }
 
-export default CardUser
+export default CardClimber

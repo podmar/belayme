@@ -1,14 +1,14 @@
-import { Paper, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Typography } from '@mui/material';
 import React, { useContext } from 'react'
 import ClimbersContext from '../context/ClimbersContext';
+import CardClimber from './CardClimber';
 
 function List() {
     const { climbers, climberCount } = useContext(ClimbersContext);
     
     //TODO change this to get user by location based on current location
-    
-  return (
+
+    return (
     <div>
         <Typography variant='h2'>
             Climbers nearby
@@ -16,23 +16,13 @@ function List() {
             {climberCount ? 
                 <p>{`Found ${climberCount} people nearby you.`}</p> :
                 <p>Looking for people nearby...</p>
-            }
-            {/* TODO create a card for each belayer */}
+            }            
             {climbers && climbers.map(climber => {
                 return (
-                    <Box py={1}
-                    key={climber._id}
-                    >
-                        <Paper
-                        elevation={3}
-                        >
-                            <Typography variant='subtitle'>
-                                {climber.nickname}
-                            </Typography>
-                            <p>Home crag: {climber.home_crag}</p>
-                            <p>About: {climber.about}</p>
-                        </Paper>
-                    </Box>
+                        <CardClimber 
+                        climber={climber}
+                        key={climber._id}
+                        />
                 )
             })}
     </div>
