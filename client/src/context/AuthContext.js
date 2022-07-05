@@ -80,8 +80,10 @@ export const AuthContextProvider = (props) => {
     // TODO getUser function with token
     // TODO getProfile on profile page
 
+    //TODO write this using the custom hook
     const checkIfUserLoggedIn = () => {
         const token = getToken();
+        // const isAuthenticated = useIsAuthenticated()
         if (token) {
             setUserLoginStatus(true); 
             if (!user) {
