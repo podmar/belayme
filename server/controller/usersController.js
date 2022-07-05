@@ -2,97 +2,6 @@ import { issueToken } from "../utils/jwt.js";
 import userModel from "../model/userModel.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 
-// GET METHODS
-//#region
-
-const getAllUsers = async (req, res) => {
-    try {
-        const allUsers = await userModel.find({})
-        if (allUsers.length === 0) {
-            res
-            .status(200)
-            .json({message: "There are no users in the database."});
-        } else {
-            res
-            .status(200)
-            .json({results: allUsers.length, allUsers});
-            // console.log(allUsers);
-        }
-    } catch (err) {
-        res
-        .status(400)
-        .json({error: err, message: "There is a problem with the server"});
-    };
-};
-
-const getUsersByCurrentLocation = async (req, res) => {
-    const {location} = req.query;
-    if (location) {
-        try {
-            const usersByLocation = await userModel
-            .find({ "current.current_location": {$gte: location}})
-            .exec()
-            if (usersByLocation.length === 0) {
-                res
-                .status(200)
-                .json({message: "No data matches requested endpoint."})
-            } else {
-                console.log("userByLocation", usersByLocation)
-                res
-                .status(200)
-                .json({ results: usersByLocation.length, usersByLocation })
-            }
-        } catch (err) {
-            res
-            .status(400)
-            .json({err: err, message: "There is a problem with the server"})
-        }
-    } else {
-        try {
-            const allUsers = await userModel.find({})
-            if (allUsers.length === 0) {
-                res
-                .status(200)
-                .json({message: "There are no users in the database."});
-            } else {
-                res
-                .status(200)
-                .json({results: allUsers.length, allUsers});
-                // console.log(allUsers);
-            }
-        } catch (err) {
-            res
-            .status(400)
-            .json({error: err, message: "There is a problem with the server"});
-        };
-    }
-}
-
-// const getUserByID = async (req, res) => {
-//     try {
-//         const userByID = await userModel
-//         .find({_id: req.params._id})
-//         .exec()
-//         if (userByID.length === 0) {
-//             res
-//             .status(200)
-//             .json({message: "No data matches requested endpoint."})
-//         } else {
-//             res
-//             .status(200)
-//             .json({results: userByID.length, userByID})
-//         }
-//     } catch (err) {
-//         res
-//         .status(400)
-//         .json({err: err, message: "There is a problem with the server"})
-//     }
-// };
-//#endregion
-
-//POST METHODS
-//#region
-
 const register = async (req, res) => {
     // console.log(req)
     try {
@@ -194,16 +103,6 @@ const login = async (req, res) => {
     }
 };
 
-// const getUser = (req, res) => {
-//     console.log("req.user", req.user);
-//     res
-//     .status(200)
-//     .json({
-//         nickname: req.user.nickname,
-//         email: req.user.email,
-//     });
-//   };
-
 const getProfile = (req, res) => {
     console.log("req.user", req.user);
     res
@@ -215,16 +114,5 @@ const getProfile = (req, res) => {
     });
   };
 
-
-
-
-
-
-
-
-
-
-
 //#endregion
-// export { getAllUsers, getUsersByCurrentLocation, getUserByID, register, login, getProfile, getUser };
-export { getAllUsers, getUsersByCurrentLocation, register, login, getProfile };
+export { register, login, getProfile };

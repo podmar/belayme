@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import usersRoute from "./routes/usersRoute.js"
+import climbersRoute from "./routes/climbersRoute.js"
 import * as dotenv from "dotenv";
 import mongoose from "mongoose"; 
 import passport from "passport";
@@ -24,6 +25,7 @@ app.use(
 );
 app.use(cors(corsOptions));
 app.use('/users', usersRoute);
+app.use('/climbers', climbersRoute);
 app.use(passport.initialize());
 passportConfig(passport)
 
