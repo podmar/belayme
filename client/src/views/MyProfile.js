@@ -1,8 +1,14 @@
+import { Typography } from '@mui/material';
 import React from 'react'
+import CardProfile from '../components/CardProfile';
 
 function MyProfile() {
+
   return (
-    <div>MyProfile</div>
+    <>
+    <Typography variant='h2'>Your profile</Typography>
+    <CardProfile/>
+    </>
   )
 }
 
