@@ -116,7 +116,7 @@ export const AuthContextProvider = (props) => {
         });
         } catch (error) {
         console.log("Error fetching profile after refresh, profile endpoint", error);
-        setError("login first ");
+        setError("login first");
         }
     }; 
 
