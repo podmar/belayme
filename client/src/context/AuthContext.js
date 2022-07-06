@@ -116,6 +116,15 @@ export const AuthContextProvider = (props) => {
             email: result.email,
             nickname: result.nickname,
             about: result.about,
+            climbing_style: result.climbing_style,
+            current_location: result.current_location,
+            experience_y: result.experience_y,
+            gear: result.gear,
+            onsight_level: result.onsight_level,
+            redpoint_level: result.redpoint_level,
+            strengths: result.strengths,
+            travelling: result.travelling,
+            weight: result.weight,
             // avatarPicture: result.avatar,
         });
         } catch (error) {

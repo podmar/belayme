@@ -68,8 +68,6 @@ const login = async (req, res) => {
         } else {
             try {
                 const passwordVerified = await verifyPassword(req.body.password, existingUser.password);
-                console.log("exisiting user password from the database", existingUser.password);
-                console.log("password you entered", req.body.password)
                 if (!passwordVerified) {
                     res
                     .status(200)
@@ -87,6 +85,15 @@ const login = async (req, res) => {
                             nickname: existingUser.nickname, 
                             email: existingUser.email, 
                             home_crag: existingUser.home_crag,
+                            climbing_style: existingUser.climbing_style,
+                            current_location: existingUser.current_location,
+                            experience_y: existingUser.experience_y,
+                            gear: existingUser.gear,
+                            onsight_level: existingUser.onsight_level,
+                            redpoint_level: existingUser.redpoint_level,
+                            strengths: existingUser.strengths,
+                            travelling: existingUser.travelling,
+                            weight: existingUser.weight,
                         },
                         token: token,
                     });
