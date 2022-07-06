@@ -118,6 +118,16 @@ const getProfile = (req, res) => {
         nickname: req.user.nickname,
         email: req.user.email,
         about: req.user.about,
+        climbing_style: req.user.climbing_style,
+        current_location: req.user.current_location,
+        experience_y: req.user.experience_y,
+        gear: req.user.gear,
+        onsight_level: req.user.onsight_level,
+        redpoint_level: req.user.redpoint_level,
+        strengths: req.user.strengths,
+        travelling: req.user.travelling,
+        home_crag: req.user.home_crag,
+        weight: req.user.weight,
     });
   };
 
