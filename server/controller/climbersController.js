@@ -1,17 +1,33 @@
 import userModel from "../model/userModel.js";
 
 const getAllClimbers = async (req, res) => {
+
+    const selectDataFields = (...keys) => {
+        const getNewClimberObject = (climberObject) => {
+            const newClimberObject = {};
+            keys.forEach(key => {
+                newClimberObject[key] = climberObject[key];
+            });
+            return newClimberObject;
+        }
+        return getNewClimberObject;
+    };
+
     try {
-        const allClimbers = await userModel.find({})
-        if (allClimbers.length === 0) {
+        const allClimbersData = await userModel.find({})
+        if (allClimbersData.length === 0) {
             res
             .status(200)
             .json({message: "There are no climbers in the database."});
         } else {
+            const allClimbers = allClimbersData
+            .map(selectDataFields("_id", "nickname", "home_crag", "gear", "climbing_style", "strengths", "current_location", "experience_y", "onsight_level", "redpoint_level", "travelling", "weight"));
+
             res
             .status(200)
-            .json({results: allClimbers.length, allClimbers: allClimbers});
-            // console.log(allUsers);
+            // .json({results: allClimbers.length, allClimbers: allClimbers
+            .json({results: allClimbers.length, allClimbers: allClimbers})
+            // console.log("all climbers fromt he data base", allClimbers);
         }
     } catch (err) {
         res
