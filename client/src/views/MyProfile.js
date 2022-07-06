@@ -10,12 +10,17 @@ function MyProfile() {
 
   return (
     <>
-    {/* {user.avatar ? user.avatar: <AccountCircleIcon/>} */}
-    <div className='no-avatar-component'>
-      <AccountCircleIcon color='inherit' fontSize='inherit'/>
-    </div>
-    {user && <Typography variant='h4'>{user.nickname}</Typography>}
-    <CardProfile/>
+    { user ?
+    <div>
+      {/* {user.avatar ? user.avatar: <AccountCircleIcon/>} */}
+      <div className='no-avatar-component'>
+        <AccountCircleIcon color='inherit' fontSize='inherit'/>
+      </div>
+      <Typography variant='h4'>{user.nickname}</Typography>
+      <CardProfile/>
+    </div> : 
+    <p>Loading</p>
+    }
     </>
   )
 }

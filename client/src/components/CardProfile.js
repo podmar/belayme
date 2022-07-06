@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
+import Grid from '@mui/material/Grid'
 import { AuthContext } from '../context/AuthContext'
 import EditIcon from '@mui/icons-material/Edit';
 import InputProfileChange from './InputProfileChange';
@@ -33,12 +34,7 @@ function CardProfile() {
   return (
     <Box className='belayme-custom-box-center'>
         <Card sx={{ width: '90%' }}>
-        {/* <CardMedia
-            component="img"
-            alt="user profile pic"
-            height="140"
-            // image="xxx.jpg"
-        /> */}
+
         <CardActions>
           <Button
           onClick={editProfileToggle}
@@ -46,32 +42,46 @@ function CardProfile() {
           >
             Edit profile
           </Button>
-            {/* <Button size="small">Ask for a belay</Button>
-            <Button size="small">See profile</Button> */}
         </CardActions>
-        {/* <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {user && user.nickname}
-            {edit && <InputProfileChange name="nickname" default="change your nickname"/>}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {user && user.about ? user.about : "Send me a belay request to learn more about me."}
-            {edit && <InputProfileChange name="about" default="change your about"/>}
-            </Typography>
-        </CardContent> */}
 
         <CardContent>
           <Box component="form" >
+          <Typography gutterBottom variant="h6" component="div" textAlign={"left"} color="text.secondary">Your user details</Typography>
+          
+          
+          <Typography variant="body1" color="text.primary"></Typography>
+          <Typography variant="body2" color="text.secondary"></Typography>
+          
+          
+          <Grid py={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
+            <Grid item xs={4} md={3} >
+            <Typography variant="body2" color="text.secondary" textAlign={"left"}>belayme nickname</Typography>
+            </Grid>
+            <Grid item xs>
+              {!edit && <Typography variant="body1" color="text.primary" textAlign={"left"}>{user.nickname}</Typography>}
+            </Grid>
+            <Grid item >
+              {edit && <TextInputProfileChange handler={handleInputChange} name="nickname" default={user.nickname}/>}
+            </Grid>
+          </Grid>
 
-            <Typography gutterBottom variant="h5" component="div">
-            {user && user.nickname}
-            {edit && <TextInputProfileChange name="nickname" default="change your nickname"/>}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {user && user.about ? user.about : "Send me a belay request to learn more about me."}
-            {edit && <TextInputProfileChange handler={handleInputChange} name="about" default="change your about"/>}
-            </Typography>
-            {edit && <ButtonSubmitInputProfileChange />}
+            <Grid py={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
+              <Grid item xs={4} md={3} >
+                  <Typography variant="body2" color="text.secondary" textAlign={"left"}>about me</Typography>
+              </Grid>
+              <Grid item xs>
+                  {!edit && <Typography variant="body1" color="text.primary" textAlign={"left"}>{user.about ? user.about : "Send me a belay request to learn more about me."}</Typography>}
+              </Grid>
+              <Grid item>
+                  {edit && <TextInputProfileChange handler={handleInputChange} name="about" default={user.about? user.about : ""}/>}
+              </Grid>
+            </Grid>
+
+            <Grid py={0.5} container direction="row" justifyContent="flex-end" alignItems="center" spacing={1} wrap="nowrap">
+              <Grid item>
+              {edit && <ButtonSubmitInputProfileChange />}
+              </Grid>
+            </Grid>
 
           </Box>
         </CardContent>
