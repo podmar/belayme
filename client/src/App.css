@@ -18,6 +18,10 @@ h2 {
   /* padding-bottom: 1rem; */
 }
 
+h4 {
+  padding: 1.5rem;
+}
+
 h6 {
   padding-bottom: 2rem;
 }
@@ -53,6 +57,13 @@ li {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.no-avatar-component {
+  color: #8db7aa;
+  font-size: 9rem;
+  max-height: 9rem;
+  padding-top: 1rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
