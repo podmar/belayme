@@ -69,9 +69,9 @@ function CardProfile() {
             </Typography>
             <Typography variant="body2" color="text.secondary">
             {user && user.about ? user.about : "Send me a belay request to learn more about me."}
-            {edit && <TextInputProfileChange name="about" default="change your about"/>}
+            {edit && <TextInputProfileChange handler={handleInputChange} name="about" default="change your about"/>}
             </Typography>
-            {edit && <ButtonSubmitInputProfileChange handler={handleInputChange}/>}
+            {edit && <ButtonSubmitInputProfileChange />}
 
           </Box>
         </CardContent>
