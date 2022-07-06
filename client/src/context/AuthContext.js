@@ -54,7 +54,7 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/login", requestOptions);
             const result = await response.json();
-            console.log("result",result);
+            // console.log("result",result);
             setUser(result.user);
             setUserLoginStatus(true);
             const { token } = result;
@@ -63,7 +63,7 @@ export const AuthContextProvider = (props) => {
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
             }
-            redirectTo("/list");
+            redirectTo("/profile");
         } catch (error) {
             console.log("cannot login user", error)
         }
@@ -74,6 +74,7 @@ export const AuthContextProvider = (props) => {
         //TODO check if set to false of empty object
         setUser(null);
         setUserLoginStatus(false);
+        redirectTo("/")
         console.log("user logged out");
     }; 
 
@@ -92,6 +93,7 @@ export const AuthContextProvider = (props) => {
         } else {
             setUserLoginStatus(false);
             setUser(null);
+            redirectTo("/")
             console.log("No user logged in.")
         };
     };
