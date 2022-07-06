@@ -32,7 +32,7 @@ function CardProfile() {
 
   return (
     <Box className='belayme-custom-box-center'>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ width: '90%' }}>
         {/* <CardMedia
             component="img"
             alt="user profile pic"

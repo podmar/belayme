@@ -13,7 +13,7 @@ function CardClimber({climber}) {
     <Box className='belayme-custom-box-center' py={1}>
         <Card 
           sx={{ 
-            maxWidth: 345, 
+            width: '90%'
             }}>
         {/* <CardMedia
             component="img"
