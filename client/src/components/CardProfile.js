@@ -52,7 +52,7 @@ function CardProfile() {
           <Typography variant="body1" color="text.primary"></Typography>
           <Typography variant="body2" color="text.secondary"></Typography>
           
-          
+          {/* TODO continue with this type of formatting to the bottom */}
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
             <Typography variant="body2" color="text.secondary" textAlign={"left"}>belayme nickname</Typography>
