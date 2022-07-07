@@ -5,7 +5,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { textAlign } from '@mui/system';
 import { Box } from '@mui/material';
 
 function CardClimber({climber}) {
@@ -39,3 +38,20 @@ function CardClimber({climber}) {
 }
 
 export default CardClimber
+
+// data passed by the API:  
+// allClimbers: Array(7)
+// 0:
+// about: "projecting a new route nearby here and looking for a climbing partner"
+// climbing_style: (3) ['indoor', 'outdoor', 'sports climbing']
+// current_location: "Casablanca"
+// experience_y: 5
+// gear: (2) ['rope', 'draws']
+// home_crag: "Dresden"
+// nickname: "ulf"
+// onsight_level: "6a+"
+// redpoint_level: "6c"
+// strengths: ['footwork']
+// travelling: true
+// weight: 78
+// _id: "62b9a81318a359fef990bec7"
