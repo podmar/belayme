@@ -117,6 +117,7 @@ const getProfile = (req, res) => {
     .json({
         nickname: req.user.nickname,
         email: req.user.email,
+        home_crag: req.user.home_crag,
         about: req.user.about,
         climbing_style: req.user.climbing_style,
         current_location: req.user.current_location,
@@ -126,29 +127,96 @@ const getProfile = (req, res) => {
         redpoint_level: req.user.redpoint_level,
         strengths: req.user.strengths,
         travelling: req.user.travelling,
-        home_crag: req.user.home_crag,
         weight: req.user.weight,
     });
   };
 
-  const updateProfile = (req, res) => {
-    console.log("req.user", req.user);
-    res
-    .status(200)
-    .json({
-        message: `The profile of ${req.user.nickname} has been updated.`,
-        changed_records: req.user.nickname
-    });
+  const updateProfile = async (req, res) => {
+    // console.log("req.user", req.user);
+    // console.log("req", req);
+
+    // req.body
+    // req.user._id
+
+    try {
+        const updatedUser = await userModel
+        .findByIdAndUpdate(req.user._id, req.body, {new: true} );
+
+        if (!updatedUser) {
+            res
+            .status(200)
+            .json({
+                message: "User does not exist, register first."
+            })
+            console.log(res)
+
+        } else {
+            res
+            .status(200)
+            .json({
+                message: `The profile of ${req.user.nickname} has been updated.`,
+                user: {
+                    nickname: updatedUser.nickname, 
+                    email: updatedUser.email, 
+                    home_crag: updatedUser.home_crag,
+                    climbing_style: updatedUser.climbing_style,
+                    current_location: updatedUser.current_location,
+                    experience_y: updatedUser.experience_y,
+                    gear: updatedUser.gear,
+                    onsight_level: updatedUser.onsight_level,
+                    redpoint_level: updatedUser.redpoint_level,
+                    strengths: updatedUser.strengths,
+                    travelling: updatedUser.travelling,
+                    weight: updatedUser.weight,
+                }})
+        }
+    } catch (error)  {
+        res
+        .status(400)
+        .json({message: "Server error, updating user data failed", error: error})
+    }
   };
 
-  const deleteProfile = (req, res) => {
-    console.log("req.user", req.user);
-    res
-    .status(200)
-    .json({
-        message: `The profile of ${req.user.nickname} has been deleted.`,
-        deleted_records: req.user.nickname
-    });
+  const deleteProfile = async (req, res) => {
+
+    try {
+        const deletedUser = await userModel
+        .findByIdAndDelete(req.user._id);
+
+        if (!deletedUser) {
+            res
+            .status(200)
+            .json({
+                message: "User does not exist."
+            })
+            console.log(res)
+
+        } else {
+            res
+            .status(200)
+            .json({
+                message: `The profile of ${req.user.nickname} has been deleted.`,
+                user: {
+                    nickname: deletedUser.nickname, 
+                    email: deletedUser.email, 
+                    home_crag: deletedUser.home_crag,
+                    climbing_style: deletedUser.climbing_style,
+                    current_location: deletedUser.current_location,
+                    experience_y: deletedUser.experience_y,
+                    gear: deletedUser.gear,
+                    onsight_level: deletedUser.onsight_level,
+                    redpoint_level: deletedUser.redpoint_level,
+                    strengths: deletedUser.strengths,
+                    travelling: deletedUser.travelling,
+                    weight: deletedUser.weight,
+                }
+            });
+        }
+    } catch (error)  {
+        res
+        .status(400)
+        .json({message: "Server error, deleting user profile failed", error: error})
+    }
   };
 
 //#endregion
