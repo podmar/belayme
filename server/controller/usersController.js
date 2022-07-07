@@ -3,7 +3,6 @@ import userModel from "../model/userModel.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 
 const register = async (req, res) => {
-    // console.log(req)
     try {
         const checkIfUserExists = await userModel.findOne({"email": req.body.email});
 
@@ -17,8 +16,6 @@ const register = async (req, res) => {
             // TODO: validate the password using express validator middleware
 
             const hashedPassword = await encryptPassword(req.body.password);
-
-            // console.log(hashedPassword);
 
             const newUser = new userModel({
                 nickname: req.body.nickname,
@@ -43,17 +40,18 @@ const register = async (req, res) => {
                 //TODO check what status is correct here
                 .status(400)
                 .json({message: "Server error, registration failed: cannot save a new user", error: error})
+                console.log("error", error, res);
             }
         };
     } catch (error) {
         res
         .status(400)
         .json({message: "Server error, registration failed: cannot check if user exists.", error: error})
+        console.log("error", error, res);
     }
 }
 
 const login = async (req, res) => {
-    // console.log(req)
     try {
         const existingUser = await userModel.findOne({"email": req.body.email});
 
@@ -63,7 +61,6 @@ const login = async (req, res) => {
             .json({
                 message: "User does not exist, register first."
             })
-            console.log(res)
             
         } else {
             try {
@@ -107,11 +104,11 @@ const login = async (req, res) => {
         res
         .status(400)
         .json({message: "Server error, login failed: cannot check if user exists.", error: error})
+        console.log("error", error, res);
     }
 };
 
 const getProfile = (req, res) => {
-    console.log("req.user", req.user);
     res
     .status(200)
     .json({
@@ -132,16 +129,10 @@ const getProfile = (req, res) => {
   };
 
   const updateProfile = async (req, res) => {
-    // console.log("req.user", req.user);
-    // console.log("req", req);
-
-    // req.body
-    // req.user._id
 
     try {
         const updatedUser = await userModel
         .findByIdAndUpdate(req.user._id, req.body, {new: true} );
-        console.log(req)
 
         if (!updatedUser) {
             res
@@ -149,7 +140,6 @@ const getProfile = (req, res) => {
             .json({
                 message: "User does not exist, register first."
             })
-            // console.log(res)
 
         } else {
             res
@@ -176,6 +166,7 @@ const getProfile = (req, res) => {
         res
         .status(400)
         .json({message: "Server error, updating user data failed", error: error})
+        console.log("error", error, res);
     }
   };
 
@@ -191,7 +182,6 @@ const getProfile = (req, res) => {
             .json({
                 message: "User does not exist."
             })
-            console.log(res)
 
         } else {
             res
@@ -218,6 +208,7 @@ const getProfile = (req, res) => {
         res
         .status(400)
         .json({message: "Server error, deleting user profile failed", error: error})
+        console.log("error", error, res);
     }
   };
 
