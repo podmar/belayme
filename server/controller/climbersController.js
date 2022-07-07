@@ -21,7 +21,7 @@ const getAllClimbers = async (req, res) => {
             .json({message: "There are no climbers in the database."});
         } else {
             const allClimbers = allClimbersData
-            .map(selectDataFields("_id", "nickname", "home_crag", "gear", "climbing_style", "strengths", "current_location", "experience_y", "onsight_level", "redpoint_level", "travelling", "weight"));
+            .map(selectDataFields("_id", "about", "nickname", "home_crag", "gear", "climbing_style", "strengths", "current_location", "experience_y", "onsight_level", "redpoint_level", "travelling", "weight"));
 
             res
             .status(200)
