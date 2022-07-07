@@ -131,5 +131,25 @@ const getProfile = (req, res) => {
     });
   };
 
+  const updateProfile = (req, res) => {
+    console.log("req.user", req.user);
+    res
+    .status(200)
+    .json({
+        message: `The profile of ${req.user.nickname} has been updated.`,
+        changed_records: req.user.nickname
+    });
+  };
+
+  const deleteProfile = (req, res) => {
+    console.log("req.user", req.user);
+    res
+    .status(200)
+    .json({
+        message: `The profile of ${req.user.nickname} has been deleted.`,
+        deleted_records: req.user.nickname
+    });
+  };
+
 //#endregion
-export { register, login, getProfile };
+export { register, login, getProfile, updateProfile, deleteProfile };
