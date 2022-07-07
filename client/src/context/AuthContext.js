@@ -146,21 +146,14 @@ export const AuthContextProvider = (props) => {
         }
     }; 
 
+    //TODO rerender a component on context value change
+    //TODO display notification that the account 
     const updateProfile = async (event) => {
         event.preventDefault();
         const token = getToken();
 
-        console.log("data to be updated:", updatedProfile);
         const urlencoded = generateUrlEncoded(updatedProfile);
 
-        // let urlencoded = new URLSearchParams();
-        // // urlencoded.append("nickname", updatedProfile.nickname)
-        // const dataArray = Object.entries(updatedProfile);
-        // dataArray.forEach(([key, value]) => urlencoded.append(key, value));
-
-        // console.log(urlencoded);
-
-        // console.log("the data entered in the form:", updatedProfile);
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
         // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
