@@ -22,13 +22,9 @@ export const AuthContextProvider = (props) => {
     };
 
     const generateUrlEncoded = (dataObject) => {
-        const urlencoded = new URLSearchParams();
+        let urlencoded = new URLSearchParams();
         const dataArray = Object.entries(dataObject);
-        console.log("data array for urlencoded", dataArray);
-        for (const [ key, value ] in dataArray ) {
-            urlencoded.append(key, value);
-        };
-        console.log(urlencoded);
+        dataArray.forEach(([key, value]) => urlencoded.append(key, value));
         return urlencoded;
     };
 
@@ -156,12 +152,18 @@ export const AuthContextProvider = (props) => {
 
         console.log("data to be updated:", updatedProfile);
         const urlencoded = generateUrlEncoded(updatedProfile);
-        console.log(urlencoded);
+
+        // let urlencoded = new URLSearchParams();
+        // // urlencoded.append("nickname", updatedProfile.nickname)
+        // const dataArray = Object.entries(updatedProfile);
+        // dataArray.forEach(([key, value]) => urlencoded.append(key, value));
+
+        // console.log(urlencoded);
 
         // console.log("the data entered in the form:", updatedProfile);
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         const requestOptions = {
             method: "PATCH",
