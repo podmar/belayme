@@ -15,6 +15,7 @@ export const ClimbersContextProvider = (props) => {
           const climbersData = await response.json();
           setClimbers(climbersData.allClimbers);
           setClimberCount(climbersData.results);
+          console.log(climbersData);
       } catch (error) {
           console.log("cannot fetch climbers", error);
       }
@@ -30,13 +31,17 @@ export const ClimbersContextProvider = (props) => {
     }
 };
 
+  const requestBelay = (event, id) => {
+    console.log(`requesting belay to climber with the id ${id}`)
+  };
+
   useEffect(() => {
     fetchClimbers()
   }, [])
 
   return (
     <ClimbersContext.Provider
-    value = {{climbers, setClimbers, climberCount, setClimberCount}}
+    value = {{climbers, setClimbers, climberCount, setClimberCount, requestBelay}}
     >
       {props.children}
     </ClimbersContext.Provider>

@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
+import ButtonBelayRequest from './ButtonBelayRequest';
 
 function CardClimber({climber}) {
   return (
@@ -29,7 +30,8 @@ function CardClimber({climber}) {
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small">Ask for a belay</Button>
+            <ButtonBelayRequest id={climber._id}/>
+            {/* <Button size="small">Ask for a belay</Button> */}
             <Button size="small">See profile</Button>
         </CardActions>
         </Card>

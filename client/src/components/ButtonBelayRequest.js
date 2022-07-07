@@ -1,18 +1,18 @@
-import React from 'react'; 
-import { IconButton } from '@mui/material';
-import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import { Button } from '@mui/material';
+import React, { useContext } from 'react';
+import {ClimbersContext} from "../context/ClimbersContext.js";
 
-function ButtonBelayRequest(props) {
+function ButtonBelayRequest() {
+    const {requestBelay} = useContext(ClimbersContext);
+
   return (
-    <>
-        <IconButton 
-            aria-label="belay-request"
-            
-            >
-            <LabelImportantIcon />
-        </IconButton>
-    </>
+    <Button 
+    size="small"
+    onClick={requestBelay}
+    >
+        Ask for a belay
+        </Button>
   )
 }
 
-export default ButtonBelayRequest
+export default ButtonBelayRequest;
