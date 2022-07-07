@@ -16,11 +16,6 @@ import ButtonSubmitInputProfileChange from './ButtonSubmitInputProfileChange';
 function CardProfile() {
     const {user, handleUserProfileChange, updateProfile } = useContext(AuthContext);
     const [edit, setEdit] = useState(false);
-    // const [newUserData, setNewUserData] = useState();
-
-  //   const handleUserProfileChange = (event) => {
-  //     setNewUserData({...newUserData, [event.target.name]: event.target.value})
-  // };
 
     const editProfileToggle = () => {
       if (!edit) {
