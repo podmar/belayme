@@ -24,12 +24,14 @@ export const AuthContextProvider = (props) => {
     const generateUrlEncoded = (dataObject) => {
         const urlencoded = new URLSearchParams();
         const dataArray = Object.entries(dataObject);
+        console.log("data array for urlencoded", dataArray);
         for (const [ key, value ] in dataArray ) {
             urlencoded.append(key, value);
         };
+        console.log(urlencoded);
         return urlencoded;
     };
-    
+
     const register = async (event) => {
         event.preventDefault();
         // console.log(user);
@@ -148,19 +150,25 @@ export const AuthContextProvider = (props) => {
         }
     }; 
 
-    const updateUser = async (event) => {
+    const updateProfile = async (event) => {
         event.preventDefault();
         const token = getToken();
 
+        console.log("data to be updated:", updatedProfile);
         const urlencoded = generateUrlEncoded(updatedProfile);
+        console.log(urlencoded);
 
+        // console.log("the data entered in the form:", updatedProfile);
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         const requestOptions = {
             method: "PATCH",
             headers: myHeaders,
+            // body: updatedProfile,
             body: urlencoded,
+            redirect: 'follow',
         };
 
         try {
@@ -169,7 +177,7 @@ export const AuthContextProvider = (props) => {
             requestOptions
         );
         const result = await response.json();
-        console.log("result", result);
+        console.log("response", result);
         setUser({
             email: result.user.email,
             nickname: result.user.nickname,
@@ -198,7 +206,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange}}
         >
             {props.children}
         </AuthContext.Provider>

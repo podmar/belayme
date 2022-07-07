@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import SaveIcon from '@mui/icons-material/Save';
 import Button from '@mui/material/Button';
+import { AuthContext } from '../context/AuthContext';
 
-function ButtonSubmitInputProfileChange(props) {
+function ButtonSubmitInputProfileChange() {
+  const {updateProfile} = useContext(AuthContext);
 
   return (
     <div>
@@ -11,7 +13,7 @@ function ButtonSubmitInputProfileChange(props) {
             endIcon={<SaveIcon />}
             variant='outline'
             color='primary'
-            // onClick={TYPE HERE A FUNCTION}
+            onClick={updateProfile}
         >
             Save
         </Button>

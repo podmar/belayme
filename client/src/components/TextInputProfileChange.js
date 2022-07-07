@@ -6,7 +6,7 @@ function TextInputProfileChange(props) {
   return (
     <div>
         <TextField
-            required
+            // required
             size='small'
             // id="email-input"
             // label={props.label}

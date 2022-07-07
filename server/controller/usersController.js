@@ -141,6 +141,7 @@ const getProfile = (req, res) => {
     try {
         const updatedUser = await userModel
         .findByIdAndUpdate(req.user._id, req.body, {new: true} );
+        console.log(req)
 
         if (!updatedUser) {
             res
@@ -148,7 +149,7 @@ const getProfile = (req, res) => {
             .json({
                 message: "User does not exist, register first."
             })
-            console.log(res)
+            // console.log(res)
 
         } else {
             res
@@ -159,6 +160,7 @@ const getProfile = (req, res) => {
                     nickname: updatedUser.nickname, 
                     email: updatedUser.email, 
                     home_crag: updatedUser.home_crag,
+                    about: updatedUser.about, 
                     climbing_style: updatedUser.climbing_style,
                     current_location: updatedUser.current_location,
                     experience_y: updatedUser.experience_y,
