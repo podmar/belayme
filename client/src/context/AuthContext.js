@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
     const [user, setUser] = useState(null);
+    const [updatedProfile, setUpdatedProfile] = useState(null);
     const [userLoginStatus, setUserLoginStatus] = useState(false);
     const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
@@ -15,6 +16,20 @@ export const AuthContextProvider = (props) => {
         setUser({...user, [event.target.name]: event.target.value})
     };
 
+    //1 change handler for 4 fields
+    const handleUserProfileChange = (event) => {
+        setUpdatedProfile({...updatedProfile, [event.target.name]: event.target.value})
+    };
+
+    const generateUrlEncoded = (dataObject) => {
+        const urlencoded = new URLSearchParams();
+        const dataArray = Object.entries(dataObject);
+        for (const [ key, value ] in dataArray ) {
+            urlencoded.append(key, value);
+        };
+        return urlencoded;
+    };
+    
     const register = async (event) => {
         event.preventDefault();
         // console.log(user);
@@ -132,6 +147,49 @@ export const AuthContextProvider = (props) => {
         setError("login first");
         }
     }; 
+
+    const updateUser = async (event) => {
+        event.preventDefault();
+        const token = getToken();
+
+        const urlencoded = generateUrlEncoded(updatedProfile);
+
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        const requestOptions = {
+            method: "PATCH",
+            headers: myHeaders,
+            body: urlencoded,
+        };
+
+        try {
+        const response = await fetch(
+            "http://localhost:5001/users/profile",
+            requestOptions
+        );
+        const result = await response.json();
+        console.log("result", result);
+        setUser({
+            email: result.user.email,
+            nickname: result.user.nickname,
+            about: result.user.about,
+            climbing_style: result.user.climbing_style,
+            current_location: result.user.current_location,
+            experience_y: result.user.experience_y,
+            gear: result.user.gear,
+            onsight_level: result.user.onsight_level,
+            redpoint_level: result.user.redpoint_level,
+            strengths: result.user.strengths,
+            travelling: result.user.travelling,
+            weight: result.user.weight,
+            // avatarPicture: result.avatar,
+        });
+        } catch (error) {
+        console.log("Error updating profile", error);
+        setError("login first");
+        }
+    };
 
     useEffect(() => {
       checkIfUserLoggedIn();
