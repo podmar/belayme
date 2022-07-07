@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 // import InputProfileChange from './InputProfileChange';
 import TextInputProfileChange from './TextInputProfileChange';
 import ButtonSubmitInputProfileChange from './ButtonSubmitInputProfileChange';
+import ButtonDeleteProfile from './ButtonDeleteProfile';
 
 function CardProfile() {
     const {user, handleUserProfileChange, updateProfile } = useContext(AuthContext);
@@ -222,7 +223,11 @@ function CardProfile() {
 
             <Grid pb={0.5} container direction="row" justifyContent="flex-end" alignItems="center" spacing={1} wrap="nowrap">
               <Grid item>
-              {edit && <ButtonSubmitInputProfileChange />}
+              {edit && 
+                <CardActions>
+                  <ButtonSubmitInputProfileChange />
+                  <ButtonDeleteProfile />
+                </CardActions>}
               </Grid>
             </Grid>
 

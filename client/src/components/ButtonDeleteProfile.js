@@ -6,13 +6,14 @@ import { AuthContext } from '../context/AuthContext';
 function ButtonDeleteProfile() {
   const {deleteProfile} = useContext(AuthContext);
 
+  //TODO make this button display a modal to delete account to make sure the user does not delete by accident
   return (
     <div>
         <Button
-            type='submit'
+            // type='submit'
             endIcon={<DeleteIcon />}
             variant='outline'
-            color='alert'
+            // color='primary'
             onClick={deleteProfile}
         >
             Delete account

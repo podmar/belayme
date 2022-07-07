@@ -92,8 +92,7 @@ export const AuthContextProvider = (props) => {
     }; 
 
     // TODO getUser function with token
-    // TODO getProfile on profile page
-
+    
     //TODO write this using the custom hook
     const checkIfUserLoggedIn = () => {
         const token = getToken();
@@ -146,10 +145,8 @@ export const AuthContextProvider = (props) => {
         }
     }; 
 
-    //TODO rerender a component on context value change
-    //TODO display notification that the account 
+    //TODO display notification that the account has been updated
     const updateProfile = async (event) => {
-        event.preventDefault();
         const token = getToken();
 
         const urlencoded = generateUrlEncoded(updatedProfile);
@@ -188,6 +185,33 @@ export const AuthContextProvider = (props) => {
             weight: result.user.weight,
             // avatarPicture: result.avatar,
         });
+        redirectTo("/profile");
+        } catch (error) {
+        console.log("Error updating profile", error);
+        setError("login first");
+        }
+    };
+
+    const deleteProfile = async (event) => {
+        event.preventDefault();
+        const token = getToken();
+
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: myHeaders,
+        };
+
+        try {
+        const response = await fetch(
+            "http://localhost:5001/users/profile",
+            requestOptions
+        );
+        const result = await response.json();
+        console.log("response", result);
+        logout()
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -201,7 +225,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile}}
         >
             {props.children}
         </AuthContext.Provider>
