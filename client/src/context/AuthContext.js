@@ -39,13 +39,9 @@ export const AuthContextProvider = (props) => {
 
     const register = async (event) => {
         event.preventDefault();
-        // console.log(user);
-        let urlencoded = new URLSearchParams();
-        urlencoded.append("nickname", user.nickname);
-        urlencoded.append("email", user.email);
-        urlencoded.append("home_crag", user.home_crag);
-        urlencoded.append("password", user.password);
 
+        const urlencoded = generateUrlEncoded(user);
+        
         let requestOptions = {
             method: "POST",
             body: urlencoded,
@@ -54,7 +50,6 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/register", requestOptions);
             const result = await response.json();
-            // console.log("result",result);
             redirectTo("/login");
             handleOpenSuccessModal("Welcome to belayme. Login to find other climbers nearby.");
         } catch (error) {
@@ -64,11 +59,9 @@ export const AuthContextProvider = (props) => {
 
     const login = async (event) => {
         event.preventDefault();
-        // console.log(user);
-        let urlencoded = new URLSearchParams();
-        urlencoded.append("email", user.email);
-        urlencoded.append("password", user.password);
 
+        const urlencoded = generateUrlEncoded(user);
+        
         let requestOptions = {
             method: "POST",
             body: urlencoded,
