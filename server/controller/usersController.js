@@ -128,7 +128,7 @@ const getProfile = (req, res) => {
     });
   };
 
-  const updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
 
     try {
         const updatedUser = await userModel
@@ -161,16 +161,56 @@ const getProfile = (req, res) => {
                     travelling: updatedUser.travelling,
                     weight: updatedUser.weight,
                 }})
+            }
+        } catch (error)  {
+            res
+            .status(400)
+            .json({message: "Server error, updating user data failed", error: error})
+            console.log("error", error, res);
         }
-    } catch (error)  {
-        res
-        .status(400)
-        .json({message: "Server error, updating user data failed", error: error})
-        console.log("error", error, res);
-    }
-  };
+    };
 
-  const uploadPhoto = 
+const uploadPhoto = async (req, res) => {
+
+    try {
+        const updatedUser = await userModel
+        .findByIdAndUpdate(req.user._id, req.body, {new: true} );
+
+        if (!updatedUser) {
+            res
+            .status(200)
+            .json({
+                message: "User does not exist, register first."
+            })
+
+        } else {
+            res
+            .status(200)
+            .json({
+                message: `The profile of ${req.user.nickname} has been updated.`,
+                user: {
+                    nickname: updatedUser.nickname, 
+                    email: updatedUser.email, 
+                    home_crag: updatedUser.home_crag,
+                    about: updatedUser.about, 
+                    climbing_style: updatedUser.climbing_style,
+                    current_location: updatedUser.current_location,
+                    experience_y: updatedUser.experience_y,
+                    gear: updatedUser.gear,
+                    onsight_level: updatedUser.onsight_level,
+                    redpoint_level: updatedUser.redpoint_level,
+                    strengths: updatedUser.strengths,
+                    travelling: updatedUser.travelling,
+                    weight: updatedUser.weight,
+                }})
+            }
+        } catch (error)  {
+            res
+            .status(400)
+            .json({message: "Server error, updating user data failed", error: error})
+            console.log("error", error, res);
+        }
+    };
 
   const deleteProfile = async (req, res) => {
 
