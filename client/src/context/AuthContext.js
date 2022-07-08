@@ -8,7 +8,6 @@ export const AuthContextProvider = (props) => {
     const [user, setUser] = useState(null);
     const [updatedProfile, setUpdatedProfile] = useState(null);
     const [userLoginStatus, setUserLoginStatus] = useState(false);
-    const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
 
     const [modalMessage, setModalMessage] = useState(""); 
@@ -55,6 +54,8 @@ export const AuthContextProvider = (props) => {
             handleOpenModal("success", "Welcome to belayme. Login to find other climbers nearby.");
         } catch (error) {
             console.log("cannot register user", error)
+            handleOpenModal("error", "Something went wrong, please try again.");
+
         }
     };
 
@@ -71,7 +72,6 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/login", requestOptions);
             const result = await response.json();
-            // console.log("result",result);
             setUser(result.user);
             setUserLoginStatus(true);
             const { token } = result;
@@ -81,11 +81,12 @@ export const AuthContextProvider = (props) => {
                 handleOpenModal("success", "You have been successfully logged in.");
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
-                handleOpenModal("error", "We could not authorize your credentials, please try again.");
+                handleOpenModal("error", "We could not authenthicate your credentials, please try again.");
             }
  
         } catch (error) {
-            console.log("cannot login user", error)
+            console.log("cannot login user", error);
+            handleOpenModal("error", "We could not authenthicate your credentials, please try again.");
         }
     };
 
@@ -95,7 +96,7 @@ export const AuthContextProvider = (props) => {
         setUser(null);
         setUserLoginStatus(false);
         redirectTo("/");
-        handleOpenModal("success", `We logged you out.`);
+        handleOpenModal("success", "We logged you out.");
         console.log("user logged out");
     }; 
 
@@ -149,11 +150,13 @@ export const AuthContextProvider = (props) => {
         });
         } catch (error) {
         console.log("Error fetching profile after refresh, profile endpoint", error);
-        setError("login first");
-        }
+        // setError("login first");
+        handleOpenModal("error", "Something went wrong, please logi n and try again.");
+    }
     }; 
 
     //TODO display notification that the account has been updated
+    // at the moment the app reloads on submit and the state variables are cleared, hence no notification.
     const updateProfile = async (event) => {
         const token = getToken();
 
@@ -175,7 +178,7 @@ export const AuthContextProvider = (props) => {
             requestOptions
         );
         const result = await response.json();
-        console.log("response", result);
+        // console.log("response", result);
         setUser({
             email: result.user.email,
             nickname: result.user.nickname,
@@ -192,10 +195,11 @@ export const AuthContextProvider = (props) => {
             // avatarPicture: result.avatar,
         });
         // redirectTo("/profile");
-        handleOpenModal("success", result.message);
+        handleOpenModal("success", "Your profile has been updated.");
+        // handleOpenModal("success", result.message);
         } catch (error) {
         console.log("Error updating profile", error);
-        setError("login first");
+        handleOpenModal("error", "Something went wrong, please try again.");
         }
     };
 
@@ -219,11 +223,12 @@ export const AuthContextProvider = (props) => {
         const result = await response.json();
         console.log("response", result);
         logout();
-        handleOpenModal("success", result.message);
+        // handleOpenModal("success", result.message);
+        handleOpenModal("success", "Your profile has been deleted.");
         } catch (error) {
         console.log("Error updating profile", error);
-        setError("login first");
-        }
+        handleOpenModal("error", "Something went wrong, please try again.");
+    }
     };
 
     useEffect(() => {
@@ -233,7 +238,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage, modalType}}
         >
             {props.children}
         </AuthContext.Provider>
