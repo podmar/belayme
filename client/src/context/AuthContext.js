@@ -11,12 +11,21 @@ export const AuthContextProvider = (props) => {
     const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
 
-    //1 change handler for 4 fields
+    const [modalMessage, setModalMessage] = useState("");
+    const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    const handleOpenSuccessModal = (message) => {
+        setModalMessage(message);
+        setOpenSuccessModal(true);
+        };
+    const handleCloseSuccessModal = () => {
+        setOpenSuccessModal(false);
+        setModalMessage("");
+        };
+
     const handleRegistrationInputChange = (event) => {
         setUser({...user, [event.target.name]: event.target.value})
     };
 
-    //1 change handler for 4 fields
     const handleUserProfileChange = (event) => {
         setUpdatedProfile({...updatedProfile, [event.target.name]: event.target.value})
     };
@@ -76,7 +85,8 @@ export const AuthContextProvider = (props) => {
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
             }
-            redirectTo("/profile");
+            redirectTo("/profile"); 
+            handleOpenSuccessModal("You have been successfully logged in.");
         } catch (error) {
             console.log("cannot login user", error)
         }
@@ -87,7 +97,8 @@ export const AuthContextProvider = (props) => {
         //TODO check if set to false of empty object
         setUser(null);
         setUserLoginStatus(false);
-        redirectTo("/")
+        redirectTo("/");
+        handleOpenSuccessModal(`We logged you out.`);
         console.log("user logged out");
     }; 
 
@@ -186,6 +197,7 @@ export const AuthContextProvider = (props) => {
             // avatarPicture: result.avatar,
         });
         redirectTo("/profile");
+        handleOpenSuccessModal(result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -211,7 +223,8 @@ export const AuthContextProvider = (props) => {
         );
         const result = await response.json();
         console.log("response", result);
-        logout()
+        logout();
+        handleOpenSuccessModal(result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -225,7 +238,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openSuccessModal, handleOpenSuccessModal, handleCloseSuccessModal, modalMessage}}
         >
             {props.children}
         </AuthContext.Provider>
