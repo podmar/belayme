@@ -11,15 +11,16 @@ export const AuthContextProvider = (props) => {
     const [error, setError] = useState(null);
     const redirectTo = useNavigate(); 
 
-    const [modalMessage, setModalMessage] = useState("");
+    const [modalMessage, setModalMessage] = useState(""); 
+    const [modalType, setModalType] = useState(""); 
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
-    const handleOpenSuccessModal = (message) => {
+    const handleOpenSuccessModal = (type, message) => {
         setModalMessage(message);
+        setModalType(type);
         setOpenSuccessModal(true);
         };
     const handleCloseSuccessModal = () => {
         setOpenSuccessModal(false);
-        setModalMessage("");
         };
 
     const handleRegistrationInputChange = (event) => {
@@ -51,7 +52,7 @@ export const AuthContextProvider = (props) => {
             const response = await fetch("http://localhost:5001/users/register", requestOptions);
             const result = await response.json();
             redirectTo("/login");
-            handleOpenSuccessModal("Welcome to belayme. Login to find other climbers nearby.");
+            handleOpenSuccessModal("success", "Welcome to belayme. Login to find other climbers nearby.");
         } catch (error) {
             console.log("cannot register user", error)
         }
@@ -80,7 +81,7 @@ export const AuthContextProvider = (props) => {
                 console.log("Cannot save the token in local storage, token not found in re response.")
             }
             redirectTo("/profile"); 
-            handleOpenSuccessModal("You have been successfully logged in.");
+            handleOpenSuccessModal("success", "You have been successfully logged in.");
         } catch (error) {
             console.log("cannot login user", error)
         }
@@ -92,7 +93,7 @@ export const AuthContextProvider = (props) => {
         setUser(null);
         setUserLoginStatus(false);
         redirectTo("/");
-        handleOpenSuccessModal(`We logged you out.`);
+        handleOpenSuccessModal("success", `We logged you out.`);
         console.log("user logged out");
     }; 
 
@@ -189,7 +190,7 @@ export const AuthContextProvider = (props) => {
             // avatarPicture: result.avatar,
         });
         // redirectTo("/profile");
-        handleOpenSuccessModal(result.message);
+        handleOpenSuccessModal("success", result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -216,7 +217,7 @@ export const AuthContextProvider = (props) => {
         const result = await response.json();
         console.log("response", result);
         logout();
-        handleOpenSuccessModal(result.message);
+        handleOpenSuccessModal("success", result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
