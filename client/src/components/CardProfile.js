@@ -9,11 +9,9 @@ import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid'
 import { AuthContext } from '../context/AuthContext'
 import EditIcon from '@mui/icons-material/Edit';
-// import InputProfileChange from './InputProfileChange';
 import TextInputProfileChange from './TextInputProfileChange';
 import ButtonSubmitInputProfileChange from './ButtonSubmitInputProfileChange';
 import ButtonDeleteProfile from './ButtonDeleteProfile';
-// import ModalAlertSuccess from './ModalAlertSuccess';
 
 function CardProfile() {
     const {user, handleUserProfileChange, updateProfile } = useContext(AuthContext);
@@ -241,9 +239,6 @@ function CardProfile() {
           </Box>
         </CardContent>
         </Card>
-
-        {/* <ModalAlertSuccess/> */}
-
     </Box>
   )
 }
