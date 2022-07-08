@@ -61,7 +61,7 @@ export const AuthContextProvider = (props) => {
         event.preventDefault();
 
         const urlencoded = generateUrlEncoded(user);
-        
+
         let requestOptions = {
             method: "POST",
             body: urlencoded,
@@ -158,12 +158,10 @@ export const AuthContextProvider = (props) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-        // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         const requestOptions = {
             method: "PATCH",
             headers: myHeaders,
-            // body: updatedProfile,
             body: urlencoded,
             redirect: 'follow',
         };
@@ -190,7 +188,7 @@ export const AuthContextProvider = (props) => {
             weight: result.user.weight,
             // avatarPicture: result.avatar,
         });
-        redirectTo("/profile");
+        // redirectTo("/profile");
         handleOpenSuccessModal(result.message);
         } catch (error) {
         console.log("Error updating profile", error);
