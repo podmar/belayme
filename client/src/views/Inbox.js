@@ -1,6 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import ButtonLogin from '../components/ButtonLogin';
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext';
+import ModalAlertSuccess from '../components/ModalAlertSuccess';
+
 
 function Inbox() {
   const {user} = useContext(AuthContext);
@@ -15,8 +17,7 @@ function Inbox() {
           <ButtonLogin/>
         </div>
       }
-
-    
+      <ModalAlertSuccess/>
     </>
   )
 }

@@ -13,6 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import TextInputProfileChange from './TextInputProfileChange';
 import ButtonSubmitInputProfileChange from './ButtonSubmitInputProfileChange';
 import ButtonDeleteProfile from './ButtonDeleteProfile';
+// import ModalAlertSuccess from './ModalAlertSuccess';
 
 function CardProfile() {
     const {user, handleUserProfileChange, updateProfile } = useContext(AuthContext);
@@ -233,8 +234,10 @@ function CardProfile() {
 
           </Box>
         </CardContent>
-
         </Card>
+
+        {/* <ModalAlertSuccess/> */}
+
     </Box>
   )
 }

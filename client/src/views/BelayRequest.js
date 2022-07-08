@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import ModalAlertSuccess from '../components/ModalAlertSuccess';
+
 
 function BelayRequest() {
   return (
-    <div>BelayRequest</div>
+    <div>BelayRequest
+      <ModalAlertSuccess/>
+
+      
+    </div>
   )
 }
 

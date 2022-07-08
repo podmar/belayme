@@ -1,6 +1,7 @@
-import React from 'react'
-import List from '../components/List'
+import React from 'react';
+import List from '../components/List';
 import useIsAuthenticated from '../utils/useIsAuthenticated';
+import ModalAlertSuccess from '../components/ModalAlertSuccess';
 
 function ListView() {
   const isUserLoggedIn = useIsAuthenticated();
@@ -15,6 +16,7 @@ function ListView() {
         <List/>
 
       </div>
+      <ModalAlertSuccess/>
     </>
   )
 }
