@@ -56,6 +56,7 @@ export const AuthContextProvider = (props) => {
             const result = await response.json();
             // console.log("result",result);
             redirectTo("/login");
+            handleOpenSuccessModal("Welcome to belayme. Login to find other climbers nearby.");
         } catch (error) {
             console.log("cannot register user", error)
         }
