@@ -170,6 +170,8 @@ const getProfile = (req, res) => {
     }
   };
 
+  const uploadPhoto = 
+
   const deleteProfile = async (req, res) => {
 
     try {
@@ -213,4 +215,4 @@ const getProfile = (req, res) => {
   };
 
 //#endregion
-export { register, login, getProfile, updateProfile, deleteProfile };
+export { register, login, getProfile, uploadPhoto, updateProfile, deleteProfile };

@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register, getProfile, updateProfile, deleteProfile } from "../controller/usersController.js";
+import { login, register, uploadPhoto, getProfile, updateProfile, deleteProfile } from "../controller/usersController.js";
 
 import jwtAuth from "../utils/jwtAuth.js";
 
@@ -10,5 +10,6 @@ router.post("/login", login);
 router.get("/profile", jwtAuth, getProfile);
 router.patch("/profile", jwtAuth, updateProfile);
 router.delete("/profile", jwtAuth, deleteProfile);
+router.post("/profile/photoUpload", jwtAuth, upoadPhoto);
 
 export default router
