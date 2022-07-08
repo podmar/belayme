@@ -2,7 +2,7 @@ import { Button, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import ButtonLogout from "../components/ButtonLogout";
-import ModalAlertSuccess from '../components/ModalAlertSuccess';
+import ModalAlert from '../components/ModalAlert';
 
 function Home() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function Home() {
         <div>
           <ButtonLogout/>
         </div>
-        <ModalAlertSuccess/>
+        <ModalAlert/>
     </div>
   )
 }

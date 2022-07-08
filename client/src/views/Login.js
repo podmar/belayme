@@ -5,7 +5,7 @@ import { Button, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import {AuthContext} from "../context/AuthContext.js";
 import ButtonRegister from '../components/ButtonRegister.js';
-import ModalAlertSuccess from '../components/ModalAlertSuccess';
+import ModalAlert from '../components/ModalAlert';
 
 function Login() {
   const { user, setUser, login, handleRegistrationInputChange } = useContext(AuthContext);
@@ -77,7 +77,7 @@ function Login() {
           <ButtonRegister/>
         </div>
       </Box>
-      <ModalAlertSuccess/>
+      <ModalAlert/>
     </>  
   )
 }

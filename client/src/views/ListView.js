@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '../components/List';
 import useIsAuthenticated from '../utils/useIsAuthenticated';
-import ModalAlertSuccess from '../components/ModalAlertSuccess';
+import ModalAlert from '../components/ModalAlert';
 
 function ListView() {
   const isUserLoggedIn = useIsAuthenticated();
@@ -16,7 +16,7 @@ function ListView() {
         <List/>
 
       </div>
-      <ModalAlertSuccess/>
+      <ModalAlert/>
     </>
   )
 }

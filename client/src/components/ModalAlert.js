@@ -2,8 +2,8 @@ import { Alert, Box, Typography, Modal } from '@mui/material'
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext';
 
-function ModalAlertSuccess() {
-const {openSuccessModal, handleCloseSuccessModal, modalMessage, modalType} = useContext(AuthContext);
+function ModalAlert() {
+const {openModal, handleCloseModal, modalMessage, modalType} = useContext(AuthContext);
     const style = {
         position: 'absolute',
         top: '50%',
@@ -14,8 +14,8 @@ const {openSuccessModal, handleCloseSuccessModal, modalMessage, modalType} = use
   return (
     <div>
         <Modal
-        open={openSuccessModal}
-        onClose={handleCloseSuccessModal}
+        open={openModal}
+        onClose={handleCloseModal}
         aria-labelledby={modalType}
         >
         <Box sx={style}>
@@ -26,4 +26,4 @@ const {openSuccessModal, handleCloseSuccessModal, modalMessage, modalType} = use
   )
 }
 
-export default ModalAlertSuccess
+export default ModalAlert

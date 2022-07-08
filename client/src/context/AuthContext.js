@@ -13,14 +13,14 @@ export const AuthContextProvider = (props) => {
 
     const [modalMessage, setModalMessage] = useState(""); 
     const [modalType, setModalType] = useState(""); 
-    const [openSuccessModal, setOpenSuccessModal] = useState(false);
-    const handleOpenSuccessModal = (type, message) => {
+    const [openModal, setOpenModal] = useState(false);
+    const handleOpenModal = (type, message) => {
         setModalMessage(message);
         setModalType(type);
-        setOpenSuccessModal(true);
+        setOpenModal(true);
         };
-    const handleCloseSuccessModal = () => {
-        setOpenSuccessModal(false);
+    const handleCloseModal = () => {
+        setOpenModal(false);
         };
 
     const handleRegistrationInputChange = (event) => {
@@ -52,7 +52,7 @@ export const AuthContextProvider = (props) => {
             const response = await fetch("http://localhost:5001/users/register", requestOptions);
             const result = await response.json();
             redirectTo("/login");
-            handleOpenSuccessModal("success", "Welcome to belayme. Login to find other climbers nearby.");
+            handleOpenModal("success", "Welcome to belayme. Login to find other climbers nearby.");
         } catch (error) {
             console.log("cannot register user", error)
         }
@@ -78,10 +78,10 @@ export const AuthContextProvider = (props) => {
             if (token) {
                 saveToken(token);
                 redirectTo("/profile"); 
-                handleOpenSuccessModal("success", "You have been successfully logged in.");
+                handleOpenModal("success", "You have been successfully logged in.");
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
-                handleOpenSuccessModal("error", "We could not authorize your credentials, please try again.");
+                handleOpenModal("error", "We could not authorize your credentials, please try again.");
             }
  
         } catch (error) {
@@ -95,7 +95,7 @@ export const AuthContextProvider = (props) => {
         setUser(null);
         setUserLoginStatus(false);
         redirectTo("/");
-        handleOpenSuccessModal("success", `We logged you out.`);
+        handleOpenModal("success", `We logged you out.`);
         console.log("user logged out");
     }; 
 
@@ -192,7 +192,7 @@ export const AuthContextProvider = (props) => {
             // avatarPicture: result.avatar,
         });
         // redirectTo("/profile");
-        handleOpenSuccessModal("success", result.message);
+        handleOpenModal("success", result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -219,7 +219,7 @@ export const AuthContextProvider = (props) => {
         const result = await response.json();
         console.log("response", result);
         logout();
-        handleOpenSuccessModal("success", result.message);
+        handleOpenModal("success", result.message);
         } catch (error) {
         console.log("Error updating profile", error);
         setError("login first");
@@ -233,7 +233,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openSuccessModal, handleOpenSuccessModal, handleCloseSuccessModal, modalMessage}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage}}
         >
             {props.children}
         </AuthContext.Provider>

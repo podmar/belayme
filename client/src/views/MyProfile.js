@@ -4,7 +4,7 @@ import CardProfile from '../components/CardProfile';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AuthContext } from '../context/AuthContext';
 import { Box } from '@mui/system';
-import ModalAlertSuccess from '../components/ModalAlertSuccess';
+import ModalAlert from '../components/ModalAlert';
 
 function MyProfile() {
   const {user} = useContext(AuthContext);
@@ -22,7 +22,7 @@ function MyProfile() {
       </div> : 
       <p>Loading</p>
       }
-      <ModalAlertSuccess/>
+      <ModalAlert/>
 
     </>
   )

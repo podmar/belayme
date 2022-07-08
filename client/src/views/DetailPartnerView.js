@@ -1,11 +1,11 @@
 import React from 'react';
-import ModalAlertSuccess from '../components/ModalAlertSuccess';
+import ModalAlert from '../components/ModalAlert';
 
 
 function DetailPartnerView() {
   return (
     <div>DetailPartnerView
-      <ModalAlertSuccess/>
+      <ModalAlert/>
 
     </div>
   )
