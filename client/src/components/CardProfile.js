@@ -19,13 +19,18 @@ function CardProfile() {
     const {user, handleUserProfileChange, updateProfile } = useContext(AuthContext);
     const [edit, setEdit] = useState(false);
 
+    const handleSubmitProfileChange = (event) => {
+      event.preventDefault();
+      updateProfile();
+      setEdit(false);
+    }
+
     const editProfileToggle = () => {
       if (!edit) {
         setEdit(true);
       } else {
         setEdit(false);
       };
-      console.log("edit profile:", edit)
     }; 
 
   return (
@@ -226,7 +231,8 @@ function CardProfile() {
               <Grid item>
               {edit && 
                 <CardActions>
-                  <ButtonSubmitInputProfileChange />
+                  <ButtonSubmitInputProfileChange 
+                    onClick={handleSubmitProfileChange} />
                   <ButtonDeleteProfile />
                 </CardActions>}
               </Grid>

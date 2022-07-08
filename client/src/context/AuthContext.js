@@ -157,7 +157,14 @@ export const AuthContextProvider = (props) => {
 
     //TODO display notification that the account has been updated
     // at the moment the app reloads on submit and the state variables are cleared, hence no notification.
-    const updateProfile = async (event) => {
+    // with preventDefault the form is not submited and no patch request sent. 
+    // const updateProfile = async (event) => {
+    const updateProfile = async () => {
+
+        // let profileChangeForm = event.target
+        // event.preventDefault();
+        // profileChangeForm.submit();
+
         const token = getToken();
 
         const urlencoded = generateUrlEncoded(updatedProfile);

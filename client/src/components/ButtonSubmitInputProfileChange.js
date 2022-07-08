@@ -3,7 +3,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import Button from '@mui/material/Button';
 import { AuthContext } from '../context/AuthContext';
 
-function ButtonSubmitInputProfileChange() {
+function ButtonSubmitInputProfileChange(props) {
   const {updateProfile} = useContext(AuthContext);
 
   return (
@@ -13,7 +13,7 @@ function ButtonSubmitInputProfileChange() {
             endIcon={<SaveIcon />}
             variant='outline'
             color='primary'
-            onClick={updateProfile}
+            onClick={props.onClick}
         >
             Save
         </Button>
