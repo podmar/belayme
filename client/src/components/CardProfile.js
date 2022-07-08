@@ -243,4 +243,4 @@ function CardProfile() {
   )
 }
 
-export default CardProfile
+export default CardProfile;
