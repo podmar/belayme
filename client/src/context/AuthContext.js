@@ -77,11 +77,13 @@ export const AuthContextProvider = (props) => {
             const { token } = result;
             if (token) {
                 saveToken(token);
+                redirectTo("/profile"); 
+                handleOpenSuccessModal("success", "You have been successfully logged in.");
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
+                handleOpenSuccessModal("error", "We could not authorize your credentials, please try again.");
             }
-            redirectTo("/profile"); 
-            handleOpenSuccessModal("success", "You have been successfully logged in.");
+ 
         } catch (error) {
             console.log("cannot login user", error)
         }
