@@ -48,7 +48,7 @@ const userSchema = new Schema({
     onsight_level: {
         type: String,
     },
- }); 
+ }, {timestamps: true}); 
 
 const userModel = mongoose.model("User", userSchema);
 
