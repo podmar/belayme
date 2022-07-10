@@ -10,7 +10,7 @@ const register = async (req, res) => {
             res
             .status(400)
             .json({
-                message: "User already exists, cannot register."
+                message: "User with this email address already exists, please log in or reset your passwors."
             })
         } else {
             // TODO: validate the password using express validator middleware
@@ -28,7 +28,7 @@ const register = async (req, res) => {
                 const savedUser = await newUser.save()
                 res
                 .status(201)
-                .json({message: "New user has been created",
+                .json({message: "New user account has been created. Login to find other climbers nearby.",
                     user: {
                         nickname: savedUser.nickname,
                         email: savedUser.email,
@@ -39,14 +39,14 @@ const register = async (req, res) => {
                 res
                 //TODO check what status is correct here
                 .status(400)
-                .json({message: "Server error, registration failed: cannot save a new user", error: error})
+                .json({message: "Server error, registration failed: cannot save a new user. Please try again.", error: error})
                 console.log("error", error, res);
             }
         };
     } catch (error) {
         res
         .status(400)
-        .json({message: "Server error, registration failed: cannot check if user exists.", error: error})
+        .json({message: "Server error, registration failed: cannot check if user exists. Please try again.", error: error})
         console.log("error", error, res);
     }
 }
@@ -57,9 +57,9 @@ const login = async (req, res) => {
 
         if (!existingUser) {
             res
-            .status(200)
+            .status(400)
             .json({
-                message: "User does not exist, register first."
+                message: "User with this email does not exist yet, register first."
             })
             
         } else {
@@ -67,7 +67,7 @@ const login = async (req, res) => {
                 const passwordVerified = await verifyPassword(req.body.password, existingUser.password);
                 if (!passwordVerified) {
                     res
-                    .status(200)
+                    .status(400)
                     .json({
                         passVerified: passwordVerified,
                         message: "Wrong password, please try again.", 
@@ -77,7 +77,7 @@ const login = async (req, res) => {
                     res
                     .status(200)
                     .json({
-                        message: "login successful",
+                        message: "You have been successfully logged in.",
                         user: {
                             nickname: existingUser.nickname, 
                             email: existingUser.email, 
@@ -96,6 +96,9 @@ const login = async (req, res) => {
                     });
                 }
             } catch (error) {
+                res
+                .status(400)
+                .json({message: "Server error, password verification failed. Please try again.", error: error})
                 console.log("Cannot verify password, database or bcrypt error: ", error)
             }
 
@@ -136,7 +139,7 @@ const updateProfile = async (req, res) => {
 
         if (!updatedUser) {
             res
-            .status(200)
+            .status(400)
             .json({
                 message: "User does not exist, register first."
             })
@@ -165,7 +168,7 @@ const updateProfile = async (req, res) => {
         } catch (error)  {
             res
             .status(400)
-            .json({message: "Server error, updating user data failed", error: error})
+            .json({message: "Server error, updating user data failed. Please try again.", error: error})
             console.log("error", error, res);
         }
     };

@@ -50,8 +50,15 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/register", requestOptions);
             const result = await response.json();
-            redirectTo("/login");
-            handleOpenModal("success", "Welcome to belayme. Login to find other climbers nearby.");
+            console.log("result: ", result)
+            console.log("response: ", response)
+
+            if (response.status === 400) {
+                handleOpenModal("error", result.message);
+            } else {
+                redirectTo("/login");
+                handleOpenModal("success", result.message);
+            }
         } catch (error) {
             console.log("cannot register user", error)
             handleOpenModal("error", "Something went wrong, please try again.");
@@ -72,16 +79,21 @@ export const AuthContextProvider = (props) => {
         try {
             const response = await fetch("http://localhost:5001/users/login", requestOptions);
             const result = await response.json();
-            setUser(result.user);
-            setUserLoginStatus(true);
             const { token } = result;
-            if (token) {
+
+            if (result.status === 400) {
+                handleOpenModal("error", result.message);
+            } else if (token) {
+                setUser(result.user);
+                setUserLoginStatus(true);
                 saveToken(token);
                 redirectTo("/profile"); 
-                handleOpenModal("success", "You have been successfully logged in.");
+                // handleOpenModal("success", "You have been successfully logged in.");
+                handleOpenModal("success", result.message);
             } else {
                 console.log("Cannot save the token in local storage, token not found in re response.")
-                handleOpenModal("error", "We could not authenthicate your credentials, please try again.");
+                // handleOpenModal("error", "We could not authenthicate your credentials, please try again.");
+                handleOpenModal("error", result.message);
             }
  
         } catch (error) {
@@ -97,7 +109,7 @@ export const AuthContextProvider = (props) => {
         setUserLoginStatus(false);
         redirectTo("/");
         handleOpenModal("success", "We logged you out.");
-        console.log("user logged out");
+        // console.log("user logged out");
     }; 
 
     // TODO getUser function with token
