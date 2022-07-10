@@ -12,7 +12,7 @@ function TextInputProfileChange(props) {
             // label={props.label}
             // type={props.type}
             fullWidth
-            inputProps={{ maxLength: 30 }}
+            inputProps={{ maxLength: 120 }}
             name={props.name}
             placeholder={`Type your new ${props.name} here`}
             defaultValue={props.default}
