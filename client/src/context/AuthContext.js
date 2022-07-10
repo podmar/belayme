@@ -22,12 +22,18 @@ export const AuthContextProvider = (props) => {
         setOpenModal(false);
         };
 
+    const [image, setImage] = useState();
+
     const handleRegistrationInputChange = (event) => {
         setUser({...user, [event.target.name]: event.target.value})
     };
 
     const handleUserProfileChange = (event) => {
         setUpdatedProfile({...updatedProfile, [event.target.name]: event.target.value})
+    };
+
+    const handleImageSelectionChange = (event) => {
+        setImage(e.target.files[0]);
     };
 
     const generateUrlEncoded = (dataObject) => {
@@ -163,7 +169,7 @@ export const AuthContextProvider = (props) => {
         } catch (error) {
         console.log("Error fetching profile after refresh, profile endpoint", error);
         // setError("login first");
-        handleOpenModal("error", "Something went wrong, please logi n and try again.");
+        handleOpenModal("error", "Something went wrong, please login and try again.");
     }
     }; 
 
@@ -212,6 +218,40 @@ export const AuthContextProvider = (props) => {
         }
     };
 
+    const uploadImage = async () => {
+        e.preventDefault();
+        console.log("submit working");
+
+        // call  FormData object constructor to populate with pairs of key/values (in this case {image: "our file"} )
+        const formData = new FormData();
+        console.log("selectedFile", selectedFile);
+        formData.append("image", selectedFile);
+        console.log("formData", formData);
+ 
+        // compose the object with the options to be sent with our request, including the type of method, and use the body of the request to attach data
+        const requestOptions = {
+            method: "POST",
+            body: formData,
+        };
+        try {
+            const response = await fetch(
+            "http://localhost:5001/users/photoUpload",
+            requestOptions
+            );
+            console.log("response", response);
+            const result = await response.json();
+            console.log("result", result);
+            setUser({ ...user, image: result.imageURL }); 
+            console.log(user);
+            handleOpenModal("success", result.message);
+        } catch (error) {
+            console.log("error submiting picture", error);
+            handleOpenModal("error", "Something went wrong, please login and try again.");
+        }
+        };
+
+    };
+
     const deleteProfile = async (event) => {
         event.preventDefault();
         const token = getToken();
@@ -247,7 +287,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage, modalType}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage, modalType, handleImageSelectionChange, uploadImage}}
         >
             {props.children}
         </AuthContext.Provider>
