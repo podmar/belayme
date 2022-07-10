@@ -12,6 +12,6 @@ router.get("/profile", jwtAuth, getProfile);
 router.patch("/profile", jwtAuth, updateProfile);
 router.delete("/profile", jwtAuth, deleteProfile);
 // router.post("/profile/photoUpload", jwtAuth, upoadPhoto);
-router.post("/profile/photoUpload", multerUploads.single("image"), upoadPhoto);
+router.post("/profile/photoUpload", multerUploads.single("image"), uploadPhoto);
 
 export default router;

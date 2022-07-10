@@ -174,46 +174,23 @@ const updateProfile = async (req, res) => {
     };
 
 const uploadPhoto = async (req, res) => {
-
+    console.log("req.body", req.body);
     try {
-        const updatedUser = await userModel
-        .findByIdAndUpdate(req.user._id, req.body, {new: true} );
-
-        if (!updatedUser) {
-            res
-            .status(200)
-            .json({
-                message: "User does not exist, register first."
-            })
-
-        } else {
-            res
-            .status(200)
-            .json({
-                message: `The profile of ${req.user.nickname} has been updated.`,
-                user: {
-                    nickname: updatedUser.nickname, 
-                    email: updatedUser.email, 
-                    home_crag: updatedUser.home_crag,
-                    about: updatedUser.about, 
-                    climbing_style: updatedUser.climbing_style,
-                    current_location: updatedUser.current_location,
-                    experience_y: updatedUser.experience_y,
-                    gear: updatedUser.gear,
-                    onsight_level: updatedUser.onsight_level,
-                    redpoint_level: updatedUser.redpoint_level,
-                    strengths: updatedUser.strengths,
-                    travelling: updatedUser.travelling,
-                    weight: updatedUser.weight,
-                }})
-            }
-        } catch (error)  {
-            res
-            .status(400)
-            .json({message: "Server error, updating user data failed", error: error})
-            console.log("error", error, res);
-        }
-    };
+        console.log("req.file", req.file); 
+        const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+        folder: "belayme_user_photos",
+        });
+        console.log("result", uploadResult); 
+        res.status(200).json({
+        message: "The image you chose was successfully uploaded.",
+        imageURL: uploadResult.url,
+        });
+    } catch (error) {
+        res
+        .status(500)
+        .json({ message: "Server error, we couldn't upload the image. Please try again.", error: error });
+    }
+};
 
   const deleteProfile = async (req, res) => {
 

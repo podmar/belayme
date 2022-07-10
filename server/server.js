@@ -6,6 +6,7 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose"; 
 import passport from "passport";
 import passportConfig from "./config/passport.js";
+import { cloudinaryConfig } from "./config/cloudinary.js";
 
 // leading .env file
 dotenv.config();
@@ -28,6 +29,7 @@ app.use('/users', usersRoute);
 app.use('/climbers', climbersRoute);
 app.use(passport.initialize());
 passportConfig(passport)
+cloudinaryConfig();
 
 mongoose
     .connect(process.env.MONGO_URI)
