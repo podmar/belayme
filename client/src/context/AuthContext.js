@@ -34,6 +34,9 @@ export const AuthContextProvider = (props) => {
 
     const handleImageSelectionChange = (event) => {
         setImage(event.target.files[0]);
+        console.log("selected image", image)
+        console.log("event.target", event.target.files[0])
+
     };
 
     const generateUrlEncoded = (dataObject) => {
@@ -284,7 +287,7 @@ export const AuthContextProvider = (props) => {
 
     return (
         <AuthContext.Provider
-        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage, modalType, handleImageSelectionChange, uploadImage}}
+        value={{ user, setUser, userLoginStatus, setUserLoginStatus, register, login, logout, handleRegistrationInputChange, updatedProfile, setUpdatedProfile, updateProfile, handleUserProfileChange, deleteProfile, openModal, handleOpenModal, handleCloseModal, modalMessage, modalType, image, handleImageSelectionChange, uploadImage}}
         >
             {props.children}
         </AuthContext.Provider>

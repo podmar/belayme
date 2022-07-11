@@ -67,6 +67,13 @@ a {
   padding-top: 1rem;
 }
 
+.photo-upload-edit-button {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  /* padding-top: 1rem; */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

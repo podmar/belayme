@@ -1,26 +1,27 @@
-import React, { useContext } from 'react'
-import { TextField } from '@mui/material';
-import { AuthContext } from '../context/AuthContext';
+import React from 'react'
+import { Button, Input } from '@mui/material';
+import { Box } from '@mui/material';
 
-function ImageSelectionInput() {
-const { phandleImageSelectionChange } = useContext(AuthContext);
+function ImageSelectionInput(props) {
 
   return (
-    <div>
-        <TextField
-            // required
-            size='small'
-            // id="email-input"
-            // label={props.label}
-            // type={props.type}
-            fullWidth
-            inputProps={{ maxLength: 120 }}
-            name={props.name}
-            placeholder={`Type your new ${props.name} here`}
-            defaultValue={props.default}
-            onChange={props.handler}
+      <Box component="form" >
+        <input
+          type="file"
+          id="image-select"
+          onChange={props.onChange}
+          style={{ display: 'none' }}
         />
-    </div>
+        <label 
+          htmlFor={"image-select"}>
+          <Button
+            color="secondary"
+            component="span"
+          >
+            Choose a file
+          </Button>
+        </label>
+    </Box>
   )
 }
 
