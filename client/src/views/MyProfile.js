@@ -1,4 +1,4 @@
-import { IconButton, Typography } from '@mui/material';
+import { Avatar, IconButton, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import CardProfile from '../components/CardProfile';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -34,10 +34,17 @@ function MyProfile() {
     <>
       { user ?
       <div>
-        {/* {user.avatar ? user.avatar: <AccountCircleIcon/>} */}
+        {user.image ? 
+        <div className='avatar-component'>
+          <Avatar
+            src={user.image}
+            alt={`Photo of ${user.nickname}`}
+            sx={{ width: 150, height: 150 }}
+          />
+        </div> :
         <div className='no-avatar-component'>
           <AccountCircleIcon color='inherit' fontSize='inherit'/>
-        </div>
+        </div> }
         <div className='photo-upload-edit-button'>
           <IconButton
             onClick={editImageToggle}

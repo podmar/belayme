@@ -67,6 +67,12 @@ a {
   padding-top: 1rem;
 }
 
+.avatar-component {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
 .photo-upload-edit-button {
   width: 60%;
   display: flex;

@@ -178,7 +178,8 @@ export const AuthContextProvider = (props) => {
         strengths: result.strengths,
         travelling: result.travelling,
         weight: result.weight,
-        // avatarPicture: result.avatar,
+        image: result.image,
+        _id: result._id,
       });
     } catch (error) {
       console.log(
@@ -272,9 +273,8 @@ export const AuthContextProvider = (props) => {
       console.log("result", result);
       console.log(user);
       if (response.status === 200) {
-        // setUser({ ...user, image: result.imageURL });
-        // setUpdatedProfile({ image: result.imageURL });
-        // updateProfile();
+        setUser({ ...user, image: result.imageURL });
+
         handleOpenModal("success", result.message);
       } else {
         handleOpenModal("error", result.message);
