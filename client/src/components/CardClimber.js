@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import { Avatar, Box, CardHeader } from '@mui/material';
 import ButtonBelayRequest from './ButtonBelayRequest';
+import ClimbersContext from '../context/ClimbersContext';
 
 function CardClimber({climber}) {
   return (
@@ -15,12 +16,24 @@ function CardClimber({climber}) {
           sx={{ 
             width: '90%'
             }}>
-        {/* <CardMedia
+          <CardHeader 
+            // avatar={<Avatar
+            // src={climber.image}
+            // alt={`Photo of ${climber.nickname}`}
+            //sx={{ width: 30, height: 30 }}
+          //>}
+          // title={climber.nickname}
+          title={<Typography gutterBottom variant="h5" component="div">
+          {climber.nickname}
+          </Typography>}
+          subheader={climber.about ? climber.about : "Send me a belay request to learn more about me."}
+          />
+        { climber.image && <CardMedia
             component="img"
-            alt="user profile pic"
-            height="140"
-            image="xxx.jpg"
-        /> */}
+            alt={`Photo of ${climber.nickname}`}
+            height="300"
+            image={climber.image}
+        /> }
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
             {climber.nickname}

@@ -39,7 +39,7 @@ function MyProfile() {
           <Avatar
             src={user.image}
             alt={`Photo of ${user.nickname}`}
-            sx={{ width: 150, height: 150 }}
+            sx={{ width: 200, height: 200 }}
           />
         </div> :
         <div className='no-avatar-component'>
