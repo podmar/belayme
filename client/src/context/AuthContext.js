@@ -33,7 +33,7 @@ export const AuthContextProvider = (props) => {
     };
 
     const handleImageSelectionChange = (event) => {
-        setImage(e.target.files[0]);
+        setImage(event.target.files[0]);
     };
 
     const generateUrlEncoded = (dataObject) => {
@@ -218,15 +218,15 @@ export const AuthContextProvider = (props) => {
         }
     };
 
-    const uploadImage = async () => {
-        e.preventDefault();
+    const uploadImage = async (event) => {
+        event.preventDefault();
         console.log("submit working");
 
         // call  FormData object constructor to populate with pairs of key/values (in this case {image: "our file"} )
         const formData = new FormData();
-        console.log("selectedFile", selectedFile);
-        formData.append("image", selectedFile);
-        console.log("formData", formData);
+        console.log("selectedFile", image);
+        formData.append("image", image);
+        console.log("formData", image);
  
         // compose the object with the options to be sent with our request, including the type of method, and use the body of the request to attach data
         const requestOptions = {
@@ -248,8 +248,6 @@ export const AuthContextProvider = (props) => {
             console.log("error submiting picture", error);
             handleOpenModal("error", "Something went wrong, please login and try again.");
         }
-        };
-
     };
 
     const deleteProfile = async (event) => {
@@ -283,7 +281,6 @@ export const AuthContextProvider = (props) => {
     useEffect(() => {
       checkIfUserLoggedIn();
     }, [userLoginStatus]);
-    
 
     return (
         <AuthContext.Provider
