@@ -31,17 +31,13 @@ export const ClimbersContextProvider = (props) => {
     }
 };
 
-  const requestBelay = (event, id) => {
-    console.log(`requesting belay to climber with the id ${id}`)
-  };
-
   useEffect(() => {
     fetchClimbers()
   }, [])
 
   return (
     <ClimbersContext.Provider
-    value = {{climbers, setClimbers, climberCount, setClimberCount, requestBelay}}
+    value = {{climbers, setClimbers, climberCount, setClimberCount}}
     >
       {props.children}
     </ClimbersContext.Provider>
