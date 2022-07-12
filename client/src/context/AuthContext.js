@@ -126,6 +126,8 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     //TODO check if set to false of empty object
     setUser(null);
+    setImage(null);
+    setUpdatedProfile(null);
     setUserLoginStatus(false);
     redirectTo("/");
     handleOpenModal("success", "We logged you out.");
