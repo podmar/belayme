@@ -3,6 +3,8 @@ import userModel from "../model/userModel.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { v2 as cloudinary } from "cloudinary";
 
+//#region registration / login
+
 const register = async (req, res) => {
   try {
     const checkIfUserExists = await userModel.findOne({
@@ -270,6 +272,87 @@ const deleteProfile = async (req, res) => {
 };
 
 //#endregion
+//#region belay requests
+
+const requestBelay = async (req, res) => {
+  try {
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {$addToSet: req.body},
+      { new: true },
+    );
+
+    if (!updatedUser) {
+      res.status(400).json({
+        message: "Contacting user does not exist, register first.",
+      });
+    } else {
+      const contactedUser = await userModel.findByIdAndUpdate(
+        req.body.sent_requests,
+        {$addToSet: req.user._id},
+        { new: true },
+      );
+  
+      if (!contactedUser) {
+        res.status(400).json({
+          message: "Contacted user does not exist, register first.",
+        });
+      } else {
+
+      //successful response
+      res
+      .status(200)
+      .json({
+        message: `Your request has been sent`,
+        user: {
+          nickname: updatedUser.nickname,
+          email: updatedUser.email,
+          home_crag: updatedUser.home_crag,
+          about: updatedUser.about,
+          climbing_style: updatedUser.climbing_style,
+          current_location: updatedUser.current_location,
+          experience_y: updatedUser.experience_y,
+          gear: updatedUser.gear,
+          onsight_level: updatedUser.onsight_level,
+          redpoint_level: updatedUser.redpoint_level,
+          strengths: updatedUser.strengths,
+          travelling: updatedUser.travelling,
+          weight: updatedUser.weight,
+          image: updatedUser.image,
+          _id: updatedUser._id,
+          sent_requests: updatedUser.sent_requests,
+        },
+        climber: {
+          nickname: contactedUser.nickname,
+          home_crag: contactedUser.home_crag,
+          about: contactedUser.about,
+          climbing_style: contactedUser.climbing_style,
+          current_location: contactedUser.current_location,
+          experience_y: contactedUser.experience_y,
+          gear: contactedUser.gear,
+          onsight_level: contactedUser.onsight_level,
+          redpoint_level: contactedUser.redpoint_level,
+          strengths: contactedUser.strengths,
+          travelling: contactedUser.travelling,
+          weight: contactedUser.weight,
+          image: contactedUser.image,
+          _id: contactedUser._id,
+          sent_requests: contactedUser.sent_requests,
+        },
+
+      });
+    }
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: "Server error, sending user request failed while sending the sent request. Please try again.",
+      error: error,
+    });
+    console.log("error", error, res);
+  }
+};
+
+//#endregion
 export {
   register,
   login,
@@ -277,4 +360,5 @@ export {
   uploadPhoto,
   updateProfile,
   deleteProfile,
+  requestBelay,
 };
