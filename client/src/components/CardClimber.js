@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Avatar, Box, CardHeader } from '@mui/material';
+import { Avatar, Box, CardHeader, Chip, Stack } from '@mui/material';
 import ButtonBelayRequest from './ButtonBelayRequest';
 import ClimbersContext from '../context/ClimbersContext';
 
@@ -16,7 +16,7 @@ function CardClimber({climber}) {
           sx={{ 
             width: '90%'
             }}>
-          <CardHeader 
+          {/* <CardHeader 
             // avatar={<Avatar
             // src={climber.image}
             // alt={`Photo of ${climber.nickname}`}
@@ -27,7 +27,7 @@ function CardClimber({climber}) {
           {climber.nickname}
           </Typography>}
           subheader={climber.about ? climber.about : "Send me a belay request to learn more about me."}
-          />
+          /> */}
         { climber.image && <CardMedia
             component="img"
             alt={`Photo of ${climber.nickname}`}
@@ -38,9 +38,53 @@ function CardClimber({climber}) {
             <Typography gutterBottom variant="h5" component="div">
             {climber.nickname}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {climber.about ? climber.about : "Send me a belay request to learn more about me."}
-            </Typography>
+            <div className='padding-y-05'>
+              <Typography variant="body2" color="text.secondary">
+              {climber.about ? climber.about : "Send me a belay request to learn more about me."}
+              </Typography>
+            </div>
+            <Stack direction="row" alignItems={"space-between"} spacing={1} flexWrap={"wrap"} xs={{p: 0.5, m: 0,}}>
+              {climber.experience_y && 
+              <div className='padding-y-03'>
+                <Chip
+                color="secondary"
+                label={`climbing ${climber.experience_y} years`}
+                ></Chip>
+              </div>}
+              {climber.onsight_level && 
+              <div className='padding-y-03'>
+                <Chip
+                color="primary"
+                label={`onsights ${climber.onsight_level}`}
+                ></Chip>
+              </div>}
+              {climber.current_location && 
+              <div className='padding-y-03'>
+                <Chip
+                color="primary"
+                label={`${climber.current_location}`}
+                ></Chip>
+              </div>}
+              {climber.weight && 
+              <div className='padding-y-03'>
+                <Chip
+                color="primary"
+                label={`${climber.weight} kg`}
+                ></Chip>
+              </div>}              
+              {climber.climbing_style && 
+              <div className='padding-y-03'>
+                <Chip
+                  color="primary"
+                  label={`${climber.climbing_style}`}
+                ></Chip>
+              </div>}
+              {/* {climber. && 
+              <Chip
+              color="primary"
+              label={`${climber.}`}
+              ></Chip>} */}
+            </Stack>
         </CardContent>
         <CardActions>
             <ButtonBelayRequest id={climber._id}/>
