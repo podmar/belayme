@@ -10,13 +10,12 @@ function List() {
 
     return (
     <div>
-        <Typography variant='h2'>
-            Climbers nearby
-        </Typography>
+        <Typography variant='body2'>
             {climberCount ? 
-                <p>{`Found ${climberCount} people nearby you.`}</p> :
-                <p>Looking for people nearby...</p>
-            }            
+                `Found ${climberCount} people nearby you.` :
+                "Looking for people nearby..."
+            }
+        </Typography>          
             {climbers && climbers.map(climber => {
                 return (
                         <CardClimber 
