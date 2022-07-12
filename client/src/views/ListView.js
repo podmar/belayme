@@ -9,12 +9,7 @@ function ListView() {
   return (
     <>
       <div>
-      {isUserLoggedIn ? "User is currently logged in" : "No user logged in."}
-      </div>
-
-      <div>
         <List/>
-
       </div>
       <ModalAlert/>
     </>
