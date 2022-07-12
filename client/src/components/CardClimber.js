@@ -23,18 +23,6 @@ function CardClimber({climber}) {
             sx={{ 
               width: '90%'
               }}>
-            {/* <CardHeader 
-              // avatar={<Avatar
-              // src={climber.image}
-              // alt={`Photo of ${climber.nickname}`}
-              //sx={{ width: 30, height: 30 }}
-            //>}
-            // title={climber.nickname}
-            title={<Typography gutterBottom variant="h5" component="div">
-            {climber.nickname}
-            </Typography>}
-            subheader={climber.about ? climber.about : "Send me a belay request to learn more about me."}
-            /> */}
           { climber.image && <CardMedia
               component="img"
               alt={`Photo of ${climber.nickname}`}
@@ -79,6 +67,7 @@ function CardClimber({climber}) {
                   label={`${climber.weight} kg`}
                   ></Chip>
                 </div>}              
+                {/* TODO Check why style is not dissappearing when empty */}
                 {climber.climbing_style && 
                 <div className='padding-y-03'>
                   <Chip
