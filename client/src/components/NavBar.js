@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { AuthContext } from '../context/AuthContext';
 import ButtonIconLogin from './ButtonIconLogin';
 import ButtonIconLogout from './ButtonIconLogout';
-import { Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 // import Typography from '@mui/material/Typography';
 //import IconButton from '@mui/material/IconButton';
 //import SearchIcon from '@mui/icons-material/Search';
@@ -20,11 +20,19 @@ function NavBar() {
         position="fixed" 
         color="primary"
         style={{ borderRadius: "0", 
-          // minHeight: "40px" 
         }}
         >
         <Toolbar>
-          <Grid container justifyContent={"end"}>
+          <Grid container justifyContent="space-between" alignItems={"center"}>
+            <Grid item >
+              <Typography variant='body1'>
+                <Box
+                sx={{ fontWeight: 'bold', fontSize: 'h6.fontSize' }}
+                >
+                belayme
+                </Box>
+              </Typography>
+            </Grid>
             <Grid item >
             {userLoginStatus ? <ButtonIconLogout/> : <ButtonIconLogin/>}
             </Grid>
