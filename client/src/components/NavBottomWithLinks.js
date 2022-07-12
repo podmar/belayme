@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useContext, useState } from 'react'; 
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -6,10 +6,12 @@ import ListIcon from '@mui/icons-material/List';
 import PersonIcon from '@mui/icons-material/Person';
 import MailIcon from '@mui/icons-material/Mail';
 import { NavLink, Link } from 'react-router-dom';
-import { Paper } from '@mui/material';
+import { Avatar, Paper } from '@mui/material';
+import { AuthContext } from '../context/AuthContext';
 
 function NavBottomWithLinks() {
   const [value, setValue] = useState(0);
+  const {user} = useContext(AuthContext);
 
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
@@ -32,12 +34,18 @@ function NavBottomWithLinks() {
           label="List" 
           icon={<ListIcon />} 
         />
-        <BottomNavigationAction 
+        { user && <BottomNavigationAction 
           component={Link} 
           to="/profile"
           label="Profile" 
-          icon={<PersonIcon />} 
-        />
+          icon={ user.image ? 
+            <Avatar
+            src={user.image}
+            alt={`Photo of ${user.nickname}`}
+            sx={{ width: 23, height: 23 }}
+            /> :
+            <PersonIcon />} 
+        />}
         <BottomNavigationAction 
           component={Link} 
           to="/inbox"
