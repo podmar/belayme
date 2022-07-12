@@ -19,7 +19,7 @@ function MyProfile() {
     uploadImage();
     setEditImage(false);
   }
-
+//TODO made badge with a photo being a button to change image
   const editImageToggle = () => {
     if (!editImage) {
       setEditImage(true);
@@ -40,6 +40,7 @@ function MyProfile() {
             src={user.image}
             alt={`Photo of ${user.nickname}`}
             sx={{ width: 200, height: 200 }}
+
           />
         </div> :
         <div className='no-avatar-component'>
