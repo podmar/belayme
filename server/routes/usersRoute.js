@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register, uploadPhoto, getProfile, updateProfile, deleteProfile } from "../controller/usersController.js";
+import { login, register, uploadPhoto, getProfile, updateProfile, deleteProfile, requestBelay } from "../controller/usersController.js";
 import { multerUploads } from "../middlewares/multer.js";
 
 import jwtAuth from "../utils/jwtAuth.js";
@@ -12,6 +12,6 @@ router.get("/profile", jwtAuth, getProfile);
 router.patch("/profile", jwtAuth, updateProfile);
 router.delete("/profile", jwtAuth, deleteProfile);
 router.post("/profile/photoUpload", jwtAuth, multerUploads.single("image"), uploadPhoto);
-// router.post("/profile/photoUpload", multerUploads.single("image"), uploadPhoto);
+router.patch("/profile", jwtAuth, requestBelay);
 
 export default router;
