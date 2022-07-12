@@ -13,18 +13,18 @@ import ButtonIconBelayRequest from './ButtonIconBelayRequest';
 function CardClimber({climber}) {
   const {user} = useContext(AuthContext); 
 
-  const checkIfRequestSent = () => {
-    if (user.sent_requests) {
-      let result = user.sent_requests.includes(climber._id);
-      return result
-    } else {
-      return false;
-    }
-  }
+  // const checkIfRequestSent = () => {
+  //   if (user.sent_requests) {
+  //     let result = user.sent_requests.includes(climber._id);
+  //     return result
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  useEffect(() => {
-    checkIfRequestSent()
-  }, [user])
+  // useEffect(() => {
+  //   checkIfRequestSent()
+  // }, [user])
   
 
   if (user) {
@@ -98,7 +98,8 @@ function CardClimber({climber}) {
               </Stack>
           </CardContent>
           <CardActions>
-              {checkIfRequestSent && <ButtonBelayRequest id={climber._id}/>}
+              {/* {checkIfRequestSent && <ButtonBelayRequest id={climber._id}/>} */}
+              <ButtonBelayRequest id={climber._id}/>
               {/* <Button size="small">Ask for a belay</Button> */}
               {/* <ButtonIconBelayRequest id={climber._id}/> */}
               <Button size="small">See profile</Button>
