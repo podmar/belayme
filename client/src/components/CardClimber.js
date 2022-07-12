@@ -11,6 +11,9 @@ import { AuthContext } from '../context/AuthContext'
 
 function CardClimber({climber}) {
   const {user} = useContext(AuthContext);
+
+  if (user) {
+
   if (climber._id === user._id) {
     return
   } else {
@@ -99,6 +102,7 @@ function CardClimber({climber}) {
       </Box>
     )
   }
+}
 }
 
 export default CardClimber
