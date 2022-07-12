@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,93 +7,98 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar, Box, CardHeader, Chip, Stack } from '@mui/material';
 import ButtonBelayRequest from './ButtonBelayRequest';
-import ClimbersContext from '../context/ClimbersContext';
+import { AuthContext } from '../context/AuthContext'
 
 function CardClimber({climber}) {
-  return (
-    <Box className='belayme-custom-box-center' py={1}>
-        <Card 
-          sx={{ 
-            width: '90%'
-            }}>
-          {/* <CardHeader 
-            // avatar={<Avatar
-            // src={climber.image}
-            // alt={`Photo of ${climber.nickname}`}
-            //sx={{ width: 30, height: 30 }}
-          //>}
-          // title={climber.nickname}
-          title={<Typography gutterBottom variant="h5" component="div">
-          {climber.nickname}
-          </Typography>}
-          subheader={climber.about ? climber.about : "Send me a belay request to learn more about me."}
-          /> */}
-        { climber.image && <CardMedia
-            component="img"
-            alt={`Photo of ${climber.nickname}`}
-            height="300"
-            image={climber.image}
-        /> }
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+  const {user} = useContext(AuthContext);
+  if (climber._id === user._id) {
+    return
+  } else {
+    return (
+      <Box className='belayme-custom-box-center' py={1}>
+          <Card 
+            sx={{ 
+              width: '90%'
+              }}>
+            {/* <CardHeader 
+              // avatar={<Avatar
+              // src={climber.image}
+              // alt={`Photo of ${climber.nickname}`}
+              //sx={{ width: 30, height: 30 }}
+            //>}
+            // title={climber.nickname}
+            title={<Typography gutterBottom variant="h5" component="div">
             {climber.nickname}
-            </Typography>
-            <div className='padding-y-05'>
-              <Typography variant="body2" color="text.secondary">
-              {climber.about ? climber.about : "Send me a belay request to learn more about me."}
+            </Typography>}
+            subheader={climber.about ? climber.about : "Send me a belay request to learn more about me."}
+            /> */}
+          { climber.image && <CardMedia
+              component="img"
+              alt={`Photo of ${climber.nickname}`}
+              height="300"
+              image={climber.image}
+          /> }
+          <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+              {climber.nickname}
               </Typography>
-            </div>
-            <Stack direction="row" alignItems={"space-between"} spacing={1} flexWrap={"wrap"} xs={{p: 0.5, m: 0,}}>
-              {climber.experience_y && 
-              <div className='padding-y-03'>
-                <Chip
-                color="secondary"
-                label={`climbing ${climber.experience_y} years`}
-                ></Chip>
-              </div>}
-              {climber.onsight_level && 
-              <div className='padding-y-03'>
-                <Chip
-                color="primary"
-                label={`onsights ${climber.onsight_level}`}
-                ></Chip>
-              </div>}
-              {climber.current_location && 
-              <div className='padding-y-03'>
-                <Chip
-                color="primary"
-                label={`${climber.current_location}`}
-                ></Chip>
-              </div>}
-              {climber.weight && 
-              <div className='padding-y-03'>
-                <Chip
-                color="primary"
-                label={`${climber.weight} kg`}
-                ></Chip>
-              </div>}              
-              {climber.climbing_style && 
-              <div className='padding-y-03'>
-                <Chip
+              <div className='padding-y-05'>
+                <Typography variant="body2" color="text.secondary">
+                {climber.about ? climber.about : "Send me a belay request to learn more about me."}
+                </Typography>
+              </div>
+              <Stack direction="row" alignItems={"space-between"} spacing={1} flexWrap={"wrap"} xs={{p: 0.5, m: 0,}}>
+                {climber.experience_y && 
+                <div className='padding-y-03'>
+                  <Chip
+                  color="secondary"
+                  label={`climbing ${climber.experience_y} years`}
+                  ></Chip>
+                </div>}
+                {climber.onsight_level && 
+                <div className='padding-y-03'>
+                  <Chip
                   color="primary"
-                  label={`${climber.climbing_style}`}
-                ></Chip>
-              </div>}
-              {/* {climber. && 
-              <Chip
-              color="primary"
-              label={`${climber.}`}
-              ></Chip>} */}
-            </Stack>
-        </CardContent>
-        <CardActions>
-            <ButtonBelayRequest id={climber._id}/>
-            {/* <Button size="small">Ask for a belay</Button> */}
-            <Button size="small">See profile</Button>
-        </CardActions>
-        </Card>
-    </Box>
-  )
+                  label={`onsights ${climber.onsight_level}`}
+                  ></Chip>
+                </div>}
+                {climber.current_location && 
+                <div className='padding-y-03'>
+                  <Chip
+                  color="primary"
+                  label={`${climber.current_location}`}
+                  ></Chip>
+                </div>}
+                {climber.weight && 
+                <div className='padding-y-03'>
+                  <Chip
+                  color="primary"
+                  label={`${climber.weight} kg`}
+                  ></Chip>
+                </div>}              
+                {climber.climbing_style && 
+                <div className='padding-y-03'>
+                  <Chip
+                    color="primary"
+                    label={`${climber.climbing_style}`}
+                  ></Chip>
+                </div>}
+                {/* {climber. && 
+                <Chip
+                color="primary"
+                label={`${climber.}`}
+                ></Chip>} */}
+              </Stack>
+          </CardContent>
+          <CardActions>
+              <ButtonBelayRequest id={climber._id}/>
+              {/* <Button size="small">Ask for a belay</Button> */}
+              <Button size="small">See profile</Button>
+          </CardActions>
+          </Card>
+      </Box>
+    )
+  }
 }
 
 export default CardClimber
