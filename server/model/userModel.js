@@ -52,6 +52,12 @@ const userSchema = new Schema({
     image: {
         type: String,
     },
+    received_requests: {
+        type: Array,
+    }, 
+    sent_requests: {
+        type: Array,
+    }, 
  }, {timestamps: true}); 
 
 const userModel = mongoose.model("User", userSchema);
