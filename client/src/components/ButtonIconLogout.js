@@ -5,28 +5,18 @@ import Logout from '@mui/icons-material/Logout';
 
 
 function ButtonIconLogout() {
-    const {user, logout} = useContext(AuthContext);
+    const {logout} = useContext(AuthContext);
 
   return (
-    <>
-    {user && 
+
       <Button
         color="inherit"
         size='large'
         onClick={logout}
         endIcon={<Logout/>}
         >
-          {`Hi ${user.nickname}!`}    
+          Logout
       </Button>
-    }
-    </>
-    // <IconButton
-    //   color="inherit"
-    //   size='large'
-    //   onClick={logout}
-    //   >
-    //   <Logout/>
-    // </IconButton>
   )
 }
 
