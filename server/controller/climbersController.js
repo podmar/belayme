@@ -25,26 +25,16 @@ const getAllClimbers = async (req, res) => {
 
             res
             .status(200)
-            // .json({results: allClimbers.length, allClimbers: allClimbers
             .json({results: allClimbers.length, allClimbers: allClimbers})
-            // console.log("all climbers fromt he data base", allClimbers);
         }
     } catch (err) {
         res
         .status(400)
-        .json({error: err, message: "There is a problem with the server"});
+        .json({error: err, message: "There is a problem with the server, could not load climbers nearby."});
     };
 };
 
-// const getUser = (req, res) => {
-//     console.log("req.user", req.user);
-//     res
-//     .status(200)
-//     .json({
-//         nickname: req.user.nickname,
-//         email: req.user.email,
-//     });
-//   };
+
 
 const getClimberByID = async (req, res) => {
     try {
