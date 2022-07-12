@@ -231,9 +231,8 @@ export const AuthContextProvider = (props) => {
         image: result.image,
         _id: result._id,
       });
-      // redirectTo("/profile");
-      handleOpenModal("success", "Your profile has been updated.");
-      // handleOpenModal("success", result.message);
+      setUpdatedProfile(null);
+      handleOpenModal("success", result.message);
     } catch (error) {
       console.log("Error updating profile", error);
       handleOpenModal("error", "Something went wrong, please try again.");
