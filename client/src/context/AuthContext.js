@@ -230,8 +230,8 @@ export const AuthContextProvider = (props) => {
         strengths: result.user.strengths,
         travelling: result.user.travelling,
         weight: result.user.weight,
-        image: result.image,
-        _id: result._id,
+        image: result.user.image,
+        _id: result.user._id,
       });
       setUpdatedProfile(null);
       handleOpenModal("success", result.message);
@@ -309,6 +309,53 @@ export const AuthContextProvider = (props) => {
     }
   };
 
+
+  const requestBelay = async (climberID) => {
+    console.log(`requesting belay to climber with the id ${climberID}`)
+    const token = getToken();
+
+    const urlencoded = generateUrlEncoded({sent_requests: climberID});
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      body: urlencoded,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5001/users/belayrequest", requestOptions);
+      const result = await response.json();
+      setUser({
+        email: result.user.email,
+        nickname: result.user.nickname,
+        about: result.user.about,
+        climbing_style: result.user.climbing_style,
+        current_location: result.user.current_location,
+        experience_y: result.user.experience_y,
+        gear: result.user.gear,
+        onsight_level: result.user.onsight_level,
+        redpoint_level: result.user.redpoint_level,
+        strengths: result.user.strengths,
+        travelling: result.user.travelling,
+        weight: result.user.weight,
+        image: result.user.image,
+        _id: result.user._id,
+        sent_requests: result.user.sent_requests,
+        received_requests: result.user.received_requests,
+      });
+      console.log(" after belay request: ", user.sent_requests)
+      handleOpenModal("success", result.message);
+
+      
+    } catch (error) {
+      console.log("cannot fetch this climber", error);
+    }
+
+  };
+
   useEffect(() => {
     checkIfUserLoggedIn();
   }, [userLoginStatus]);
@@ -337,6 +384,7 @@ export const AuthContextProvider = (props) => {
         image,
         handleImageSelectionChange,
         uploadImage,
+        requestBelay,
       }}
     >
       {props.children}

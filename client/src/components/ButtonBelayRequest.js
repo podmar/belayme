@@ -1,15 +1,15 @@
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
-import {ClimbersContext} from "../context/ClimbersContext.js";
+import { AuthContext } from '../context/AuthContext'
 
-function ButtonBelayRequest(props) {
-    const {requestBelay} = useContext(ClimbersContext);
-    const requestBelayID = requestBelay(props.id);
+
+function ButtonBelayRequest({id}) {
+  const {requestBelay} = useContext(AuthContext);
 
   return (
     <Button 
     size="small"
-    onClick={requestBelayID}
+    onClick={() => requestBelay(id)}
     >
         Ask for a belay
         </Button>

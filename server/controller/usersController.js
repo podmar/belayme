@@ -99,6 +99,8 @@ const login = async (req, res) => {
               weight: existingUser.weight,
               image: existingUser.image,
               _id: existingUser._id,
+              sent_requests: existingUser.sent_requests,
+              received_requests: existingUser.received_requests,
             },
             token: token,
           });
@@ -141,6 +143,8 @@ const getProfile = (req, res) => {
     weight: req.user.weight,
     image: req.user.image,
     _id: req.user._id,
+    sent_requests: req.user.sent_requests,
+    received_requests: req.user.received_requests,
   });
 };
 
@@ -175,6 +179,8 @@ const updateProfile = async (req, res) => {
           weight: updatedUser.weight,
           image: updatedUser.image,
           _id: updatedUser._id,
+          sent_requests: updatedUser.sent_requests,
+          received_requests: updatedUser.received_requests,
         },
       });
     }
@@ -259,6 +265,9 @@ const deleteProfile = async (req, res) => {
           strengths: deletedUser.strengths,
           travelling: deletedUser.travelling,
           weight: deletedUser.weight,
+          image: deletedUser.image,
+          sent_requests: deletedUser.sent_requests,
+          received_requests: deletedUser.received_requests,
         },
       });
     }
@@ -275,6 +284,7 @@ const deleteProfile = async (req, res) => {
 //#region belay requests
 
 const requestBelay = async (req, res) => {
+  console.log("request", req)
   try {
     const updatedUser = await userModel.findByIdAndUpdate(
       req.user._id,
@@ -289,7 +299,7 @@ const requestBelay = async (req, res) => {
     } else {
       const contactedUser = await userModel.findByIdAndUpdate(
         req.body.sent_requests,
-        {$addToSet: req.user._id},
+        {$addToSet: {received_requests: req.user._id}},
         { new: true },
       );
   
@@ -321,6 +331,7 @@ const requestBelay = async (req, res) => {
           image: updatedUser.image,
           _id: updatedUser._id,
           sent_requests: updatedUser.sent_requests,
+          received_requests: updatedUser.received_requests,
         },
         climber: {
           nickname: contactedUser.nickname,
