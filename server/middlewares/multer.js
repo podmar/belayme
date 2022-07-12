@@ -4,7 +4,7 @@ import path from "path";
 const multerUploads = multer({
     storage: multer.diskStorage({}),
     fileFilter: (req, file, cb) => {
-      let extension = path.extname(file.originalname);
+      let extension = path.extname(file.originalname).toLowerCase();
       if (extension !== ".jpg" && extension !== ".jpeg" && extension !== ".png") {
         cb(new Error("File extension not supported"), false);
         return;
