@@ -244,14 +244,9 @@ export const AuthContextProvider = (props) => {
     event.preventDefault();
     const token = getToken();
 
-    console.log("submit working");
-
     // call  FormData object constructor to populate with pairs of key/values (in this case {image: "our file"} )
     const formData = new FormData();
-    // console.log("selectedFile", image);
     formData.append("image", image);
-    // formData.append("_id", user._id);
-
     console.log("formData", image);
 
     const myHeaders = new Headers();
@@ -274,8 +269,8 @@ export const AuthContextProvider = (props) => {
       console.log(user);
       if (response.status === 200) {
         setUser({ ...user, image: result.imageURL });
-
         handleOpenModal("success", result.message);
+        setImage("")
       } else {
         handleOpenModal("error", result.message);
       }
