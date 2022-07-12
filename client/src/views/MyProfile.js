@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Typography } from '@mui/material';
+import { Avatar, Badge, Button, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import CardProfile from '../components/CardProfile';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -34,33 +34,26 @@ function MyProfile() {
     <>
       { user ?
       <div>
-        {user.image ? 
-        <div className='avatar-component'>
-          <Avatar
-            src={user.image}
-            alt={`Photo of ${user.nickname}`}
-            sx={{ width: 200, height: 200 }}
-
-          />
-        </div> :
-        <div className='no-avatar-component'>
-          <AccountCircleIcon color='inherit' fontSize='inherit'/>
-        </div> }
-        <div className='photo-upload-edit-button'>
-          <IconButton
-            onClick={editImageToggle}
-            color="primary" 
-            aria-label="upload picture" 
-            component="span"
-            >
-              <PhotoCamera />
-            </IconButton>
-            <ModalPhotoUpload open={editImage} close={() => {setEditImage(false)}} />
+        <Button
+          onClick={editImageToggle}
+        >
+          <div className='avatar-component'>
+            <Badge badgeContent={<PhotoCamera />} overlap="circular">
+              <Avatar
+                src={user.image}
+                alt={`Photo of ${user.nickname}`}
+                sx={{ width: 200, height: 200 }}
+              />
+            </Badge>
           </div>
+        </Button>
+        <ModalPhotoUpload open={editImage} close={() => {setEditImage(false)}} />
         <Typography variant='h4'>{user.nickname}</Typography>
         <CardProfile/>
       </div> : 
-      <p>Loading</p>
+      <Typography variant='body2'>
+        Loading
+      </Typography>
       }
       <ModalAlert/>
 
