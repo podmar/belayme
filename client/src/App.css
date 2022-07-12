@@ -80,6 +80,16 @@ a {
   /* padding-top: 1rem; */
 }
 
+.padding-y-03 {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.padding-y-05 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
