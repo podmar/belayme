@@ -1,25 +1,21 @@
 import { Avatar, Badge, Button, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import CardProfile from '../components/CardProfile';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AuthContext } from '../context/AuthContext';
-import { Box } from '@mui/system';
 import ModalAlert from '../components/ModalAlert';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import ModalPhotoUpload from '../components/ModalPhotoUpload';
 
 function MyProfile() {
-  // const {user} = useContext(AuthContext);
-  const {user, handleImageSelectionChange, uploadImage} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
 
   const [editImage, setEditImage] = useState(false);
 
-  const handleSubmitProfileChange = (event) => {
-    // event.preventDefault();
-    uploadImage();
-    setEditImage(false);
-  }
-//TODO made badge with a photo being a button to change image
+  // const handleSubmitProfileChange = (event) => {
+  //   // event.preventDefault();
+  //   uploadImage();
+  //   setEditImage(false);
+  // }
   const editImageToggle = () => {
     if (!editImage) {
       setEditImage(true);
