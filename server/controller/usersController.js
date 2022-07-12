@@ -17,6 +17,7 @@ const register = async (req, res) => {
           "User with this email address already exists, please log in or reset your passwors.",
       });
     } else {
+
       // TODO: validate the password using express validator middleware
 
       const hashedPassword = await encryptPassword(req.body.password);
@@ -41,7 +42,6 @@ const register = async (req, res) => {
         });
       } catch (error) {
         res
-          //TODO check what status is correct here
           .status(400)
           .json({
             message:
@@ -52,7 +52,9 @@ const register = async (req, res) => {
       }
     }
   } catch (error) {
-    res.status(400).json({
+    res
+    .status(400)
+    .json({
       message:
         "Server error, registration failed: cannot check if user exists. Please try again.",
       error: error,
@@ -194,16 +196,13 @@ const updateProfile = async (req, res) => {
 };
 
 const uploadPhoto = async (req, res) => {
-  console.log("req.user", req.user);
+  // console.log("req.user", req.user);
   try {
-    console.log("req.file", req.file);
-
+    // console.log("req.file", req.file);
     const uploadResult = await cloudinary.uploader.upload(req.file.path, {
       folder: "belayme_user_photos",
     });
-
     //   console.log("result", uploadResult)
-    
     try {
         const updatedUser = await userModel.findByIdAndUpdate(
             req.user._id,
@@ -212,19 +211,19 @@ const uploadPhoto = async (req, res) => {
           );
       
             if (!updatedUser) {
-                res
-                .status(400)
-                .json({
-                message: "User does not exist, register first.",
-                });
-            } else {
+              res
+              .status(400)
+              .json({
+              message: "User does not exist, register first.",
+              });
 
-        res
-        .status(200)
-        .json({
-            message: "The image you chose was successfully uploaded.",
-            imageURL: uploadResult.url,
-          })}; 
+            } else {
+              res
+              .status(200)
+              .json({
+                  message: "The image you chose was successfully uploaded.",
+                  imageURL: uploadResult.url,
+                })}; 
 
     } catch (error) {
         res.status(500).json({
@@ -313,44 +312,9 @@ const requestBelay = async (req, res) => {
       res
       .status(200)
       .json({
-        message: `Your request has been sent`,
-        user: {
-          nickname: updatedUser.nickname,
-          email: updatedUser.email,
-          home_crag: updatedUser.home_crag,
-          about: updatedUser.about,
-          climbing_style: updatedUser.climbing_style,
-          current_location: updatedUser.current_location,
-          experience_y: updatedUser.experience_y,
-          gear: updatedUser.gear,
-          onsight_level: updatedUser.onsight_level,
-          redpoint_level: updatedUser.redpoint_level,
-          strengths: updatedUser.strengths,
-          travelling: updatedUser.travelling,
-          weight: updatedUser.weight,
-          image: updatedUser.image,
-          _id: updatedUser._id,
-          sent_requests: updatedUser.sent_requests,
-          received_requests: updatedUser.received_requests,
-        },
-        climber: {
-          nickname: contactedUser.nickname,
-          home_crag: contactedUser.home_crag,
-          about: contactedUser.about,
-          climbing_style: contactedUser.climbing_style,
-          current_location: contactedUser.current_location,
-          experience_y: contactedUser.experience_y,
-          gear: contactedUser.gear,
-          onsight_level: contactedUser.onsight_level,
-          redpoint_level: contactedUser.redpoint_level,
-          strengths: contactedUser.strengths,
-          travelling: contactedUser.travelling,
-          weight: contactedUser.weight,
-          image: contactedUser.image,
-          _id: contactedUser._id,
-          sent_requests: contactedUser.sent_requests,
-        },
-
+        message: "Your request has been sent",
+        sent_requests: updatedUser,
+        climber_id: req.body.sent_requests,
       });
     }
     }

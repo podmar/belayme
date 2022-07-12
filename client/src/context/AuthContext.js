@@ -24,6 +24,8 @@ export const AuthContextProvider = (props) => {
 
   const [image, setImage] = useState();
 
+  const url = "http://localhost:5001/users/";
+
   const handleRegistrationInputChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
@@ -60,12 +62,12 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/users/register",
+        url+"register",
         requestOptions
       );
       const result = await response.json();
-      console.log("result: ", result);
-      console.log("response: ", response);
+      // console.log("result: ", result);
+      // console.log("response: ", response);
 
       if (response.status === 400) {
         handleOpenModal("error", result.message);
@@ -91,7 +93,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/users/login",
+        url+"login",
         requestOptions
       );
       const result = await response.json();
@@ -104,13 +106,11 @@ export const AuthContextProvider = (props) => {
         setUserLoginStatus(true);
         saveToken(token);
         redirectTo("/profile");
-        // handleOpenModal("success", "You have been successfully logged in.");
         handleOpenModal("success", result.message);
       } else {
         console.log(
           "Cannot save the token in local storage, token not found in re response."
         );
-        // handleOpenModal("error", "We could not authenthicate your credentials, please try again.");
         handleOpenModal("error", result.message);
       }
     } catch (error) {
@@ -124,22 +124,17 @@ export const AuthContextProvider = (props) => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    //TODO check if set to false of empty object
     setUser(null);
     setImage(null);
     setUpdatedProfile(null);
     setUserLoginStatus(false);
     redirectTo("/");
     handleOpenModal("success", "We logged you out.");
-    // console.log("user logged out");
   };
-
-  // TODO getUser function with token
 
   //TODO write this using the custom hook
   const checkIfUserLoggedIn = () => {
     const token = getToken();
-    // const isAuthenticated = useIsAuthenticated()
     if (token) {
       setUserLoginStatus(true);
       if (!user) {
@@ -149,7 +144,6 @@ export const AuthContextProvider = (props) => {
       setUserLoginStatus(false);
       setUser(null);
       redirectTo("/");
-      console.log("No user logged in.");
     }
   };
 
@@ -160,39 +154,36 @@ export const AuthContextProvider = (props) => {
       method: "GET",
       headers: myHeaders,
     };
+
     try {
       const response = await fetch(
-        "http://localhost:5001/users/profile",
+        url+"profile",
         requestOptions
       );
       const result = await response.json();
-      console.log("result", result);
-      setUser({
-        email: result.email,
-        nickname: result.nickname,
-        about: result.about,
-        climbing_style: result.climbing_style,
-        current_location: result.current_location,
-        experience_y: result.experience_y,
-        gear: result.gear,
-        onsight_level: result.onsight_level,
-        redpoint_level: result.redpoint_level,
-        strengths: result.strengths,
-        travelling: result.travelling,
-        weight: result.weight,
-        image: result.image,
-        _id: result._id,
-      });
+      setUser(result);
+        
+      //   {
+      //   email: result.email,
+      //   nickname: result.nickname,
+      //   about: result.about,
+      //   climbing_style: result.climbing_style,
+      //   current_location: result.current_location,
+      //   experience_y: result.experience_y,
+      //   gear: result.gear,
+      //   onsight_level: result.onsight_level,
+      //   redpoint_level: result.redpoint_level,
+      //   strengths: result.strengths,
+      //   travelling: result.travelling,
+      //   weight: result.weight,
+      //   image: result.image,
+      //   _id: result._id,
+      //   sent_requests: result.sent_requests,
+      //   received_requests: result.received_requests,
+      // });
     } catch (error) {
-      console.log(
-        "Error fetching profile after refresh, profile endpoint",
-        error
-      );
-      // setError("login first");
-      handleOpenModal(
-        "error",
-        "Something went wrong, please login and try again."
-      );
+      console.log("Error fetching profile after refresh, profile endpoint", error);
+      handleOpenModal("error", "Something went wrong, please login and try again.");
     }
   };
 
@@ -213,26 +204,31 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/users/profile",
+        url+"profile",
         requestOptions
       );
       const result = await response.json();
-      setUser({
-        email: result.user.email,
-        nickname: result.user.nickname,
-        about: result.user.about,
-        climbing_style: result.user.climbing_style,
-        current_location: result.user.current_location,
-        experience_y: result.user.experience_y,
-        gear: result.user.gear,
-        onsight_level: result.user.onsight_level,
-        redpoint_level: result.user.redpoint_level,
-        strengths: result.user.strengths,
-        travelling: result.user.travelling,
-        weight: result.user.weight,
-        image: result.user.image,
-        _id: result.user._id,
-      });
+      setUser(
+        result.user)
+        
+      //   {
+      //   email: result.user.email,
+      //   nickname: result.user.nickname,
+      //   about: result.user.about,
+      //   climbing_style: result.user.climbing_style,
+      //   current_location: result.user.current_location,
+      //   experience_y: result.user.experience_y,
+      //   gear: result.user.gear,
+      //   onsight_level: result.user.onsight_level,
+      //   redpoint_level: result.user.redpoint_level,
+      //   strengths: result.user.strengths,
+      //   travelling: result.user.travelling,
+      //   weight: result.user.weight,
+      //   image: result.user.image,
+      //   _id: result.user._id,
+      //   sent_requests: result.sent_requests,
+      //   received_requests: result.received_requests,
+      // });
       setUpdatedProfile(null);
       handleOpenModal("success", result.message);
     } catch (error) {
@@ -245,7 +241,6 @@ export const AuthContextProvider = (props) => {
     event.preventDefault();
     const token = getToken();
 
-    // call  FormData object constructor to populate with pairs of key/values (in this case {image: "our file"} )
     const formData = new FormData();
     formData.append("image", image);
     console.log("formData", image);
@@ -253,7 +248,6 @@ export const AuthContextProvider = (props) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 
-    // compose the object with the options to be sent with our request, including the type of method, and use the body of the request to attach data
     const requestOptions = {
         headers: myHeaders,
         method: "POST",
@@ -261,17 +255,17 @@ export const AuthContextProvider = (props) => {
     };
     try {
       const response = await fetch(
-        "http://localhost:5001/users/profile/photoUpload",
+        url+"profile/photoUpload",
         requestOptions
       );
-      console.log("response", response);
+      // console.log("response", response);
       const result = await response.json();
-      console.log("result", result);
+      // console.log("result", result);
       console.log(user);
       if (response.status === 200) {
         setUser({ ...user, image: result.imageURL });
         handleOpenModal("success", result.message);
-        setImage("")
+        setImage(null)
       } else {
         handleOpenModal("error", result.message);
       }
@@ -294,21 +288,17 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(
-        "http://localhost:5001/users/profile",
-        requestOptions
-      );
+      const response = await fetch(url+"profile", requestOptions);
       const result = await response.json();
-      console.log("response", result);
+      
       logout();
-      // handleOpenModal("success", result.message);
-      handleOpenModal("success", "Your profile has been deleted.");
+      handleOpenModal("success", result.message);
+
     } catch (error) {
       console.log("Error updating profile", error);
       handleOpenModal("error", "Something went wrong, please try again.");
     }
   };
-
 
   const requestBelay = async (climberID) => {
     console.log(`requesting belay to climber with the id ${climberID}`)
@@ -326,32 +316,14 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5001/users/belayrequest", requestOptions);
+      const response = await fetch(url+"belayrequest", requestOptions);
       const result = await response.json();
-      setUser({
-        email: result.user.email,
-        nickname: result.user.nickname,
-        about: result.user.about,
-        climbing_style: result.user.climbing_style,
-        current_location: result.user.current_location,
-        experience_y: result.user.experience_y,
-        gear: result.user.gear,
-        onsight_level: result.user.onsight_level,
-        redpoint_level: result.user.redpoint_level,
-        strengths: result.user.strengths,
-        travelling: result.user.travelling,
-        weight: result.user.weight,
-        image: result.user.image,
-        _id: result.user._id,
-        sent_requests: result.user.sent_requests,
-        received_requests: result.user.received_requests,
-      });
-      console.log(" after belay request: ", user.sent_requests)
+      setUser({ ...user, sent_requests: result.sent_requests });
       handleOpenModal("success", result.message);
+      console.log("user after belay request: ", user.sent_requests)
 
-      
     } catch (error) {
-      console.log("cannot fetch this climber", error);
+      console.log("Cannot fetch this climber and send a belay request to them.", error);
     }
 
   };
