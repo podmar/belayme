@@ -1,49 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ButtonLogin from '../components/ButtonLogin';
 import { AuthContext } from '../context/AuthContext';
+import { ClimbersContext } from '../context/ClimbersContext';
 import ModalAlert from '../components/ModalAlert';
-
 
 function Inbox() {
   const {user} = useContext(AuthContext);
+  const {climbers} = useContext(ClimbersContext);
+  const [contactedClimbers, setContactedClimbers] = useState(null)
+  const [sentBelayRequests, setSentBelayRequests] = useState(null)
 
-  const contactedClimbersIDs = user.sent_requests;
-
-  const searchForClimbers = (id, climberArray) => {
+  //for each id take the value and compare it to each id value in each climber object of the climber array. 
+  const findClimbersById = (idArray, climberArray) => {
     let result = [];
-    
-    if (climber._id === id) {
-      result.append(climber);
-    }
-  }
+    idArray.forEach(id => {
+      let foundClimber = climberArray.fiter(climber._id === id);
+      result.push(foundClimber);
+    })
+    return result;
+  }; 
 
-
-
-//   const selectDataFields = (...keys) => {
-//     const getNewClimberObject = (climberObject) => {
-//         const newClimberObject = {};
-//         keys.forEach(key => {
-//             newClimberObject[key] = climberObject[key];
-//         });
-//         return newClimberObject;
-//     }
-//     return getNewClimberObject;
-// };
-
-// const selectContactedClimber = (...ids) => {
-//   const getContactedClimberArray = (climberObject) => {
-//       const newClimberObject = {};
-//       keys.forEach(key => {
-//           newClimberObject[key] = climberObject[key];
-//       });
-//       return newClimberObject;
-//   }
-//   return getNewClimberObject;
-// };
-
-// const allClimbers = allClimbersData
-// .map(selectDataFields("_id", "about", "nickname", "home_crag"));
-
+  useEffect(() => {
+    setContactedClimbers(findClimbersById(user.sent_requests, climbers));
+    setSentBelayRequests(findClimbersById(user.received_requests, climbers));
+  }, [user]); 
 
   return (
     <>
