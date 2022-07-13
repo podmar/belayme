@@ -5,45 +5,30 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box, Chip, Stack } from '@mui/material';
+import { Avatar, Box, Chip, Stack } from '@mui/material';
 import ButtonBelayRequest from './ButtonBelayRequest';
 import { AuthContext } from '../context/AuthContext'
 import ButtonIconBelayRequest from './ButtonIconBelayRequest';
 
-function CardClimber({climber}) {
-  const {user} = useContext(AuthContext); 
+function PreviewCardClimber({climber}) {
 
-  // const checkIfRequestSent = () => {
-  //   if (user.sent_requests) {
-  //     let result = user.sent_requests.includes(climber._id);
-  //     return result
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   checkIfRequestSent()
-  // }, [user])
-  
-
-  if (user) {
-
-  if (climber._id === user._id) {
-    return
-  } else {
     return (
       <Box className='belayme-custom-box-center' py={1}>
           <Card 
             sx={{ 
               width: '90%'
               }}>
-          { climber.image && <CardMedia
+          <Avatar
+            src={climber.image}
+            alt={`Photo of ${climber.nickname}`}
+            sx={{ width: 50, height: 50 }}
+            />
+          {/* { climber.image && <CardMedia
               component="img"
               alt={`Photo of ${climber.nickname}`}
               height="300"
               image={climber.image}
-          /> }
+          /> } */}
           <CardContent>
               <Typography gutterBottom variant="h5" component="div">
               {climber.nickname}
@@ -97,35 +82,10 @@ function CardClimber({climber}) {
                 ></Chip>} */}
               </Stack>
           </CardContent>
-          <CardActions>
-              {/* {checkIfRequestSent && <ButtonBelayRequest id={climber._id}/>} */}
-              <ButtonBelayRequest id={climber._id}/>
-              {/* <Button size="small">Ask for a belay</Button> */}
-              {/* <ButtonIconBelayRequest id={climber._id}/> */}
-              <Button size="small">See profile</Button>
-          </CardActions>
+
           </Card>
       </Box>
     )
   }
-}
-}
 
-export default CardClimber
-
-// data passed by the API:  
-// allClimbers: Array(7)
-// 0:
-// about: "projecting a new route nearby here and looking for a climbing partner"
-// climbing_style: (3) ['indoor', 'outdoor', 'sports climbing']
-// current_location: "Casablanca"
-// experience_y: 5
-// gear: (2) ['rope', 'draws']
-// home_crag: "Dresden"
-// nickname: "ulf"
-// onsight_level: "6a+"
-// redpoint_level: "6c"
-// strengths: ['footwork']
-// travelling: true
-// weight: 78
-// _id: "62b9a81318a359fef990bec7"
+export default PreviewCardClimber
