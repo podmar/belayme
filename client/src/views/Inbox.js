@@ -37,17 +37,19 @@ function Inbox() {
 
   // V.1
     const findClimbersById = (idArray, climberArray) => {
-      let result = [];
-      // console.log("idArray: ", idArray);
-      // console.log("climberArray: ", climberArray);
-      idArray.forEach(id => {
-        let foundClimber = climberArray.filter((climber) => climber._id === id);
-        result.push(foundClimber);
-      })
-      // result.flat()
-      // console.log("result of climber search", result);
-      console.log("flat result", result.flat());
-      return result.flat();
+      // if (typeof idArray === "array") {
+        let result = [];
+        // console.log("idArray: ", idArray);
+        // console.log("climberArray: ", climberArray);
+        idArray.forEach(id => {
+          let foundClimber = climberArray.filter((climber) => climber._id === id);
+          result.push(foundClimber);
+        })
+        // result.flat()
+        // console.log("result of climber search", result);
+        console.log("flat result", result.flat());
+        return result.flat();
+    // }
     }; 
 
   useEffect(() => {
