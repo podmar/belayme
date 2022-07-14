@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.css';
 import { Routes, Route, useLocation} from 'react-router-dom';
 import "@fontsource/roboto"
@@ -23,7 +23,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
-  //TODO data of the logged in user must go into the state to be read by the myprofile component (and others)
   const location = useLocation();
 
   // const addBackground = () => {
