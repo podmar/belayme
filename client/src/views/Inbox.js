@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ButtonLogin from '../components/ButtonLogin';
 import { AuthContext } from '../context/AuthContext';
 import { ClimbersContext } from '../context/ClimbersContext';
 import ModalAlert from '../components/ModalAlert';
 import { Typography } from '@mui/material';
-import CardClimber from '../components/CardClimber';
 import PreviewCardClimber from '../components/PreviewCardClimber';
-
 
 function Inbox() {
   const {user} = useContext(AuthContext);
@@ -64,14 +61,11 @@ function Inbox() {
 
   return (
     <div>
-
-
       {user? 
         <div>
           {contactedClimbers &&
             <div>
-              <Typography variant='h6'>
-                {/* {`You contacted ${contactedClimbers.length} climber${(contactedClimbers.length > 1) && "s"}`} */}
+              <Typography variant='h6' className='padding-y-05'>
                 Climbers you contacted
               </Typography>   
               {contactedClimbers.map(climber => {
@@ -84,10 +78,9 @@ function Inbox() {
                   )
               })}       
             </div>}
-            {belayRequestsReceived &&
+            { belayRequestsReceived && (belayRequestsReceived.length !== 0) ?
             <div>
-              <Typography variant='h6'>
-                {/* {`You received ${belayRequestsReceived.lenght} belay request${(belayRequestsReceived.length > 1) && "s"}}` */}
+              <Typography variant='h6' className='padding-y-05'>
                 Belay requests you received
               </Typography>   
               {belayRequestsReceived.map(climber => {
@@ -99,7 +92,11 @@ function Inbox() {
                           />
                   )
               })}       
-            </div>}
+            </div> :
+              <Typography variant='h6' className='padding-y-05'>
+              You haven't received any belay requests yet. 
+            </Typography>   
+            }
         </div> :
         <Typography variant='body1'>
           Loading
@@ -110,4 +107,4 @@ function Inbox() {
   )
 }
 
-export default Inbox
+export default Inbox;
