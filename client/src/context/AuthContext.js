@@ -318,6 +318,7 @@ export const AuthContextProvider = (props) => {
     try {
       const response = await fetch(url+"belayrequest", requestOptions);
       const result = await response.json();
+      //TODO the user is not set correctly here, when going to the mailbox after sending a request an error is thrown: contacted climbers id for each not a function. this is also the 1st one that is checked, the sent requests checked later but code breaks before.
       setUser({ ...user, sent_requests: result.sent_requests });
       handleOpenModal("success", result.message);
       console.log("user after belay request: ", user.sent_requests)
