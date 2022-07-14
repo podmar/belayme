@@ -63,7 +63,7 @@ function Inbox() {
     <div>
       {user? 
         <div>
-          {contactedClimbers &&
+          {contactedClimbers && (contactedClimbers.length !== 0) ?
             <div>
               <Typography variant='h6' className='padding-y-05'>
                 Climbers you contacted
@@ -71,13 +71,16 @@ function Inbox() {
               {contactedClimbers.map(climber => {
                   return (
                           <PreviewCardClimber 
-                          // <CardClimber 
                           climber={climber}
                           key={climber._id}
                           />
                   )
               })}       
-            </div>}
+            </div> :
+              <Typography variant='h6' className='padding-y-05'>
+              You haven't contacted anybody yet. 
+            </Typography>   
+            }
             { belayRequestsReceived && (belayRequestsReceived.length !== 0) ?
             <div>
               <Typography variant='h6' className='padding-y-05'>
@@ -86,7 +89,6 @@ function Inbox() {
               {belayRequestsReceived.map(climber => {
                   return (
                           <PreviewCardClimber 
-                          // <CardClimber 
                           climber={climber}
                           key={climber._id}
                           />
