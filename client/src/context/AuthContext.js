@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken, saveToken } from "../utils/tokenHelpers";
+import serverURL from "../config";
 
 export const AuthContext = createContext();
 
@@ -23,8 +24,6 @@ export const AuthContextProvider = (props) => {
   };
 
   const [image, setImage] = useState();
-
-  const url = "http://localhost:5001/users/";
 
   const handleRegistrationInputChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -62,7 +61,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        url+"register",
+        serverURL+"users/register",
         requestOptions
       );
       const result = await response.json();
@@ -93,7 +92,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        url+"login",
+        serverURL+"users/login",
         requestOptions
       );
       const result = await response.json();
@@ -157,7 +156,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        url+"profile",
+        serverURL+"users/profile",
         requestOptions
       );
       const result = await response.json();
@@ -204,7 +203,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        url+"profile",
+        serverURL+"users/profile",
         requestOptions
       );
       const result = await response.json();
@@ -255,7 +254,7 @@ export const AuthContextProvider = (props) => {
     };
     try {
       const response = await fetch(
-        url+"profile/photoUpload",
+        serverURL+"users/profile/photoUpload",
         requestOptions
       );
       // console.log("response", response);
@@ -288,7 +287,7 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(url+"profile", requestOptions);
+      const response = await fetch(serverURL+"users/profile", requestOptions);
       const result = await response.json();
       
       logout();
@@ -316,7 +315,7 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(url+"belayrequest", requestOptions);
+      const response = await fetch(serverURL+"users/belayrequest", requestOptions);
       const result = await response.json();
       setUser(result.user);
       handleOpenModal("success", result.message);
