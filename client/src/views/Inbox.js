@@ -53,6 +53,7 @@ function Inbox() {
     }; 
 
   useEffect(() => {
+    console.log('user', user)
     if (user && user.sent_requests && climbers) {
       setContactedClimbers(findClimbersById(user.sent_requests, climbers));
     }

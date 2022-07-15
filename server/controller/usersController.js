@@ -290,7 +290,7 @@ const requestBelay = async (req, res) => {
       {$addToSet: req.body},
       { new: true },
     );
-
+      console.log('updatedUser', updatedUser)
     if (!updatedUser) {
       res.status(400).json({
         message: "Contacting user does not exist, register first.",
@@ -313,7 +313,7 @@ const requestBelay = async (req, res) => {
       .status(200)
       .json({
         message: "Your request has been sent",
-        sent_requests: updatedUser,
+        user: updatedUser,
         climber_id: req.body.sent_requests,
       });
     }
