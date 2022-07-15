@@ -1,8 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "belayme",
+  "name": "belayme",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#117A65",
+  "background_color": "#e0e0e0", 
+  "icons": [
+    {
+      "src": "belayme_864x864.png",
+      "sizes": "864x864",
+      "type": "image/png"
+    }
+  ]
 }
