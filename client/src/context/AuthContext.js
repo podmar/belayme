@@ -21,6 +21,7 @@ export const AuthContextProvider = (props) => {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+    setModalMessage("");
   };
 
   const [image, setImage] = useState();
@@ -61,7 +62,7 @@ export const AuthContextProvider = (props) => {
 
     try {
       const response = await fetch(
-        serverURL+"users/register",
+        serverURL + "users/register",
         requestOptions
       );
       const result = await response.json();
@@ -91,10 +92,7 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(
-        serverURL+"users/login",
-        requestOptions
-      );
+      const response = await fetch(serverURL + "users/login", requestOptions);
       const result = await response.json();
       const { token } = result;
 
@@ -155,13 +153,10 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(
-        serverURL+"users/profile",
-        requestOptions
-      );
+      const response = await fetch(serverURL + "users/profile", requestOptions);
       const result = await response.json();
       setUser(result);
-        
+
       //   {
       //   email: result.email,
       //   nickname: result.nickname,
@@ -181,8 +176,14 @@ export const AuthContextProvider = (props) => {
       //   received_requests: result.received_requests,
       // });
     } catch (error) {
-      console.log("Error fetching profile after refresh, profile endpoint", error);
-      handleOpenModal("error", "Something went wrong, please login and try again.");
+      console.log(
+        "Error fetching profile after refresh, profile endpoint",
+        error
+      );
+      handleOpenModal(
+        "error",
+        "Something went wrong, please login and try again."
+      );
     }
   };
 
@@ -202,14 +203,10 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(
-        serverURL+"users/profile",
-        requestOptions
-      );
+      const response = await fetch(serverURL + "users/profile", requestOptions);
       const result = await response.json();
-      setUser(
-        result.user)
-        
+      setUser(result.user);
+
       //   {
       //   email: result.user.email,
       //   nickname: result.user.nickname,
@@ -248,13 +245,13 @@ export const AuthContextProvider = (props) => {
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     const requestOptions = {
-        headers: myHeaders,
-        method: "POST",
-        body: formData,
+      headers: myHeaders,
+      method: "POST",
+      body: formData,
     };
     try {
       const response = await fetch(
-        serverURL+"users/profile/photoUpload",
+        serverURL + "users/profile/photoUpload",
         requestOptions
       );
       // console.log("response", response);
@@ -264,7 +261,7 @@ export const AuthContextProvider = (props) => {
       if (response.status === 200) {
         setUser({ ...user, image: result.imageURL });
         handleOpenModal("success", result.message);
-        setImage(null)
+        setImage(null);
       } else {
         handleOpenModal("error", result.message);
       }
@@ -287,12 +284,11 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(serverURL+"users/profile", requestOptions);
+      const response = await fetch(serverURL + "users/profile", requestOptions);
       const result = await response.json();
-      
+
       logout();
       handleOpenModal("success", result.message);
-
     } catch (error) {
       console.log("Error updating profile", error);
       handleOpenModal("error", "Something went wrong, please try again.");
@@ -300,10 +296,10 @@ export const AuthContextProvider = (props) => {
   };
 
   const requestBelay = async (climberID) => {
-    console.log(`requesting belay to climber with the id ${climberID}`)
+    console.log(`requesting belay to climber with the id ${climberID}`);
     const token = getToken();
 
-    const urlencoded = generateUrlEncoded({sent_requests: climberID});
+    const urlencoded = generateUrlEncoded({ sent_requests: climberID });
 
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -315,16 +311,20 @@ export const AuthContextProvider = (props) => {
     };
 
     try {
-      const response = await fetch(serverURL+"users/belayrequest", requestOptions);
+      const response = await fetch(
+        serverURL + "users/belayrequest",
+        requestOptions
+      );
       const result = await response.json();
       setUser(result.user);
       handleOpenModal("success", result.message);
-      console.log("user after belay request: ", user.sent_requests)
-
+      console.log("user after belay request: ", user.sent_requests);
     } catch (error) {
-      console.log("Cannot fetch this climber and send a belay request to them.", error);
+      console.log(
+        "Cannot fetch this climber and send a belay request to them.",
+        error
+      );
     }
-
   };
 
   useEffect(() => {
