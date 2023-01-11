@@ -12,7 +12,7 @@ export const AuthContextProvider = (props) => {
   const redirectTo = useNavigate();
 
   const [modalMessage, setModalMessage] = useState("");
-  const [modalType, setModalType] = useState("");
+  const [modalType, setModalType] = useState("success");
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = (type, message) => {
     setModalMessage(message);
