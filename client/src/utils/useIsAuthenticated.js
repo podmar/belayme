@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { getToken } from './tokenHelpers'
 
 function useIsAuthenticated() {

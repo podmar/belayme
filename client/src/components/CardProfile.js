@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
@@ -29,7 +28,7 @@ function CardProfile() {
       } else {
         setEdit(false);
       };
-    }; 
+    };
 
   return (
     <Box className='belayme-custom-box-center'>
@@ -47,11 +46,11 @@ function CardProfile() {
         <CardContent>
           <Box component="form" >
           <Typography gutterBottom variant="h6" component="div" textAlign={"left"} color="primary">About you</Typography>
-          
-          
+
+
           <Typography variant="body1" color="text.primary"></Typography>
           <Typography variant="body2" color="text.secondary"></Typography>
-          
+
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
             <Typography variant="body2" color="text.secondary" textAlign={"left"}>belayme nickname</Typography>
@@ -69,7 +68,7 @@ function CardProfile() {
               <Grid item xs={4} md={3} >
                   <Typography variant="body2" color="text.secondary" textAlign={"left"}>about me</Typography>
               </Grid>
-              {!edit ? 
+              {!edit ?
               <Grid item xs>
                   <Typography variant="body1" color="text.primary" textAlign={"left"}>{user.about ? user.about : "Send me a belay request to learn more about me."}</Typography>
               </Grid> :
@@ -84,7 +83,7 @@ function CardProfile() {
             <Grid item xs={4} md={3} >
             <Typography variant="body2" color="text.secondary" textAlign={"left"}>email</Typography>
             </Grid>
-            {!edit ? 
+            {!edit ?
             <Grid item xs>
               <Typography variant="body1" color="text.primary" textAlign={"left"}>{user.email}</Typography>
             </Grid> :
@@ -227,9 +226,9 @@ function CardProfile() {
 
             <Grid pb={0.5} container direction="row" justifyContent="flex-end" alignItems="center" spacing={1} wrap="nowrap">
               <Grid item>
-              {edit && 
+              {edit &&
                 <CardActions>
-                  <ButtonSubmitInputProfileChange 
+                  <ButtonSubmitInputProfileChange
                     onClick={handleSubmitProfileChange} />
                   <ButtonDeleteProfile />
                 </CardActions>}

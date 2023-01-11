@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+// import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "@fontsource/roboto";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Container } from "@mui/material";
@@ -22,7 +23,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const location = useLocation();
+  // const location = useLocation();
 
   const themeLight = createTheme(themeLightSettings);
 

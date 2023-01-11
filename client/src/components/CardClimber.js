@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { React, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Box, Chip, Stack } from "@mui/material";
 import ButtonBelayRequest from "./ButtonBelayRequest";
 import { AuthContext } from "../context/AuthContext";
-import ButtonIconBelayRequest from "./ButtonIconBelayRequest";
+// import ButtonIconBelayRequest from "./ButtonIconBelayRequest";
 
 function CardClimber({ climber }) {
   const { user } = useContext(AuthContext);
@@ -101,7 +101,7 @@ function CardClimber({ climber }) {
                     ></Chip>
                   </div>
                 )}
-                {/* {climber. && 
+                {/* {climber. &&
                 <Chip
                 color="primary"
                 label={`${climber.}`}

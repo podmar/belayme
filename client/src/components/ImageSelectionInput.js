@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Input } from '@mui/material';
+import { Button } from '@mui/material';
 import { Box } from '@mui/material';
 
 function ImageSelectionInput(props) {
@@ -12,7 +12,7 @@ function ImageSelectionInput(props) {
           onChange={props.onChange}
           style={{ display: 'none' }}
         />
-        <label 
+        <label
           htmlFor={"image-select"}>
           <Button
             color="secondary"

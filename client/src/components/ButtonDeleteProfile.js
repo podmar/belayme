@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import { React, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import { AuthContext } from "../context/AuthContext";
 import ModalAlertDeleteAccount from "./ModalAlertDeleteAccount";
 
 function ButtonDeleteProfile() {

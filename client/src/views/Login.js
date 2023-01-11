@@ -8,7 +8,7 @@ import ButtonRegister from '../components/ButtonRegister.js';
 import ModalAlert from '../components/ModalAlert';
 
 function Login() {
-  const { user, setUser, login, handleRegistrationInputChange } = useContext(AuthContext);
+  const { login, handleRegistrationInputChange } = useContext(AuthContext);
 
   return (
     <>
@@ -78,7 +78,7 @@ function Login() {
         </div>
       </Box>
       <ModalAlert/>
-    </>  
+    </>
   )
 }
 

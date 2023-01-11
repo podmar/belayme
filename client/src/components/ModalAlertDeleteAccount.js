@@ -1,5 +1,5 @@
-import { Alert, Box, Typography, Modal, Button } from "@mui/material";
-import React, { useContext, useState } from "react";
+import { Alert, Box, Modal, Button } from "@mui/material";
+import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";

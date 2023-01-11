@@ -8,7 +8,7 @@ import ButtonLogin from '../components/ButtonLogin.js';
 import ModalAlert from '../components/ModalAlert';
 
 function Register() {
-  const { user, setUser, register, handleRegistrationInputChange } = useContext(AuthContext);
+  const { register, handleRegistrationInputChange } = useContext(AuthContext);
   // const { user, setUser, register, handleNicknameInputChange, handleEmailInputChange, handlePasswordInputChange, handleCragInputChange } = useContext(AuthContext);
 
 
@@ -124,7 +124,7 @@ function Register() {
       >
         <div>
         <p>
-        Already have an account? 
+        Already have an account?
         </p>
         </div>
         <div>
