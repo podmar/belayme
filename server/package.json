@@ -1,8 +1,8 @@
 {
   "name": "belayme",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "backend to the single page application for climbers looking for belay partners",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
