@@ -14,7 +14,7 @@ function NavBar() {
       <AppBar position="fixed" color="primary" style={{ borderRadius: "0" }}>
         <Toolbar>
           <Typography
-            align={"left"}
+            align="left"
             component="div"
             sx={{ flexGrow: 1 }}
             variant="body1"

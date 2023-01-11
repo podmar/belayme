@@ -45,19 +45,19 @@ function CardProfile() {
 
         <CardContent>
           <Box component="form" >
-          <Typography gutterBottom variant="h6" component="div" align={"left"} color="primary">About you</Typography>
+          <Typography gutterBottom variant="h6" component="div" align="left" color="primary">About you</Typography>
 
-
+{/*
           <Typography variant="body1" color="text.primary"></Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography variant="body2" color="text.secondary"></Typography> */}
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>belayme nickname</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">belayme nickname</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.nickname}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.nickname}</Typography>
             </Grid> :
             <Grid item xs>
               <TextInputProfileChange handler={handleUserProfileChange} name="nickname" default={user.nickname}/>
@@ -66,26 +66,26 @@ function CardProfile() {
 
             <Grid pb={2} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
               <Grid item xs={4} md={3} >
-                  <Typography variant="body2" color="text.secondary" align={"left"}>about me</Typography>
+                  <Typography variant="body2" color="text.secondary" align="left">about me</Typography>
               </Grid>
               {!edit ?
               <Grid item xs>
-                  <Typography variant="body1" color="text.primary" align={"left"}>{user.about ? user.about : "Send me a belay request to learn more about me."}</Typography>
+                  <Typography variant="body1" color="text.primary" align="left">{user.about ? user.about : "Send me a belay request to learn more about me."}</Typography>
               </Grid> :
               <Grid  xs item>
                   <TextInputProfileChange handler={handleUserProfileChange} name="about" default={user.about? user.about : ""}/>
               </Grid>}
             </Grid>
 
-            <Typography gutterBottom variant="h6" component="div" align={"left"} color="primary">Your contact details</Typography>
+            <Typography gutterBottom variant="h6" component="div" align="left" color="primary">Your contact details</Typography>
 
             <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>email</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">email</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.email}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.email}</Typography>
             </Grid> :
             <Grid  xs item>
               <TextInputProfileChange handler={handleUserProfileChange} name="email" default={user.email}/>
@@ -94,11 +94,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>home crag</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">home crag</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.home_crag}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.home_crag}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="home_crag" default={user.home_crag}/>
@@ -107,11 +107,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>travelling</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">travelling</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.travelling}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.travelling}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="travelling" default={user.travelling}/>
@@ -120,26 +120,26 @@ function CardProfile() {
 
           <Grid pb={2} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>current location</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">current location</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.current_location}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.current_location}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="current_location" default={user.current_location}/>
             </Grid>}
           </Grid>
 
-          <Typography gutterBottom variant="h6" component="div" align={"left"} color="primary">Climbing details</Typography>
+          <Typography gutterBottom variant="h6" component="div" align="left" color="primary">Climbing details</Typography>
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>climbing style</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">climbing style</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.climbing_style}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.climbing_style}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="climbing_style" default={user.climbing_style}/>
@@ -148,11 +148,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>years of climbing experience</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">years of climbing experience</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.experience_y}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.experience_y}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="experience_y" default={user.experience_y}/>
@@ -161,11 +161,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>gear</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">gear</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.gear}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.gear}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="gear" default={user.gear}/>
@@ -174,11 +174,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>onsight level</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">onsight level</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.onsight_level}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.onsight_level}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="onsight_level" default={user.onsight_level}/>
@@ -187,11 +187,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>redpoint level</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">redpoint level</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.redpoint_level}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.redpoint_level}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="redpoint_level" default={user.redpoint_level}/>
@@ -200,11 +200,11 @@ function CardProfile() {
 
           <Grid pb={0.5} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>strengths</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">strengths</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.strengths}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.strengths}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="strengths" default={user.strengths}/>
@@ -213,11 +213,11 @@ function CardProfile() {
 
           <Grid pb={2} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1} wrap="nowrap">
             <Grid item xs={4} md={3} >
-            <Typography variant="body2" color="text.secondary" align={"left"}>weight</Typography>
+            <Typography variant="body2" color="text.secondary" align="left">weight</Typography>
             </Grid>
             {!edit ?
             <Grid item xs>
-              <Typography variant="body1" color="text.primary" align={"left"}>{user.weight}</Typography>
+              <Typography variant="body1" color="text.primary" align="left">{user.weight}</Typography>
             </Grid> :
             <Grid xs item >
               <TextInputProfileChange handler={handleUserProfileChange} name="weight" default={user.weight}/>
