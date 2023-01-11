@@ -14,7 +14,7 @@ function NavBar() {
       <AppBar position="fixed" color="primary" style={{ borderRadius: "0" }}>
         <Toolbar>
           <Typography
-            textAlign={"left"}
+            align={"left"}
             component="div"
             sx={{ flexGrow: 1 }}
             variant="body1"
@@ -24,7 +24,10 @@ function NavBar() {
             </Box>
           </Typography>
           {user && userLoginStatus && (
-            <Typography variant="body1">
+            <Typography
+              component={'span'}
+              variant="body1"
+              >
               <Box>{`Welcome, ${user.nickname} |`}</Box>
             </Typography>
           )}
