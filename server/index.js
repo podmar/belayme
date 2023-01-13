@@ -1,17 +1,21 @@
 import express from "express";
 import cors from "cors";
-import usersRoute from "./routes/usersRoute.js"
-import climbersRoute from "./routes/climbersRoute.js"
+import chalk from "chalk";
+import morgan from "morgan";
+import debug from "debug";
+import usersRoute from "./routes/usersRoute.js";
+import climbersRoute from "./routes/climbersRoute.js";
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import passport from "passport";
 import passportConfig from "./config/passport.js";
 import { cloudinaryConfig } from "./config/cloudinary.js";
 
-// leading .env file
+const app = express();
+
+// loading .env file
 dotenv.config();
 
-const app = express();
 const port = process.env.PORT || 5001;
 // removing cors options for vercel deployment:
 // const allowedDomains = ["https://belayme.netlify.app", "http://localhost:3000"]
@@ -27,7 +31,7 @@ const port = process.env.PORT || 5001;
 //     },
 //     credentials: true,
 // };
-
+app.use(morgan("tiny"))
 app.use(express.json());
 app.use(
     express.urlencoded({
@@ -44,9 +48,9 @@ cloudinaryConfig();
 
 mongoose
     .connect(process.env.MONGO_URI)
-    .then(() => console.log("Connection to MongoDB established"))
-    .catch(err => console.log(err));
+    .then(() => debug("index")(`Connection to ${chalk.blue("MongoDB")} established.`))
+    .catch(err => debug("index")(err));
 
 app.listen(port, () => {
-    console.log(`Server is running on the ${port} port.`);
+    debug("index")(`Server is running on the ${chalk.blue(port)} port.`);
 });
