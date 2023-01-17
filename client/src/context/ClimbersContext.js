@@ -1,13 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
-import serverURL from "../config";
 import { useFetch } from "../utils/useFetch";
-import { useFetchClimbers } from "../utils/useFetchClimbers";
+// import { useFetchClimbers } from "../utils/useFetchClimbers";
 
 export const ClimbersContext = createContext();
 export const ClimbersContextProvider = (props) => {
   //TODO change this to get climbers by location based on current location / browser location / location search by user (add query / url to the custom hook)
 
-  const allClimbersURL = `${serverURL}climbers/all`;
+  const climbersToDisplayURL = "climbers/all";
 
   // const {
   //   climbers,
@@ -19,7 +18,7 @@ export const ClimbersContextProvider = (props) => {
   // Using the general useFetch hook
   const [climbers, setClimbers] = useState(null);
   const [climberCount, setClimberCount] = useState([0]);
-  const { fetchedData, loadingStatus } = useFetch(allClimbersURL);
+  const { fetchedData, loadingStatus } = useFetch(climbersToDisplayURL);
 
   useEffect(() => {
     if (loadingStatus === "loaded") {
@@ -40,17 +39,11 @@ export const ClimbersContextProvider = (props) => {
   //     }
   // };
 
+  // notes to creating query for climbers
   // const [query, setQuery] = useState("");
   // const url = query && `${serverURL}climbers/all${query}`;
   // const url = useMemo(() => `${serverURL}climbers/all`, [])
-
   // // const [url, setUrl] = useState(`${serverURL}climbers/all`);
-
-  // // console.log("This is the URL: " + url);
-  // const { fetchedData, fetchStatus } = useFetch(url);
-  // console.log(fetchedData);
-  // setClimbers(fetchedData.allClimbers);
-  // setClimberCount(fetchedData.results);
 
   return (
     <ClimbersContext.Provider

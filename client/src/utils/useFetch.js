@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import serverURL from "../config";
 
-export const useFetch = (url) => {
+export const useFetch = (query) => {
   const [fetchedData, setFetchedData] = useState(null);
   const [loadingStatus, setLoadingStatus] = useState("idle");
 
   const fetchData = async () => {
     setLoadingStatus("loading");
+    const fetchURL = `${serverURL}${query}`;
+
     try {
-      const responce = await fetch(url);
+      const responce = await fetch(fetchURL);
       const data = await responce.json();
       setFetchedData(data);
       setLoadingStatus("loaded");
@@ -30,7 +33,7 @@ export const useFetch = (url) => {
 
 // import { useCallback, useEffect, useState } from "react";
 
-// export const useFetch = (url) => {
+// export const useFetch = (query) => {
 //   const [loadingStatus, setLoadingStatus] = useState("idle");
 //   const [fetchedData, setFetchedData] = useState({});
 
@@ -38,7 +41,7 @@ export const useFetch = (url) => {
 //     setLoadingStatus("loading");
 //     console.log(loadingStatus);
 //     try {
-//       const responce = await fetch(url);
+//       const responce = await fetch(query);
 //       const data = await responce.json();
 //       //   setFetchedData({ data: data, loading: false });
 //       setFetchedData(data);
@@ -49,11 +52,11 @@ export const useFetch = (url) => {
 //       console.log("Fetching data failed.", error);
 //       console.log(loadingStatus);
 //     }
-//   }, [url]);
+//   }, [query]);
 
 //   useEffect(() => {
 //     fetchData();
-//   }, [url]);
+//   }, [query]);
 
 //   return { fetchedData, loadingStatus };
 // };
