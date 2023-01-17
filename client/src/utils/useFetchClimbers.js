@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import serverURL from "../config";
 
 export const useFetchClimbers = (url) => {
   const [climbers, setClimbers] = useState(null);
@@ -9,7 +8,6 @@ export const useFetchClimbers = (url) => {
   const fetchClimbers = async () => {
     setLoadingStatus("loading");
     try {
-      // const response = await fetch(serverURL + "climbers/all");
       const response = await fetch(url);
       const climbersData = await response.json();
       setClimbers(climbersData.allClimbers);
