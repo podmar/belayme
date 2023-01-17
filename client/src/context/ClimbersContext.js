@@ -1,21 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useFetch } from "../utils/useFetch";
-// import { useFetchClimbers } from "../utils/useFetchClimbers";
-
 export const ClimbersContext = createContext();
 export const ClimbersContextProvider = (props) => {
   //TODO change this to get climbers by location based on current location / browser location / location search by user (add query / url to the custom hook)
 
   const climbersToDisplayURL = "climbers/all";
-
-  // const {
-  //   climbers,
-  //   setClimbers,
-  //   climberCount,
-  //   setClimberCount,
-  // } = useFetchClimbers(allClimbersURL);
-
-  // Using the general useFetch hook
   const [climbers, setClimbers] = useState(null);
   const [climberCount, setClimberCount] = useState([0]);
   const { fetchedData, loadingStatus } = useFetch(climbersToDisplayURL);

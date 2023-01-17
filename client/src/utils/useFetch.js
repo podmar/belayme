@@ -30,33 +30,3 @@ export const useFetch = (query) => {
 
   return { fetchedData, loadingStatus };
 };
-
-// import { useCallback, useEffect, useState } from "react";
-
-// export const useFetch = (query) => {
-//   const [loadingStatus, setLoadingStatus] = useState("idle");
-//   const [fetchedData, setFetchedData] = useState({});
-
-//   const fetchData = useCallback(async () => {
-//     setLoadingStatus("loading");
-//     console.log(loadingStatus);
-//     try {
-//       const responce = await fetch(query);
-//       const data = await responce.json();
-//       //   setFetchedData({ data: data, loading: false });
-//       setFetchedData(data);
-//       setLoadingStatus("loaded");
-//       console.log(loadingStatus);
-//     } catch (error) {
-//       setLoadingStatus("errored");
-//       console.log("Fetching data failed.", error);
-//       console.log(loadingStatus);
-//     }
-//   }, [query]);
-
-//   useEffect(() => {
-//     fetchData();
-//   }, [query]);
-
-//   return { fetchedData, loadingStatus };
-// };
