@@ -42,14 +42,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="login" element={<Login />} />
-                <Route
-                  path="list"
-                  element={
-                    <ProtectedRoute>
-                      <ListView />
-                    </ProtectedRoute>
-                  }
-                />
+                <Route path="list" element={<ListView />} />
                 <Route
                   path="belayrequest"
                   element={
