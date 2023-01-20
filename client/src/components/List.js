@@ -10,19 +10,14 @@ function List() {
   const { user } = useContext(AuthContext);
   let climbersToDisplay = null;
 
-  //TODO if refreshing on a list view, the list breaks (climber or user misssing values?)
   if (user && climbers) {
     climbersToDisplay = climbers.filter((climber) => climber._id !== user._id);
   }
 
-  //TODO change this to get user by location based on current location
-
   return (
     <div>
       <Typography variant="body2">
-        {climberCount
-          ? `Found ${climberCount} people nearby you.`
-          : "Looking for people nearby..."}
+        {climberCount && `Found ${climberCount} people nearby you.`}
       </Typography>
       {climbersToDisplay
         ? climbersToDisplay.map((climber) => {
@@ -34,5 +29,20 @@ function List() {
     </div>
   );
 }
+
+//TODO change this to get user by location based on current location
+
+// Work in progress (not functionalgs): waiting for user / climbers: if refreshing on a list view, the list breaks (climber or user misssing values?)
+// const [climbersToDisplay, setClimbersToDisplay] = useState(null);
+
+// useEffect(() => {
+//   if (user && climbers) {
+//     setClimbersToDisplay(
+//       climbers.filter((climber) => climber._id !== user._id)
+//     );
+//   } else {
+//   }
+//   setClimbersToDisplay(null);
+// }, [user, climbers]);
 
 export default List;
