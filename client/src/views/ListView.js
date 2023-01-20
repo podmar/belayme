@@ -12,7 +12,7 @@ function ListView() {
         {climbers ? (
           <List />
         ) : (
-          <div>
+          <div className="list-view-spacing">
             <CircularProgress />
             <Typography variant="body2">
               "Looking for people nearby..."

@@ -15,7 +15,7 @@ function List() {
   }
 
   return (
-    <div>
+    <div className="list-view-spacing">
       <Typography variant="body2">
         {climberCount && `Found ${climberCount} people nearby you.`}
       </Typography>
