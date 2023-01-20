@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -6,25 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, Chip, Stack } from "@mui/material";
-import ButtonBelayRequest from "./ButtonBelayRequest";
-// import { AuthContext } from "../context/AuthContext";
-// import ButtonIconBelayRequest from "./ButtonIconBelayRequest";
+import { useNavigate } from "react-router-dom";
 
-function CardClimber({ climber }) {
-  // const { user } = useContext(AuthContext);
-
-  // const checkIfRequestSent = () => {
-  //   if (user.sent_requests) {
-  //     let result = user.sent_requests.includes(climber._id);
-  //     return result
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   checkIfRequestSent()
-  // }, [user])
+function CardClimberLoggedOut({ climber }) {
+  const navigate = useNavigate();
+  const goToLogin = () => navigate("/login");
 
   return (
     <Box className="belayme-custom-box-center" py={1}>
@@ -97,40 +83,16 @@ function CardClimber({ climber }) {
                 ></Chip>
               </div>
             )}
-            {/* {climber. &&
-                <Chip
-                color="primary"
-                label={`${climber.}`}
-                ></Chip>} */}
           </Stack>
         </CardContent>
         <CardActions>
-          {/* {checkIfRequestSent && <ButtonBelayRequest id={climber._id}/>} */}
-          <ButtonBelayRequest id={climber._id} />
-          {/* <Button size="small">Ask for a belay</Button> */}
-          {/* <ButtonIconBelayRequest id={climber._id}/> */}
-          <Button size="small">See profile</Button>
+          <Button onClick={goToLogin} size="small">
+            Login to ask for a belay
+          </Button>
         </CardActions>
       </Card>
     </Box>
   );
 }
 
-export default CardClimber;
-
-// data passed by the API:
-// allClimbers: Array(7)
-// 0:
-// about: "projecting a new route nearby here and looking for a climbing partner"
-// climbing_style: (3) ['indoor', 'outdoor', 'sports climbing']
-// current_location: "Casablanca"
-// experience_y: 5
-// gear: (2) ['rope', 'draws']
-// home_crag: "Dresden"
-// nickname: "ulf"
-// onsight_level: "6a+"
-// redpoint_level: "6c"
-// strengths: ['footwork']
-// travelling: true
-// weight: 78
-// _id: "62b9a81318a359fef990bec7"
+export default CardClimberLoggedOut;
