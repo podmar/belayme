@@ -5,7 +5,7 @@ export const SpinnerListView = () => {
   return (
     <div className="list-view-spacing">
       <CircularProgress />
-      <Typography variant="body2">"Looking for people nearby..."</Typography>
+      <Typography variant="body2">Looking for people nearby...</Typography>
     </div>
   );
 };
