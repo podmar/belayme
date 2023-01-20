@@ -1,16 +1,28 @@
-import React from 'react';
-import List from '../components/List';
-import ModalAlert from '../components/ModalAlert';
+import { CircularProgress, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import List from "../components/List";
+import ModalAlert from "../components/ModalAlert";
+import ClimbersContext from "../context/ClimbersContext";
 
 function ListView() {
+  const { climbers } = useContext(ClimbersContext);
   return (
     <>
       <div>
-        <List/>
+        {climbers ? (
+          <List />
+        ) : (
+          <div>
+            <CircularProgress />
+            <Typography variant="body2">
+              "Looking for people nearby..."
+            </Typography>
+          </div>
+        )}
       </div>
-      <ModalAlert/>
+      <ModalAlert />
     </>
-  )
+  );
 }
 
-export default ListView
+export default ListView;
