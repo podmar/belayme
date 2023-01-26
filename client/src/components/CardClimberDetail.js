@@ -1,31 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, Chip, Stack } from "@mui/material";
 import ButtonBelayRequest from "./ButtonBelayRequest";
-// import { AuthContext } from "../context/AuthContext";
-// import ButtonIconBelayRequest from "./ButtonIconBelayRequest";
 
 function CardClimberDetail({ climber }) {
-  // const { user } = useContext(AuthContext);
-
-  // const checkIfRequestSent = () => {
-  //   if (user.sent_requests) {
-  //     let result = user.sent_requests.includes(climber._id);
-  //     return result
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   checkIfRequestSent()
-  // }, [user])
-
   return (
     <Box className="belayme-custom-box-center" py={1}>
       <Card
@@ -88,7 +70,6 @@ function CardClimberDetail({ climber }) {
                 <Chip color="primary" label={`${climber.weight} kg`}></Chip>
               </div>
             )}
-            {/* TODO Check why style is not dissappearing when empty */}
             {climber.climbing_style.length !== 0 && (
               <div className="padding-y-03">
                 <Chip
@@ -97,19 +78,10 @@ function CardClimberDetail({ climber }) {
                 ></Chip>
               </div>
             )}
-            {/* {climber. &&
-                <Chip
-                color="primary"
-                label={`${climber.}`}
-                ></Chip>} */}
           </Stack>
         </CardContent>
         <CardActions>
-          {/* {checkIfRequestSent && <ButtonBelayRequest id={climber._id}/>} */}
           <ButtonBelayRequest id={climber._id} />
-          {/* <Button size="small">Ask for a belay</Button> */}
-          {/* <ButtonIconBelayRequest id={climber._id}/> */}
-          <Button size="small">See profile</Button>
         </CardActions>
       </Card>
     </Box>
