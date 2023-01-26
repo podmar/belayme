@@ -1,5 +1,8 @@
+import { Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ButtonIconBack from "../components/ButtonIconBack";
+import ButtonIconBelayRequest from "../components/ButtonIconBelayRequest";
 import CardClimberDetail from "../components/CardClimberDetail";
 import ModalAlert from "../components/ModalAlert";
 import { useFetch } from "../utils/useFetch";
@@ -19,8 +22,18 @@ function DetailPartnerView() {
 
   return (
     <div>
-      <h6>Detail Partner View</h6>
       {climberDetail && <CardClimberDetail climber={climberDetail} />}
+      <Stack
+        className="belayme-custom-box-center"
+        direction="row"
+        alignItems={"space-between"}
+        spacing={1}
+        flexWrap={"wrap"}
+        xs={{ p: 0.5, m: 0 }}
+      >
+        {climberDetail && <ButtonIconBelayRequest id={climberDetail._id} />}
+        <ButtonIconBack />
+      </Stack>
       <ModalAlert />
     </div>
   );
