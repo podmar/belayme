@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, Chip, Stack } from "@mui/material";
 import ButtonBelayRequest from "./ButtonBelayRequest";
+import ButtonSeeClimberDetail from "./ButtonSeeClimberDetail";
 // import { AuthContext } from "../context/AuthContext";
 // import ButtonIconBelayRequest from "./ButtonIconBelayRequest";
 
@@ -109,7 +110,7 @@ function CardClimber({ climber }) {
           <ButtonBelayRequest id={climber._id} />
           {/* <Button size="small">Ask for a belay</Button> */}
           {/* <ButtonIconBelayRequest id={climber._id}/> */}
-          <Button size="small">See profile</Button>
+          <ButtonSeeClimberDetail id={climber._id} />
         </CardActions>
       </Card>
     </Box>
