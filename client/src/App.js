@@ -52,7 +52,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="detail/:userid"
+                  path="detail/:climberid"
                   element={
                     <ProtectedRoute>
                       <DetailPartnerView />

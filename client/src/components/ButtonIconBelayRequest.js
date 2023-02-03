@@ -1,23 +1,23 @@
-import React, { useContext } from 'react'; 
-import { IconButton } from '@mui/material';
-import LabelImportantIcon from '@mui/icons-material/LabelImportant';
-import { AuthContext } from '../context/AuthContext'
+import React, { useContext } from "react";
+import { Fab } from "@mui/material";
+import LabelImportantIcon from "@mui/icons-material/LabelImportant";
+import { AuthContext } from "../context/AuthContext";
 
-
-function ButtonIconBelayRequest({id}) {
-
-const {requestBelay} = useContext(AuthContext);
+function ButtonIconBelayRequest({ id }) {
+  const { requestBelay } = useContext(AuthContext);
 
   return (
     <>
-        <IconButton 
-            aria-label="belay-request"
-            onClick={() => requestBelay(id)}
-            >
-            <LabelImportantIcon />
-        </IconButton>
+      <Fab
+        variant="extended"
+        aria-label="belay-request"
+        onClick={() => requestBelay(id)}
+      >
+        <LabelImportantIcon sx={{ mr: 1 }} />
+        Ask for a belay
+      </Fab>
     </>
-  )
+  );
 }
 
-export default ButtonIconBelayRequest
+export default ButtonIconBelayRequest;

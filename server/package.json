@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "concurrently \"DEBUG=\"index\" nodemon index.js\" \"cd ../client && npm start\""
   },
   "repository": {
@@ -41,5 +41,8 @@
     "nodemon": "^2.0.16",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.4.1"
   }
 }
